@@ -1,6 +1,5 @@
 # Cruizer Reservation
 
-## Intro
 Cruizer reservation is a vehicle service reservation system build for Cruizer
 Service Stations. 
 
