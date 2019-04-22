@@ -23,7 +23,8 @@ router.post('/signup', [verify.checkDuplicateUserNameOrEmail], function (req, re
   if (!!req.body.username && !!req.body.email && !!req.body.password) {
     bcrypt.hash(req.body.password, 10).then((hash) => {
       const user = new User({
-        name: req.body.name || 'anonymous',
+        firstname: req.body.firstname,
+        lastname: req.body.lastname,
         username: req.body.username,
         password: hash,
         email: req.body.email
