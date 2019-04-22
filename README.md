@@ -16,7 +16,18 @@ Service Stations.
       ```bash
       npm install
       ```
-  2. Serve application
+  3. Setup the configrations
+    Database and other configurations are imported from ```_repository_/backend/.env``` file.
+    Create the above mentioned file with following content while replacing respective values.
+      ```
+      DB_HOST = <your_database_host>
+      DB_CLUSTER = <your_database_cluster>
+      DB_USER = <your_database_username>
+      DB_PASS = <your_database_password>
+      DB_NAME = <your_database_name>
+      SECRET = <secrect_key_for_jwt_issuing> // eg. 'cruizer@123'
+      ``` 
+  4. Serve application
       ```bash
       npm run start
       ```
