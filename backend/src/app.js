@@ -8,6 +8,8 @@ require('dotenv').config();
 const config = require('../app.config')
 const indexRouter = require('./api/index');
 const authRouter = require('./api/auth');
+const userRouter = require('./api/user');
+const carsRouter = require('./api/cars');
 
 var app = express();
 
@@ -29,6 +31,8 @@ mongoose.connect(config.DB, { useNewUrlParser: true })
 
 app.use(indexRouter);
 app.use('/auth', authRouter);
+app.use('/user', userRouter);
+app.use('/cars', carsRouter);
 
 app.set('port', process.env.PORT || 3000);
 module.exports = app;
