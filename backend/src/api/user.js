@@ -13,7 +13,7 @@ router.get('/', [verify.decodeToken], function (req, res, next) {
 
     // Remove password attribute from the user
     user.password = undefined
-    
+
     res.status(200).send(user)
   })
 })

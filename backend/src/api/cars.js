@@ -25,7 +25,7 @@ router.get('/:id', [verify.decodeToken], function (req, res, next) {
       })
     }
 
-    if (car.ownerId != req.uid) {
+    if (car.ownerId !== req.uid) {
       res.status(400).send({
         message: 'Unauthorized for the resource'
       })
@@ -63,25 +63,25 @@ router.put('/:id', [verify.decodeToken], function (req, res, next) {
       })
     }
 
-    if (car.ownerId != req.uid) {
+    if (car.ownerId !== req.uid) {
       res.status(400).send({
         message: 'Unauthorized for the resource'
       })
     }
 
-    if (!!req.body.model) {
+    if (req.body.model) {
       car.model = req.body.model
     }
 
-    if (!!req.body.vendor) {
+    if (req.body.vendor) {
       car.vendor = req.body.vendor
     }
 
-    if (!!req.body.number) {
+    if (req.body.number) {
       car.number = req.body.number
     }
 
-    if (!!req.body.milage) {
+    if (req.body.milage) {
       car.milage = req.body.milage
     }
     car.save().then(_ => {
@@ -101,7 +101,7 @@ router.delete('/:id', [verify.decodeToken], function (req, res, next) {
       })
     }
 
-    if (car.ownerId != req.uid) {
+    if (car.ownerId !== req.uid) {
       res.status(400).send({
         message: 'Unauthorized for the resource'
       })
@@ -115,7 +115,5 @@ router.delete('/:id', [verify.decodeToken], function (req, res, next) {
     })
   })
 })
-
-router.delete
 
 module.exports = router

@@ -5,7 +5,7 @@ const userSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     createIndex: true,
     required: true,
-    auto: true,
+    auto: true
   },
   username: String,
   firstname: String,

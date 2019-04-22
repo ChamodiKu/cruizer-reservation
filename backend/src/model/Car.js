@@ -5,7 +5,7 @@ const carSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     createIndex: true,
     required: true,
-    auto: true,
+    auto: true
   },
   model: String,
   vendor: String,
