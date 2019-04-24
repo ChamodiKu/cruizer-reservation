@@ -6,6 +6,12 @@ const config = require('../../app.config')
 const verify = require('../auth/verify')
 const User = require('../model/User')
 
+/**
+ * Authentication index endpoint.
+ * 
+ * @method GET
+ * @response Authentication endpoint information, child endpoints. 
+ */
 router.get('/', function (req, res, next) {
   res.send({
     route: '/auth',
@@ -17,6 +23,14 @@ router.get('/', function (req, res, next) {
   })
 })
 
+/**
+ * Sign up end point.
+ * 
+ * Sign up the given user.
+ * 
+ * @method POST
+ * @body User data model exept id and isAdmin.
+ */
 router.post('/signup', [verify.checkDuplicateUserNameOrEmail], function (req, res) {
   console.log('Sign up')
 
@@ -42,6 +56,15 @@ router.post('/signup', [verify.checkDuplicateUserNameOrEmail], function (req, re
   }
 })
 
+/** 
+ * Sign in endpoint.
+ * 
+ * Verify given user credentials and provide JWT token.
+ * 
+ * @method POST
+ * @body User credentials (username and password)
+ * @response JWT token
+ */
 router.post('/signin', function (req, res) {
   console.log('Sign in')
 
@@ -77,6 +100,15 @@ router.post('/signin', function (req, res) {
   }
 })
 
+/**
+ * Change password endpoint.
+ * 
+ * Change password of authenticated user to the given password.
+ * 
+ * @method POST
+ * @privilege User
+ * @body New password
+ */
 router.post('/changePassword', [verify.decodeToken], function (req, res) {
   console.log('Change password')
 
