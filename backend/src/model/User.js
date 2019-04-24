@@ -11,7 +11,8 @@ const userSchema = mongoose.Schema({
   firstname: String,
   lastname: String,
   email: String,
-  password: String
+  password: String,
+  isAdmin: Boolean
 })
 
 module.exports = mongoose.model('User', userSchema)

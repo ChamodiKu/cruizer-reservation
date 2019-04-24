@@ -27,7 +27,8 @@ router.post('/signup', [verify.checkDuplicateUserNameOrEmail], function (req, re
         lastname: req.body.lastname,
         username: req.body.username,
         password: hash,
-        email: req.body.email
+        email: req.body.email,
+        isAdmin: false
       })
       user.save().then(_ => {
         res.status(200).send({ message: 'Success, User created!' })
@@ -61,7 +62,7 @@ router.post('/signin', function (req, res) {
 
         bcrypt.compare(req.body.password, user.password).then(function (result) {
           if (result) {
-            var token = jwt.sign({ id: user._id }, config.SECRET, {
+            var token = jwt.sign({ id: user._id, isAdmin: !!user.isAdmin }, config.SECRET, {
               expiresIn: 86400 // expires in 24 hours
             })
 
