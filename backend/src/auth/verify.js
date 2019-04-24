@@ -2,7 +2,9 @@ const User = require('../model/User')
 const config = require('../../app.config')
 const jwt = require('jsonwebtoken')
 
-// Username & email check handler
+/**
+ * Handler to check the availability of email and password
+ */
 const checkDuplicateUserNameOrEmail = (req, res, next) => {
   User.findOne({ username: req.body.username })
     .exec((err, user) => {
@@ -38,7 +40,9 @@ const checkDuplicateUserNameOrEmail = (req, res, next) => {
     })
 }
 
-// JWT verify handler
+/**
+ * Handler to verify the JWT token, and retrive user information
+ */
 const decodeToken = (req, res, next) => {
   let token = req.headers['x-access-token']
 
@@ -64,7 +68,9 @@ const decodeToken = (req, res, next) => {
   })
 }
 
-// Admin verify handler
+/**
+ * Handler to verify whether user in an admin or not
+ */
 const checkAdmin = (req, res, next) => {
   if (!req.isAdmin) {
     return res.status(400).send({
