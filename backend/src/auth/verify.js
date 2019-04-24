@@ -78,4 +78,5 @@ const checkAdmin = (req, res, next) => {
 const verify = {}
 verify.checkDuplicateUserNameOrEmail = checkDuplicateUserNameOrEmail
 verify.decodeToken = decodeToken
+verify.checkAdmin = checkAdmin
 module.exports = verify
