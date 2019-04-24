@@ -4,6 +4,14 @@ const verify = require('../auth/verify')
 const Car = require('../model/Car')
 const mongoose = require('mongoose')
 
+/**
+ * Cars get endpoint.
+ * 
+ * Get all the cars owned by authenticated user.
+ * 
+ * @role User
+ * @response All cars owned by user
+ */
 router.get('/', [verify.decodeToken], function (req, res, next) {
   Car.find({ ownerId: new mongoose.Types.ObjectId(req.uid) }).exec((err, cars) => {
     if (err || cars == null) {
@@ -16,6 +24,15 @@ router.get('/', [verify.decodeToken], function (req, res, next) {
   })
 })
 
+/**
+ * Cars get by id endpoint.
+ * 
+ * Get the car for the given car id if the car is owned by the authenticated user.
+ * 
+ * @params id
+ * @role User
+ * @response Car of the given id.
+ */
 router.get('/:id', [verify.decodeToken], function (req, res, next) {
   Car.findById(req.params['id']).exec((err, car) => {
     console.log(car)
@@ -35,6 +52,14 @@ router.get('/:id', [verify.decodeToken], function (req, res, next) {
   })
 })
 
+/**
+ * Cars create endpoint.
+ * 
+ * Create the given car for the authenticated user.
+ * 
+ * @body Car data model exept id
+ * @role User
+ */
 router.post('/', [verify.decodeToken], function (req, res, next) {
   if (!!req.body.model && !!req.body.vendor && !!req.body.number) {
     const car = new Car({
@@ -55,6 +80,15 @@ router.post('/', [verify.decodeToken], function (req, res, next) {
   }
 })
 
+/**
+ * Cars update endpoint.
+ * 
+ * Update the given car details of the given car id owned by the authenticated user.
+ * 
+ * @params id
+ * @Body Car data model
+ * @role user
+ */
 router.put('/:id', [verify.decodeToken], function (req, res, next) {
   Car.findById(req.params['id']).exec((err, car) => {
     if (err || car == null) {
@@ -93,6 +127,14 @@ router.put('/:id', [verify.decodeToken], function (req, res, next) {
   })
 })
 
+/**
+ * Cars delete endpoint.
+ * 
+ * Delete the car referenced to the given car id which is owned by authenticated user.
+ * 
+ * @param id
+ * @role User 
+ */
 router.delete('/:id', [verify.decodeToken], function (req, res, next) {
   Car.findById(req.params['id']).exec((err, car) => {
     if (err || car == null) {
