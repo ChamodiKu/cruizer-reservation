@@ -3,6 +3,14 @@ const router = express.Router()
 const verify = require('../auth/verify')
 const User = require('../model/User')
 
+/**
+ * Users get endpoint.
+ * 
+ * Get all users in the system.
+ * 
+ * @role Admin
+ * @response List of user signed up in the system.
+ */
 router.get('/', [verify.decodeToken, verify.checkAdmin], function (req, res, next) {
   User.find(null).exec((err, users) => {
     if (err) {
@@ -18,6 +26,14 @@ router.get('/', [verify.decodeToken, verify.checkAdmin], function (req, res, nex
   })
 })
 
+/** 
+ * Users get current endpoint.
+ * 
+ * Get user details of authenticated user.
+ * 
+ * @role User
+ * @response User of the authenicated user
+ */
 router.get('/current', [verify.decodeToken], function (req, res, next) {
   User.findById(req.uid).exec((err, user) => {
     if (err) {
@@ -33,6 +49,14 @@ router.get('/current', [verify.decodeToken], function (req, res, next) {
   })
 })
 
+/**
+ * Users update current endpoint.
+ * 
+ * Update the given attributes of the authenticated user.
+ * 
+ * @body User data model exept id, password and isAdmin.
+ * @role User
+ */
 router.put('/current', [verify.decodeToken], function (req, res, next) {
   User.findById(req.uid).then(async (user) => {
     if (req.body.firstname) {
@@ -68,6 +92,14 @@ router.put('/current', [verify.decodeToken], function (req, res, next) {
   })
 })
 
+/**
+ * Users change privileges endpoint.
+ * 
+ * Change to given privilage of the given user.
+ * 
+ * @body Object with uid and isAdmin attributes
+ * @role Admin
+ */
 router.post('/changePrivilege', [verify.decodeToken, verify.checkAdmin], function (req, res, next) {
   if (req.body.uid) {
     User.findById(req.body.uid).then((user) => {
