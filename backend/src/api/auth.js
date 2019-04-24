@@ -27,7 +27,8 @@ router.post('/signup', [verify.checkDuplicateUserNameOrEmail], function (req, re
         lastname: req.body.lastname,
         username: req.body.username,
         password: hash,
-        email: req.body.email
+        email: req.body.email,
+        isAdmin: false
       })
       user.save().then(_ => {
         res.status(200).send({ message: 'Success, User created!' })
@@ -61,7 +62,7 @@ router.post('/signin', function (req, res) {
 
         bcrypt.compare(req.body.password, user.password).then(function (result) {
           if (result) {
-            var token = jwt.sign({ id: user._id }, config.SECRET, {
+            var token = jwt.sign({ id: user._id, isAdmin: !!user.isAdmin }, config.SECRET, {
               expiresIn: 86400 // expires in 24 hours
             })
 
@@ -71,6 +72,27 @@ router.post('/signin', function (req, res) {
           }
         })
       })
+  } else {
+    res.status(400).send({ message: 'Missing fields' })
+  }
+})
+
+
+router.post('/changePassword', [verify.decodeToken], function (req, res) {
+  console.log('Change password')
+
+  if (!!req.body.password) {
+    bcrypt.hash(req.body.password, 10).then((hash) => {
+      return User.findById(req.uid).then(user => {
+        user.password = hash
+        user.save().then(_ => {
+          return res.status(200).send({ message: 'Success, Password changed!' })
+        })
+      })
+    }).catch(err => {
+      console.log(err)
+      res.status(500).send({ message: 'User creation error.' })
+    })
   } else {
     res.status(400).send({ message: 'Missing fields' })
   }

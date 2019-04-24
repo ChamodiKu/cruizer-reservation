@@ -56,6 +56,7 @@ const decodeToken = (req, res, next) => {
       })
     }
     req.uid = decoded.id
+    req.isAdmin = decoded.isAdmin
     if (!req.uid) {
       return res.status(401).send({ message: 'Invalid user.' })
     }
@@ -63,7 +64,19 @@ const decodeToken = (req, res, next) => {
   })
 }
 
+// Admin verify handler
+const checkAdmin = (req, res, next) => {
+  if (!req.isAdmin) {
+    return res.status(400).send({
+      auth: false, message: 'Not enough privillages.'
+    })
+  }
+
+  next()
+}
+
 const verify = {}
 verify.checkDuplicateUserNameOrEmail = checkDuplicateUserNameOrEmail
 verify.decodeToken = decodeToken
+verify.checkAdmin = checkAdmin
 module.exports = verify
