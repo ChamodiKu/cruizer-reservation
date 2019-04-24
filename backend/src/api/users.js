@@ -26,6 +26,15 @@ router.get('/', [verify.decodeToken, verify.checkAdmin], function (req, res, nex
   })
 })
 
+/**
+ * User get user by id endpoint.
+ * 
+ * Get the user for the given user id.
+ * 
+ * @param id
+ * @role Admin
+ * @response User of the given id
+ */
 router.get('/:id', [verify.decodeToken, verify.checkAdmin], function (req, res, next) {
   User.findById(req.params['id']).exec((err, user) => {
     if (err || user == null) {
