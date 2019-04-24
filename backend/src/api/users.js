@@ -33,4 +33,40 @@ router.get('/current', [verify.decodeToken], function (req, res, next) {
   })
 })
 
+
+router.put('/current', [verify.decodeToken], function (req, res, next) {
+  User.findById(req.uid).then(async (user) => {
+    if (req.body.firstname) {
+      user.firstname = req.body.firstname
+    }
+
+    if (req.body.lastname) {
+      user.lastname = req.body.lastname
+    }
+
+    if (req.body.username) {
+      const existingUser = await User.findOne({ username: req.body.username })
+      if (existingUser) {
+        return res.status(400).send({ message: 'Username is already in taken!' })
+      }
+      user.username = req.body.username
+    }
+
+    if (req.body.email) {
+      const existingUser = await User.findOne({ email: req.body.email })
+      if (existingUser) {
+        return res.status(400).send({ message: 'Email is already in taken!' })
+      }
+      user.email = req.body.email
+    }
+
+    return user.save().then(_ => {
+      res.status(200).send({ message: 'Success, User updated!' })
+    })
+  }).catch(err => {
+    console.log(err)
+    res.status(500).send({ message: 'User update error.' })
+  })
+})
+
 module.exports = router
