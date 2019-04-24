@@ -77,11 +77,10 @@ router.post('/signin', function (req, res) {
   }
 })
 
-
 router.post('/changePassword', [verify.decodeToken], function (req, res) {
   console.log('Change password')
 
-  if (!!req.body.password) {
+  if (req.body.password) {
     bcrypt.hash(req.body.password, 10).then((hash) => {
       return User.findById(req.uid).then(user => {
         user.password = hash

@@ -12,7 +12,7 @@ router.get('/', [verify.decodeToken, verify.checkAdmin], function (req, res, nex
     }
 
     // Remove password attribute from the user
-    users.map(user => user.password = undefined)
+    users.map(user => { user.password = undefined })
 
     res.status(200).send(users)
   })
@@ -32,7 +32,6 @@ router.get('/current', [verify.decodeToken], function (req, res, next) {
     res.status(200).send(user)
   })
 })
-
 
 router.put('/current', [verify.decodeToken], function (req, res, next) {
   User.findById(req.uid).then(async (user) => {
