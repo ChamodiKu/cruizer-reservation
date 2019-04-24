@@ -38,7 +38,7 @@ router.get('/:id', [verify.decodeToken], function (req, res, next) {
     console.log(car)
     if (err || car == null) {
       return res.status(500).send({
-        message: 'Error retrieving User with id: ' + req.uid
+        message: 'Error retrieving Car with id: ' + req.params['id']
       })
     }
 
@@ -87,7 +87,7 @@ router.post('/', [verify.decodeToken], function (req, res, next) {
  * 
  * @params id
  * @Body Car data model
- * @role user
+ * @role User
  */
 router.put('/:id', [verify.decodeToken], function (req, res, next) {
   Car.findById(req.params['id']).exec((err, car) => {
