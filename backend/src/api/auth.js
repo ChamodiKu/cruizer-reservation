@@ -106,7 +106,7 @@ router.post('/signin', function (req, res) {
  * Change password of authenticated user to the given password.
  * 
  * @method POST
- * @privilege User
+ * @role User
  * @body New password
  */
 router.post('/changePassword', [verify.decodeToken], function (req, res) {
