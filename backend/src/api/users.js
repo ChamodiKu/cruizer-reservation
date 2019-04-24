@@ -18,6 +18,21 @@ router.get('/', [verify.decodeToken, verify.checkAdmin], function (req, res, nex
   })
 })
 
+router.get('/:id', [verify.decodeToken, verify.checkAdmin], function (req, res, next) {
+  User.findById(req.params['id']).exec((err, user) => {
+    if (err || user == null) {
+      return res.status(500).send({
+        message: 'Error retrieving User with id:' + req.params['id']
+      })
+    }
+
+    // Remove password attribute from the user
+    user.password = undefined
+
+    res.status(200).send(user)
+  })
+})
+
 router.get('/current', [verify.decodeToken], function (req, res, next) {
   User.findById(req.uid).exec((err, user) => {
     if (err) {
