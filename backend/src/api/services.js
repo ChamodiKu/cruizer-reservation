@@ -2,13 +2,12 @@ const express = require('express')
 const router = express.Router()
 const verify = require('../auth/verify')
 const Service = require('../model/Service')
-const mongoose = require('mongoose')
 
 /**
  * Services get endpoint.
- * 
+ *
  * Get all the services in the system.
- * 
+ *
  * @role Admin
  * @response List of services
  */
@@ -26,9 +25,9 @@ router.get('/', [verify.decodeToken, verify.checkAdmin], function (req, res, nex
 
 /**
  * Services get by id endpoint.
- * 
+ *
  * Get the service for the given service id.
- * 
+ *
  * @params id
  * @role Admin
  * @response Service of the given id.
@@ -48,9 +47,9 @@ router.get('/:id', [verify.decodeToken, verify.checkAdmin], function (req, res, 
 
 /**
  * Services create endpoint.
- * 
+ *
  * Create the given service.
- * 
+ *
  * @body Service data model exept id
  * @role Admin
  */
@@ -74,9 +73,9 @@ router.post('/', [verify.decodeToken, verify.checkAdmin], function (req, res, ne
 
 /**
  * Services update endpoint.
- * 
+ *
  * Update the given service details of the given service id.
- * 
+ *
  * @params id
  * @Body Service data model
  * @role Admin
@@ -112,11 +111,11 @@ router.put('/:id', [verify.decodeToken, verify.checkAdmin], function (req, res, 
 
 /**
  * Services delete endpoint.
- * 
+ *
  * Delete the service referenced to the given service id.
- * 
+ *
  * @param id
- * @role Admin 
+ * @role Admin
  */
 router.delete('/:id', [verify.decodeToken, verify.checkAdmin], function (req, res, next) {
   Service.findById(req.params['id']).exec((err, service) => {
