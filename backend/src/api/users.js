@@ -12,7 +12,7 @@ router.get('/', [verify.decodeToken, verify.checkAdmin], function (req, res, nex
     }
 
     // Remove password attribute from the user
-    users.map(user => user.password = undefined)
+    users.map(user => { user.password = undefined })
 
     res.status(200).send(users)
   })
@@ -32,7 +32,6 @@ router.get('/current', [verify.decodeToken], function (req, res, next) {
     res.status(200).send(user)
   })
 })
-
 
 router.put('/current', [verify.decodeToken], function (req, res, next) {
   User.findById(req.uid).then(async (user) => {
@@ -70,10 +69,10 @@ router.put('/current', [verify.decodeToken], function (req, res, next) {
 })
 
 router.post('/changePrivilege', [verify.decodeToken, verify.checkAdmin], function (req, res, next) {
-  if (!!req.body.uid && !!req.body.isAdmin) {
+  if (req.body.uid) {
     User.findById(req.body.uid).then((user) => {
       if (user) {
-        user.isAdmin = req.body.isAdmin
+        user.isAdmin = !!req.body.isAdmin
 
         return user.save().then(_ => {
           res.status(200).send({ message: 'Success, User privilege updated!' })
