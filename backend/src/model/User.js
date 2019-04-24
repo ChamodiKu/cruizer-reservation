@@ -1,5 +1,8 @@
 const mongoose = require('mongoose')
 
+/**
+ * Data model for User.
+ */
 const userSchema = mongoose.Schema({
   _id: {
     type: mongoose.Schema.Types.ObjectId,

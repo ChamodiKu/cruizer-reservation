@@ -1,6 +1,5 @@
 # Cruizer Reservation
 
-## Intro
 Cruizer reservation is a vehicle service reservation system build for Cruizer
 Service Stations. 
 
@@ -16,7 +15,7 @@ Service Stations.
       ```bash
       npm install
       ```
-  3. Setup the configrations
+  3. Setup the configrations\
     Database and other configurations are imported from ```_repository_/backend/.env``` file.
     Create the above mentioned file with following content while replacing respective values.
       ```
