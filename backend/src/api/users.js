@@ -69,4 +69,30 @@ router.put('/current', [verify.decodeToken], function (req, res, next) {
   })
 })
 
+router.post('/changePrivilege', [verify.decodeToken, verify.checkAdmin], function (req, res, next) {
+  if (!!req.body.uid && !!req.body.isAdmin) {
+    User.findById(req.body.uid).then((user) => {
+      if (user) {
+        user.isAdmin = req.body.isAdmin
+
+        return user.save().then(_ => {
+          res.status(200).send({ message: 'Success, User privilege updated!' })
+        }).catch(err => {
+          console.log(err)
+          res.status(500).send({ message: 'User privilege update error.' })
+        })
+      } else {
+        return res.status(500).send({
+          message: 'Error retrieving User with id: ' + req.uid
+        })
+      }
+    }).catch(err => {
+      console.log(err)
+      res.status(500).send({ message: 'User privilege update error.' })
+    })
+  } else {
+    res.status(400).send({ message: 'Missing fields' })
+  }
+})
+
 module.exports = router
