@@ -9,7 +9,6 @@ const User = require('../model/User')
 /**
  * Authentication index endpoint.
  * 
- * @method GET
  * @response Authentication endpoint information, child endpoints. 
  */
 router.get('/', function (req, res, next) {
@@ -28,7 +27,6 @@ router.get('/', function (req, res, next) {
  * 
  * Sign up the given user.
  * 
- * @method POST
  * @body User data model exept id and isAdmin.
  */
 router.post('/signup', [verify.checkDuplicateUserNameOrEmail], function (req, res) {
@@ -61,7 +59,6 @@ router.post('/signup', [verify.checkDuplicateUserNameOrEmail], function (req, re
  * 
  * Verify given user credentials and provide JWT token.
  * 
- * @method POST
  * @body User credentials (username and password)
  * @response JWT token
  */
@@ -105,7 +102,6 @@ router.post('/signin', function (req, res) {
  * 
  * Change password of authenticated user to the given password.
  * 
- * @method POST
  * @role User
  * @body New password
  */
