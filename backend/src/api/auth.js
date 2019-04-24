@@ -77,4 +77,25 @@ router.post('/signin', function (req, res) {
   }
 })
 
+
+router.post('/changePassword', [verify.decodeToken], function (req, res) {
+  console.log('Change password')
+
+  if (!!req.body.password) {
+    bcrypt.hash(req.body.password, 10).then((hash) => {
+      return User.findById(req.uid).then(user => {
+        user.password = hash
+        user.save().then(_ => {
+          return res.status(200).send({ message: 'Success, Password changed!' })
+        })
+      })
+    }).catch(err => {
+      console.log(err)
+      res.status(500).send({ message: 'User creation error.' })
+    })
+  } else {
+    res.status(400).send({ message: 'Missing fields' })
+  }
+})
+
 module.exports = router
