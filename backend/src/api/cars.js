@@ -10,7 +10,7 @@ const mongoose = require('mongoose')
  * Get all the cars owned by authenticated user.
  * 
  * @role User
- * @response All cars owned by user
+ * @response List of cars owned by user
  */
 router.get('/', [verify.decodeToken], function (req, res, next) {
   Car.find({ ownerId: new mongoose.Types.ObjectId(req.uid) }).exec((err, cars) => {
