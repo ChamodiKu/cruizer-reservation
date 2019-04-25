@@ -15,7 +15,8 @@ const reservationSchema = mongoose.Schema({
   created: Date,
   requested: Date,
   alloctated: Date,
-  status: Number
+  status: Number,
+  createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
 })
 
 module.exports = mongoose.model('Reservation', reservationSchema)
