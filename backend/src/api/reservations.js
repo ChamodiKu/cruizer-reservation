@@ -18,7 +18,7 @@ const piper = hukx(router)
  */
 piper.get('/', [verify.decodeToken], piper.pipe(
   flatMap(req => from(Reservation.findById({ createdBy: req.uid }))),
-  throwIfEmpty(_ => piper.error(500, { message: 'Error retrieving reservations' }))
+  throwIfEmpty(() => piper.error(500, { message: 'Error retrieving reservations' }))
 ))
 
 /**
@@ -32,7 +32,7 @@ piper.get('/', [verify.decodeToken], piper.pipe(
  */
 piper.get('/:id', [verify.decodeToken], piper.pipe(
   flatMap(req => from(Reservation.find({ _id: req.params['id'], createdBy: req.uid }))),
-  throwIfEmpty(_ => piper.error(500, { message: 'Error retrieving the Reservation.' }))
+  throwIfEmpty(() => piper.error(500, { message: 'Error retrieving the Reservation.' }))
 ))
 
 /**
@@ -59,7 +59,7 @@ piper.post('/', [verify.decodeToken], piper.pipe(
     createdBy: req.uid
   })),
   flatMap(reservation => from(reservation.save())),
-  map(_ => {
+  map(() => {
     return { message: 'Success, Reservation created!' }
   })
 ))
@@ -91,8 +91,8 @@ piper.put('/:id', [verify.decodeToken], piper.pipe(
     return { query: query, update: update }
   }),
   map(res => Reservation.findOneAndUpdate(res.query, res.update)),
-  throwIfEmpty(_ => piper.error(500, { message: 'Service update error.' })),
-  map(_ => {
+  throwIfEmpty(() => piper.error(500, { message: 'Service update error.' })),
+  map(() => {
     return { message: 'Success, Reservation updated!' }
   }),
 
@@ -108,9 +108,9 @@ piper.put('/:id', [verify.decodeToken], piper.pipe(
  */
 piper.delete('/:id', [verify.decodeToken], piper.pipe(
   flatMap(req => from(Reservation.find({ _id: req.params['id'], createdBy: req.uid }))),
-  throwIfEmpty(_ => piper.error(500, { message: 'Error deleting Reservation with id.' })),
+  throwIfEmpty(() => piper.error(500, { message: 'Error deleting Reservation with id.' })),
   flatMap(reservation => from(reservation.delete())),
-  map(_ => {
+  map(() => {
     return {
       message: 'Success, Reservation deleted!'
     }

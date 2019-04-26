@@ -11,7 +11,7 @@ const User = require('../model/User')
  * @role Admin
  * @response List of user signed up in the system.
  */
-router.get('/', [verify.decodeToken, verify.checkAdmin], function (req, res, next) {
+router.get('/', [verify.decodeToken, verify.checkAdmin], function (_, res) {
   User.find(null).exec((err, users) => {
     if (err) {
       return res.status(500).send({
@@ -35,7 +35,7 @@ router.get('/', [verify.decodeToken, verify.checkAdmin], function (req, res, nex
  * @role Admin
  * @response User of the given id
  */
-router.get('/:id', [verify.decodeToken, verify.checkAdmin], function (req, res, next) {
+router.get('/:id', [verify.decodeToken, verify.checkAdmin], function (req, res) {
   User.findById(req.params['id']).exec((err, user) => {
     if (err || user == null) {
       return res.status(500).send({
@@ -58,7 +58,7 @@ router.get('/:id', [verify.decodeToken, verify.checkAdmin], function (req, res, 
  * @role User
  * @response User of the authenicated user
  */
-router.get('/current', [verify.decodeToken], function (req, res, next) {
+router.get('/current', [verify.decodeToken], function (req, res) {
   User.findById(req.uid).exec((err, user) => {
     if (err) {
       return res.status(500).send({
@@ -81,7 +81,7 @@ router.get('/current', [verify.decodeToken], function (req, res, next) {
  * @body User data model exept id, password and isAdmin.
  * @role User
  */
-router.put('/current', [verify.decodeToken], function (req, res, next) {
+router.put('/current', [verify.decodeToken], function (req, res) {
   User.findById(req.uid).then(async (user) => {
     if (req.body.firstname) {
       user.firstname = req.body.firstname
@@ -107,11 +107,10 @@ router.put('/current', [verify.decodeToken], function (req, res, next) {
       user.email = req.body.email
     }
 
-    return user.save().then(_ => {
+    return user.save().then(() => {
       res.status(200).send({ message: 'Success, User updated!' })
     })
-  }).catch(err => {
-    console.log(err)
+  }).catch(() => {
     res.status(500).send({ message: 'User update error.' })
   })
 })
@@ -124,16 +123,15 @@ router.put('/current', [verify.decodeToken], function (req, res, next) {
  * @body Object with uid and isAdmin attributes
  * @role Admin
  */
-router.post('/changePrivilege', [verify.decodeToken, verify.checkAdmin], function (req, res, next) {
+router.post('/changePrivilege', [verify.decodeToken, verify.checkAdmin], function (req, res) {
   if (req.body.uid) {
     User.findById(req.body.uid).then((user) => {
       if (user) {
         user.isAdmin = !!req.body.isAdmin
 
-        return user.save().then(_ => {
+        return user.save().then(() => {
           res.status(200).send({ message: 'Success, User privilege updated!' })
-        }).catch(err => {
-          console.log(err)
+        }).catch(() => {
           res.status(500).send({ message: 'User privilege update error.' })
         })
       } else {
@@ -141,8 +139,7 @@ router.post('/changePrivilege', [verify.decodeToken, verify.checkAdmin], functio
           message: 'Error retrieving User with id: ' + req.uid
         })
       }
-    }).catch(err => {
-      console.log(err)
+    }).catch(() => {
       res.status(500).send({ message: 'User privilege update error.' })
     })
   } else {

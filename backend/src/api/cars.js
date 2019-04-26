@@ -12,7 +12,7 @@ const mongoose = require('mongoose')
  * @role User
  * @response List of cars owned by user
  */
-router.get('/', [verify.decodeToken], function (req, res, next) {
+router.get('/', [verify.decodeToken], function (req, res) {
   Car.find({ ownerId: new mongoose.Types.ObjectId(req.uid) }).exec((err, cars) => {
     if (err || cars == null) {
       return res.status(500).send({
@@ -33,9 +33,8 @@ router.get('/', [verify.decodeToken], function (req, res, next) {
  * @role User
  * @response Car of the given id.
  */
-router.get('/:id', [verify.decodeToken], function (req, res, next) {
+router.get('/:id', [verify.decodeToken], function (req, res) {
   Car.findById(req.params['id']).exec((err, car) => {
-    console.log(car)
     if (err || car == null) {
       return res.status(500).send({
         message: 'Error retrieving Car with id: ' + req.params['id']
@@ -60,7 +59,7 @@ router.get('/:id', [verify.decodeToken], function (req, res, next) {
  * @body Car data model exept id
  * @role User
  */
-router.post('/', [verify.decodeToken], function (req, res, next) {
+router.post('/', [verify.decodeToken], function (req, res) {
   if (!!req.body.model && !!req.body.vendor && !!req.body.number) {
     const car = new Car({
       model: req.body.model,
@@ -69,10 +68,9 @@ router.post('/', [verify.decodeToken], function (req, res, next) {
       milage: req.body.milage,
       ownerId: new mongoose.Types.ObjectId(req.uid)
     })
-    car.save().then(_ => {
+    car.save().then(() => {
       res.status(200).send({ message: 'Success, Car created!' })
-    }).catch(err => {
-      console.log(err)
+    }).catch(() => {
       res.status(500).send({ message: 'Car creation error.' })
     })
   } else {
@@ -89,7 +87,7 @@ router.post('/', [verify.decodeToken], function (req, res, next) {
  * @Body Car data model
  * @role User
  */
-router.put('/:id', [verify.decodeToken], function (req, res, next) {
+router.put('/:id', [verify.decodeToken], function (req, res) {
   Car.findById(req.params['id']).exec((err, car) => {
     if (err || car == null) {
       return res.status(500).send({
@@ -118,10 +116,9 @@ router.put('/:id', [verify.decodeToken], function (req, res, next) {
     if (req.body.milage) {
       car.milage = req.body.milage
     }
-    car.save().then(_ => {
+    car.save().then(() => {
       res.status(200).send({ message: 'Success, Car updated!' })
-    }).catch(err => {
-      console.log(err)
+    }).catch(() => {
       res.status(500).send({ message: 'Car update error.' })
     })
   })
@@ -135,7 +132,7 @@ router.put('/:id', [verify.decodeToken], function (req, res, next) {
  * @param id
  * @role User
  */
-router.delete('/:id', [verify.decodeToken], function (req, res, next) {
+router.delete('/:id', [verify.decodeToken], function (req, res) {
   Car.findById(req.params['id']).exec((err, car) => {
     if (err || car == null) {
       return res.status(500).send({
@@ -149,10 +146,9 @@ router.delete('/:id', [verify.decodeToken], function (req, res, next) {
       })
     }
 
-    car.delete().then(_ => {
+    car.delete().then(() => {
       res.status(200).send({ message: 'Success, Car deleted!' })
-    }).catch(err => {
-      console.log(err)
+    }).catch(() => {
       res.status(500).send({ message: 'Car delete error.' })
     })
   })

@@ -1,4 +1,4 @@
-export class ReservationStatus {
-  static CREATED = 0
-  static CHANGED = 1
+exports.ReservationStatus = {
+  CREATED: 0,
+  CHANGED: 1
 }

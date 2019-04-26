@@ -7,13 +7,13 @@ const verify = require('../auth/verify')
  *
  * Provide information about the API.
  */
-router.get('/', function (req, res, next) {
+router.get('/', function (_, res) {
   res.send({
     title: 'Cruizer'
   })
 })
 
-router.get('/authed', [verify.decodeToken], function (req, res, next) {
+router.get('/authed', [verify.decodeToken], function (_, res) {
   res.send({
     title: 'Authed page'
   })
