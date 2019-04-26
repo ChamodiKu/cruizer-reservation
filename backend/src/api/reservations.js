@@ -4,7 +4,7 @@ const verify = require('../auth/verify')
 const Reservation = require('../model/Reservation')
 const { ReservationStatus } = require('../common/constants')
 const { from } = require('rxjs')
-const { map, throwIfEmpty, flatMap } = require('rxjs/operators')
+const { map, throwIfEmpty, flatMap, tap } = require('rxjs/operators')
 const hukx = require('hukx')
 const piper = hukx(router)
 
@@ -17,7 +17,7 @@ const piper = hukx(router)
  * @response List of reservations
  */
 piper.get('/', [verify.decodeToken], piper.pipe(
-  flatMap(req => from(Reservation.findById({ createdBy: req.uid }))),
+  flatMap(req => from(Reservation.find({ createdBy: req.uid }))),
   throwIfEmpty(() => piper.error(500, { message: 'Error retrieving reservations' }))
 ))
 
@@ -45,7 +45,7 @@ piper.get('/:id', [verify.decodeToken], piper.pipe(
  */
 piper.post('/', [verify.decodeToken], piper.pipe(
   map(req => {
-    if (!!req.body.vehicle && !!req.body.services && req.body.requested)
+    if (!req.body.vehicle || !req.body.services || !req.body.requested)
       throw piper.error(500, { message: 'Missing fields' })
 
     return req
@@ -90,7 +90,7 @@ piper.put('/:id', [verify.decodeToken], piper.pipe(
 
     return { query: query, update: update }
   }),
-  map(res => Reservation.findOneAndUpdate(res.query, res.update)),
+  flatMap(res => from(Reservation.updateOne(res.query, res.update))),
   throwIfEmpty(() => piper.error(500, { message: 'Service update error.' })),
   map(() => {
     return { message: 'Success, Reservation updated!' }
@@ -107,13 +107,10 @@ piper.put('/:id', [verify.decodeToken], piper.pipe(
  * @role User
  */
 piper.delete('/:id', [verify.decodeToken], piper.pipe(
-  flatMap(req => from(Reservation.find({ _id: req.params['id'], createdBy: req.uid }))),
+  flatMap(req => from(Reservation.deleteOne({ _id: req.params['id'], createdBy: req.uid }))),
   throwIfEmpty(() => piper.error(500, { message: 'Error deleting Reservation with id.' })),
-  flatMap(reservation => from(reservation.delete())),
   map(() => {
-    return {
-      message: 'Success, Reservation deleted!'
-    }
+    return { message: 'Success, Reservation deleted!' }
   })
 ))
 
