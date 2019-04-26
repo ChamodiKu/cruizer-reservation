@@ -12,10 +12,10 @@ const reservationSchema = mongoose.Schema({
   },
   vehicle: { type: mongoose.Schema.Types.ObjectId, ref: 'Car' },
   services: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Service' }],
-  created: Date,
   requested: Date,
   alloctated: Date,
   status: Number,
+  created: Date,
   createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
 })
 
