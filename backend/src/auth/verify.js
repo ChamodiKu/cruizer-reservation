@@ -8,7 +8,6 @@ const jwt = require('jsonwebtoken')
 const checkDuplicateUserNameOrEmail = (req, res, next) => {
   User.findOne({ username: req.body.username })
     .exec((err, user) => {
-      console.log(user)
       if (err && err.kind !== 'ObjectId') {
         res.status(500).send({
           message: 'Error retrieving User with Username = ' + req.body.username

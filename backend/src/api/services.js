@@ -11,7 +11,7 @@ const Service = require('../model/Service')
  * @role Admin
  * @response List of services
  */
-router.get('/', [verify.decodeToken, verify.checkAdmin], function (req, res, next) {
+router.get('/', [verify.decodeToken, verify.checkAdmin], function (_, res) {
   Service.find().exec((err, services) => {
     if (err || services == null) {
       return res.status(500).send({
@@ -32,9 +32,8 @@ router.get('/', [verify.decodeToken, verify.checkAdmin], function (req, res, nex
  * @role Admin
  * @response Service of the given id.
  */
-router.get('/:id', [verify.decodeToken, verify.checkAdmin], function (req, res, next) {
+router.get('/:id', [verify.decodeToken, verify.checkAdmin], function (req, res) {
   Service.findById(req.params['id']).exec((err, service) => {
-    console.log(service)
     if (err || service == null) {
       return res.status(500).send({
         message: 'Error retrieving Service with id: ' + req.params['id']
@@ -53,17 +52,16 @@ router.get('/:id', [verify.decodeToken, verify.checkAdmin], function (req, res, 
  * @body Service data model exept id
  * @role Admin
  */
-router.post('/', [verify.decodeToken, verify.checkAdmin], function (req, res, next) {
+router.post('/', [verify.decodeToken, verify.checkAdmin], function (req, res) {
   if (!!req.body.name && !!req.body.description) {
     const service = new Service({
       name: req.body.name,
       description: req.body.description,
       price: req.body.price
     })
-    service.save().then(_ => {
+    service.save().then(() => {
       res.status(200).send({ message: 'Success, Service created!' })
-    }).catch(err => {
-      console.log(err)
+    }).catch(() => {
       res.status(500).send({ message: 'Service creation error.' })
     })
   } else {
@@ -80,7 +78,7 @@ router.post('/', [verify.decodeToken, verify.checkAdmin], function (req, res, ne
  * @Body Service data model
  * @role Admin
  */
-router.put('/:id', [verify.decodeToken, verify.checkAdmin], function (req, res, next) {
+router.put('/:id', [verify.decodeToken, verify.checkAdmin], function (req, res) {
   Service.findById(req.params['id']).exec((err, service) => {
     if (err || service == null) {
       return res.status(500).send({
@@ -100,10 +98,9 @@ router.put('/:id', [verify.decodeToken, verify.checkAdmin], function (req, res, 
       service.price = req.body.price
     }
 
-    service.save().then(_ => {
+    service.save().then(() => {
       res.status(200).send({ message: 'Success, Service updated!' })
-    }).catch(err => {
-      console.log(err)
+    }).catch(() => {
       res.status(500).send({ message: 'Service update error.' })
     })
   })
@@ -117,7 +114,7 @@ router.put('/:id', [verify.decodeToken, verify.checkAdmin], function (req, res, 
  * @param id
  * @role Admin
  */
-router.delete('/:id', [verify.decodeToken, verify.checkAdmin], function (req, res, next) {
+router.delete('/:id', [verify.decodeToken, verify.checkAdmin], function (req, res) {
   Service.findById(req.params['id']).exec((err, service) => {
     if (err || service == null) {
       return res.status(500).send({
@@ -125,10 +122,9 @@ router.delete('/:id', [verify.decodeToken, verify.checkAdmin], function (req, re
       })
     }
 
-    service.delete().then(_ => {
+    service.delete().then(() => {
       res.status(200).send({ message: 'Success, Service deleted!' })
-    }).catch(err => {
-      console.log(err)
+    }).catch(() => {
       res.status(500).send({ message: 'Service delete error.' })
     })
   })

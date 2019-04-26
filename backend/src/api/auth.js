@@ -11,7 +11,7 @@ const User = require('../model/User')
  *
  * @response Authentication endpoint information, child endpoints.
  */
-router.get('/', function (req, res, next) {
+router.get('/', function (_, res) {
   res.send({
     route: '/auth',
     description: 'Authentication service',
@@ -30,8 +30,6 @@ router.get('/', function (req, res, next) {
  * @body User data model exept id and isAdmin.
  */
 router.post('/signup', [verify.checkDuplicateUserNameOrEmail], function (req, res) {
-  console.log('Sign up')
-
   if (!!req.body.username && !!req.body.email && !!req.body.password) {
     bcrypt.hash(req.body.password, 10).then((hash) => {
       const user = new User({
@@ -42,11 +40,10 @@ router.post('/signup', [verify.checkDuplicateUserNameOrEmail], function (req, re
         email: req.body.email,
         isAdmin: false
       })
-      user.save().then(_ => {
+      user.save().then(() => {
         res.status(200).send({ message: 'Success, User created!' })
       })
-    }).catch(err => {
-      console.log(err)
+    }).catch(() => {
       res.status(500).send({ message: 'User creation error.' })
     })
   } else {
@@ -63,12 +60,9 @@ router.post('/signup', [verify.checkDuplicateUserNameOrEmail], function (req, re
  * @response JWT token
  */
 router.post('/signin', function (req, res) {
-  console.log('Sign in')
-
   if (!!req.body.username && !!req.body.password) {
     User.findOne({ username: req.body.username })
       .exec((err, user) => {
-        console.log(user)
         if (err) {
           if (err.kind !== 'ObjectId') {
             return res.status(500).send({
@@ -106,18 +100,15 @@ router.post('/signin', function (req, res) {
  * @body New password
  */
 router.post('/changePassword', [verify.decodeToken], function (req, res) {
-  console.log('Change password')
-
   if (req.body.password) {
     bcrypt.hash(req.body.password, 10).then((hash) => {
       return User.findById(req.uid).then(user => {
         user.password = hash
-        user.save().then(_ => {
+        user.save().then(() => {
           return res.status(200).send({ message: 'Success, Password changed!' })
         })
       })
-    }).catch(err => {
-      console.log(err)
+    }).catch(() => {
       res.status(500).send({ message: 'User creation error.' })
     })
   } else {
