@@ -110,9 +110,7 @@ piper.delete('/:id', [verify.decodeToken], piper.pipe(
   flatMap(req => from(Reservation.deleteOne({ _id: req.params['id'], createdBy: req.uid }))),
   throwIfEmpty(() => piper.error(500, { message: 'Error deleting Reservation with id.' })),
   map(() => {
-    return {
-      message: 'Success, Reservation deleted!'
-    }
+    return { message: 'Success, Reservation deleted!' }
   })
 ))
 
