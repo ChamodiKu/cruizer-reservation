@@ -11,6 +11,7 @@ const authRouter = require('./api/auth')
 const usersRouter = require('./api/users')
 const carsRouter = require('./api/cars')
 const servicesRouter = require('./api/services')
+const reservationsRouter = require('./api/reservations')
 
 // Initialize the express app
 var app = express()
@@ -38,6 +39,7 @@ app.use('/auth', authRouter)
 app.use('/users', usersRouter)
 app.use('/cars', carsRouter)
 app.use('/services', servicesRouter)
+app.use('/reservations', reservationsRouter)
 
 // Set the port to 3000
 app.set('port', process.env.PORT || 3000)
