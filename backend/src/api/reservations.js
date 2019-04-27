@@ -4,7 +4,7 @@ const verify = require('../auth/verify')
 const Reservation = require('../model/Reservation')
 const { ReservationStatus } = require('../common/constants')
 const { from } = require('rxjs')
-const { map, throwIfEmpty, flatMap, tap } = require('rxjs/operators')
+const { map, throwIfEmpty, flatMap } = require('rxjs/operators')
 const hukx = require('hukx')
 const piper = hukx(router)
 
@@ -33,6 +33,31 @@ piper.get('/', [verify.decodeToken], piper.pipe(
 piper.get('/:id', [verify.decodeToken], piper.pipe(
   flatMap(req => from(Reservation.find({ _id: req.params['id'], createdBy: req.uid }))),
   throwIfEmpty(() => piper.error(500, { message: 'Error retrieving the Reservation.' }))
+))
+
+/**
+ * Reservations get all endpoint.
+ *
+ * Get the all the reservation in the system.
+ *
+ * @role Admin
+ * @response List of reservations
+ */
+piper.get('/all', [verify.decodeToken, verify.checkAdmin], piper.pipe(
+  flatMap(() => from(Reservation.find()))
+))
+
+/**
+ * Reservations get all by id endpoint.
+ *
+ * Get the reservation referenced by the given reservation id form the all the reservation in the system.
+ *
+ * @param id
+ * @role Admin
+ * @response Reservation of the given id
+ */
+piper.get('/all/:id', [verify.decodeToken, verify.checkAdmin], piper.pipe(
+  flatMap(req => from(Reservation.findById(req.uid)))
 ))
 
 /**
@@ -65,6 +90,70 @@ piper.post('/', [verify.decodeToken], piper.pipe(
 ))
 
 /**
+ * Reservations accept endpoint.
+ *
+ * Accept the reservation of the given id.
+ *
+ * @params id
+ * @role Admin
+ */
+piper.post('/accept/:id', [verify.decodeToken, verify.checkAdmin], piper.pipe(
+  flatMap(req => from(Reservation.findById(req.params['id']))),
+  map(reservation => {
+    reservation.status = ReservationStatus.ACCEPTED
+    reservation.alloctated = reservation.requested
+
+    return reservation
+  }),
+  flatMap(() => from(Reservation.save())),
+  throwIfEmpty(() => piper.error(500, { message: 'Reservation accept error.' })),
+  map(() => {
+    return { message: 'Success, Reservation accepted!' }
+  }),
+))
+
+/**
+ * Reservations propose endpoint.
+ *
+ * Propose an allocated date time for the reservation of the given reservation id.
+ *
+ * @params id
+ * @body Object with allocated date time
+ * @role Admin
+ */
+piper.post('/propose/:id', [verify.decodeToken, verify.checkAdmin], piper.pipe(
+  map(req => {
+    if (!req.body.alloctated)
+      throw piper.error(500, { message: 'Missing fields' })
+
+    return req
+  }),
+  flatMap(req => from(Reservation.updateOne({ _id: req.params['id'] }, {
+    status: ReservationStatus.PROPOSED, alloctated: req.body.alloctated
+  }))),
+  throwIfEmpty(() => piper.error(500, { message: 'Reservation propose error.' })),
+  map(() => {
+    return { message: 'Success, New reservation date time proposed!' }
+  }),
+))
+
+/**
+ * Reservations accept proposal endpoint.
+ *
+ * Accept the proposed allocated date time for the reservation of the given reservation id.
+ *
+ * @params id
+ * @role User
+ */
+piper.post('/acceptProposal/:id', [verify.decodeToken], piper.pipe(
+  flatMap(req => from(Reservation.updateOne({ _id: req.params['id'] }, { status: ReservationStatus.ACCEPTED }))),
+  throwIfEmpty(() => piper.error(500, { message: 'Reservation propose error.' })),
+  map(() => {
+    return { message: 'Success, Reservation accepted!' }
+  }),
+))
+
+/**
  * Reservations update endpoint.
  *
  * Update the services of the reservation by the given id created by authenticated user.
@@ -91,11 +180,10 @@ piper.put('/:id', [verify.decodeToken], piper.pipe(
     return { query: query, update: update }
   }),
   flatMap(res => from(Reservation.updateOne(res.query, res.update))),
-  throwIfEmpty(() => piper.error(500, { message: 'Service update error.' })),
+  throwIfEmpty(() => piper.error(500, { message: 'Reservation update error.' })),
   map(() => {
     return { message: 'Success, Reservation updated!' }
   }),
-
 ))
 
 /**
