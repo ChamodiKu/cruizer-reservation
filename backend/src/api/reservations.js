@@ -36,6 +36,31 @@ piper.get('/:id', [verify.decodeToken], piper.pipe(
 ))
 
 /**
+ * Reservations get all endpoint.
+ *
+ * Get the all the reservation in the system.
+ *
+ * @role Admin
+ * @response List of reservations
+ */
+piper.get('/all', [verify.decodeToken, verify.checkAdmin], piper.pipe(
+  flatMap(() => from(Reservation.find()))
+))
+
+/**
+ * Reservations get all by id endpoint.
+ *
+ * Get the reservation referenced by the given reservation id form the all the reservation in the system.
+ *
+ * @param id
+ * @role Admin
+ * @response Reservation of the given id
+ */
+piper.get('/all/:id', [verify.decodeToken, verify.checkAdmin], piper.pipe(
+  flatMap(() => from(Reservation.findById(req.uid)))
+))
+
+/**
  * Reservations create endpoint.
  *
  * Create the given reservated for the authenticated user.
