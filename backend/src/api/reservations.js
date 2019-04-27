@@ -9,6 +9,31 @@ const hukx = require('hukx')
 const piper = hukx(router)
 
 /**
+ * Reservations get all endpoint.
+ *
+ * Get the all the reservation in the system.
+ *
+ * @role Admin
+ * @response List of reservations
+ */
+piper.get('/all', [verify.decodeToken, verify.checkAdmin], piper.pipe(
+  flatMap(() => from(Reservation.find()))
+))
+
+/**
+ * Reservations get all by id endpoint.
+ *
+ * Get the reservation referenced by the given reservation id form the all the reservation in the system.
+ *
+ * @param id
+ * @role Admin
+ * @response Reservation of the given id
+ */
+piper.get('/all/:id', [verify.decodeToken, verify.checkAdmin], piper.pipe(
+  flatMap(req => from(Reservation.findById(req.params['id'])))
+))
+
+/**
  * Reservations get endpoint.
  *
  * Get all the reservations created by the authenticated user.
@@ -31,33 +56,8 @@ piper.get('/', [verify.decodeToken], piper.pipe(
  * @response Reservation of the given id.
  */
 piper.get('/:id', [verify.decodeToken], piper.pipe(
-  flatMap(req => from(Reservation.find({ _id: req.params['id'], createdBy: req.uid }))),
+  flatMap(req => from(Reservation.findOne({ _id: req.params['id'], createdBy: req.uid }))),
   throwIfEmpty(() => piper.error(500, { message: 'Error retrieving the Reservation.' }))
-))
-
-/**
- * Reservations get all endpoint.
- *
- * Get the all the reservation in the system.
- *
- * @role Admin
- * @response List of reservations
- */
-piper.get('/all', [verify.decodeToken, verify.checkAdmin], piper.pipe(
-  flatMap(() => from(Reservation.find()))
-))
-
-/**
- * Reservations get all by id endpoint.
- *
- * Get the reservation referenced by the given reservation id form the all the reservation in the system.
- *
- * @param id
- * @role Admin
- * @response Reservation of the given id
- */
-piper.get('/all/:id', [verify.decodeToken, verify.checkAdmin], piper.pipe(
-  flatMap(req => from(Reservation.findById(req.uid)))
 ))
 
 /**
@@ -105,7 +105,7 @@ piper.post('/accept/:id', [verify.decodeToken, verify.checkAdmin], piper.pipe(
 
     return reservation
   }),
-  flatMap(() => from(Reservation.save())),
+  flatMap(reservation => from(reservation.save())),
   throwIfEmpty(() => piper.error(500, { message: 'Reservation accept error.' })),
   map(() => {
     return { message: 'Success, Reservation accepted!' }
@@ -123,7 +123,7 @@ piper.post('/accept/:id', [verify.decodeToken, verify.checkAdmin], piper.pipe(
  */
 piper.post('/propose/:id', [verify.decodeToken, verify.checkAdmin], piper.pipe(
   map(req => {
-    if (!req.body.alloctated)
+    if (!req.body.allocated)
       throw piper.error(500, { message: 'Missing fields' })
 
     return req
