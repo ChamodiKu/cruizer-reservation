@@ -4,7 +4,7 @@ const verify = require('../auth/verify')
 const Reservation = require('../model/Reservation')
 const { ReservationStatus } = require('../common/constants')
 const { from } = require('rxjs')
-const { map, throwIfEmpty, flatMap, tap } = require('rxjs/operators')
+const { map, throwIfEmpty, flatMap } = require('rxjs/operators')
 const hukx = require('hukx')
 const piper = hukx(router)
 
@@ -57,7 +57,7 @@ piper.get('/all', [verify.decodeToken, verify.checkAdmin], piper.pipe(
  * @response Reservation of the given id
  */
 piper.get('/all/:id', [verify.decodeToken, verify.checkAdmin], piper.pipe(
-  flatMap(() => from(Reservation.findById(req.uid)))
+  flatMap(req => from(Reservation.findById(req.uid)))
 ))
 
 /**
