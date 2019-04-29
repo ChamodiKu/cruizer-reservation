@@ -1,4 +1,4 @@
-<form *ngIf="!authorized" [formGroup]="signInForm" (ngSubmit)="onSignIn()">
+<form [formGroup]="signInForm" (ngSubmit)="onSignIn()">
   <label>
     Username:
     <input type="text" formControlName="username">
@@ -9,5 +9,3 @@
   </label>
   <input type="submit" value="Sign In">
 </form>
-<button *ngIf="authorized" (click)="getUser()">Get User</button>
-<button *ngIf="authorized" (click)="onSignOut()">Sign Out</button>
