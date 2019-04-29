@@ -8,23 +8,16 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
   public signInForm = new FormGroup({
     username: new FormControl(''),
     password: new FormControl('')
   })
 
-  public authorized: boolean
-
   constructor(
-    private authService: AuthService,
-    private userService: UserService
+    private authService: AuthService
   ) { }
-
-  ngOnInit() {
-    this.updateAuthorized()
-  }
 
   onSignIn() {
     const request = {
@@ -32,24 +25,8 @@ export class LoginComponent implements OnInit {
       password: this.signInForm.controls['password'].value
     }
     this.authService.signIn(request).subscribe(() => {
-      this.updateAuthorized()
+      // TODO - Navigate to redirect
     })
-  }
-  
-  onSignOut() {
-    this.authService.signOut()
-    this.updateAuthorized()
-  }
-  
-  getUser() {
-    console.log("getUser")
-    this.userService.current().subscribe(res => {
-      console.log(res)
-    })
-  }
-
-  private updateAuthorized() {
-    this.authorized = this.authService.isAuthorized()
   }
 
 }

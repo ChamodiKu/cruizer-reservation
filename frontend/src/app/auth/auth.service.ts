@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 import { AppConfig } from '../app-config'
-import { tap, shareReplay } from 'rxjs/operators'
+import { tap, shareReplay, flatMap, map } from 'rxjs/operators'
 import * as moment from 'moment'
-import { SignInResponse, SignInRequest, SignUpRequest } from './auth.dto';
+import { SignInResponse, SignInRequest, SignUpRequest, SignUpResponse } from './auth.dto';
+import { UserService } from '../services/user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,8 @@ export class AuthService {
   private signUpUrl = AppConfig.apiUrl + "/auth/signup"
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private userService: UserService
   ) { }
 
   isAuthorized() {
@@ -24,20 +26,22 @@ export class AuthService {
 
   signUp(request: SignUpRequest) {
     return this.http.post(this.signUpUrl, request).pipe(
-
+      map(res => res as SignUpResponse)
     )
   }
 
   signIn(request: SignInRequest) {
     return this.http.post(this.signInUrl, request).pipe(
       tap(res => this.setSession(res as SignInResponse)),
-      shareReplay()
+      shareReplay(),
+      flatMap(() => this.userService.collectCurrent())
     )
   }
 
   signOut() {
     localStorage.removeItem("id_token")
     localStorage.removeItem("expires_at")
+    this.userService.removeCurrent()
   }
 
   private setSession(response: SignInResponse) {
