@@ -80,7 +80,7 @@ router.post('/signin', function (req, res) {
               expiresIn: 86400 // expires in 24 hours
             })
 
-            return res.status(200).send({ auth: true, accessToken: token })
+            return res.status(200).send({ auth: true, accessToken: token, expiresIn: 86400 })
           } else {
             return res.status(401).send({ auth: false, accessToken: null, reason: 'Invalid Password!' })
           }
