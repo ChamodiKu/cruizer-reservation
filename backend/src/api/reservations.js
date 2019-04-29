@@ -5,8 +5,8 @@ const Reservation = require('../model/Reservation')
 const { ReservationStatus } = require('../common/constants')
 const { from } = require('rxjs')
 const { map, throwIfEmpty, flatMap } = require('rxjs/operators')
-const hukx = require('hukx')
-const piper = hukx(router)
+const { hukx, piperOf } = require('hukx')
+const piper = piperOf(router)
 
 /**
  * Reservations get all endpoint.
@@ -16,7 +16,7 @@ const piper = hukx(router)
  * @role Admin
  * @response List of reservations
  */
-piper.get('/all', [verify.decodeToken, verify.checkAdmin], piper.pipe(
+piper.get('/all', [verify.decodeToken, verify.checkAdmin], hukx.pipe(
   flatMap(() => from(Reservation.find()))
 ))
 
@@ -29,7 +29,7 @@ piper.get('/all', [verify.decodeToken, verify.checkAdmin], piper.pipe(
  * @role Admin
  * @response Reservation of the given id
  */
-piper.get('/all/:id', [verify.decodeToken, verify.checkAdmin], piper.pipe(
+piper.get('/all/:id', [verify.decodeToken, verify.checkAdmin], hukx.pipe(
   flatMap(req => from(Reservation.findById(req.params['id'])))
 ))
 
@@ -41,9 +41,9 @@ piper.get('/all/:id', [verify.decodeToken, verify.checkAdmin], piper.pipe(
  * @role User
  * @response List of reservations
  */
-piper.get('/', [verify.decodeToken], piper.pipe(
+piper.get('/', [verify.decodeToken], hukx.pipe(
   flatMap(req => from(Reservation.find({ createdBy: req.uid }))),
-  throwIfEmpty(() => piper.error(500, { message: 'Error retrieving reservations' }))
+  throwIfEmpty(() => hukx.error(500, { message: 'Error retrieving reservations' }))
 ))
 
 /**
@@ -55,9 +55,9 @@ piper.get('/', [verify.decodeToken], piper.pipe(
  * @role User
  * @response Reservation of the given id.
  */
-piper.get('/:id', [verify.decodeToken], piper.pipe(
+piper.get('/:id', [verify.decodeToken], hukx.pipe(
   flatMap(req => from(Reservation.findOne({ _id: req.params['id'], createdBy: req.uid }))),
-  throwIfEmpty(() => piper.error(500, { message: 'Error retrieving the Reservation.' }))
+  throwIfEmpty(() => hukx.error(500, { message: 'Error retrieving the Reservation.' }))
 ))
 
 /**
@@ -68,10 +68,10 @@ piper.get('/:id', [verify.decodeToken], piper.pipe(
  * @body Reservation data model exept id, status and created
  * @role User
  */
-piper.post('/', [verify.decodeToken], piper.pipe(
+piper.post('/', [verify.decodeToken], hukx.pipe(
   map(req => {
     if (!req.body.vehicle || !req.body.services || !req.body.requested)
-      throw piper.error(500, { message: 'Missing fields' })
+      throw hukx.error(500, { message: 'Missing fields' })
 
     return req
   }),
@@ -97,7 +97,7 @@ piper.post('/', [verify.decodeToken], piper.pipe(
  * @params id
  * @role Admin
  */
-piper.post('/accept/:id', [verify.decodeToken, verify.checkAdmin], piper.pipe(
+piper.post('/accept/:id', [verify.decodeToken, verify.checkAdmin], hukx.pipe(
   flatMap(req => from(Reservation.findById(req.params['id']))),
   map(reservation => {
     reservation.status = ReservationStatus.ACCEPTED
@@ -106,7 +106,7 @@ piper.post('/accept/:id', [verify.decodeToken, verify.checkAdmin], piper.pipe(
     return reservation
   }),
   flatMap(reservation => from(reservation.save())),
-  throwIfEmpty(() => piper.error(500, { message: 'Reservation accept error.' })),
+  throwIfEmpty(() => hukx.error(500, { message: 'Reservation accept error.' })),
   map(() => {
     return { message: 'Success, Reservation accepted!' }
   }),
@@ -121,17 +121,17 @@ piper.post('/accept/:id', [verify.decodeToken, verify.checkAdmin], piper.pipe(
  * @body Object with allocated date time
  * @role Admin
  */
-piper.post('/propose/:id', [verify.decodeToken, verify.checkAdmin], piper.pipe(
+piper.post('/propose/:id', [verify.decodeToken, verify.checkAdmin], hukx.pipe(
   map(req => {
     if (!req.body.allocated)
-      throw piper.error(500, { message: 'Missing fields' })
+      throw hukx.error(500, { message: 'Missing fields' })
 
     return req
   }),
   flatMap(req => from(Reservation.updateOne({ _id: req.params['id'] }, {
     status: ReservationStatus.PROPOSED, alloctated: req.body.alloctated
   }))),
-  throwIfEmpty(() => piper.error(500, { message: 'Reservation propose error.' })),
+  throwIfEmpty(() => hukx.error(500, { message: 'Reservation propose error.' })),
   map(() => {
     return { message: 'Success, New reservation date time proposed!' }
   }),
@@ -145,9 +145,9 @@ piper.post('/propose/:id', [verify.decodeToken, verify.checkAdmin], piper.pipe(
  * @params id
  * @role User
  */
-piper.post('/acceptProposal/:id', [verify.decodeToken], piper.pipe(
+piper.post('/acceptProposal/:id', [verify.decodeToken], hukx.pipe(
   flatMap(req => from(Reservation.updateOne({ _id: req.params['id'] }, { status: ReservationStatus.ACCEPTED }))),
-  throwIfEmpty(() => piper.error(500, { message: 'Reservation propose error.' })),
+  throwIfEmpty(() => hukx.error(500, { message: 'Reservation propose error.' })),
   map(() => {
     return { message: 'Success, Reservation accepted!' }
   }),
@@ -162,7 +162,7 @@ piper.post('/acceptProposal/:id', [verify.decodeToken], piper.pipe(
  * @Body Updated services
  * @role User
  */
-piper.put('/:id', [verify.decodeToken], piper.pipe(
+piper.put('/:id', [verify.decodeToken], hukx.pipe(
   map(req => {
     const query = { _id: req.params['id'], createdBy: req.uid }
     const update = {}
@@ -180,7 +180,7 @@ piper.put('/:id', [verify.decodeToken], piper.pipe(
     return { query: query, update: update }
   }),
   flatMap(res => from(Reservation.updateOne(res.query, res.update))),
-  throwIfEmpty(() => piper.error(500, { message: 'Reservation update error.' })),
+  throwIfEmpty(() => hukx.error(500, { message: 'Reservation update error.' })),
   map(() => {
     return { message: 'Success, Reservation updated!' }
   }),
@@ -194,9 +194,9 @@ piper.put('/:id', [verify.decodeToken], piper.pipe(
  * @param id
  * @role User
  */
-piper.delete('/:id', [verify.decodeToken], piper.pipe(
+piper.delete('/:id', [verify.decodeToken], hukx.pipe(
   flatMap(req => from(Reservation.deleteOne({ _id: req.params['id'], createdBy: req.uid }))),
-  throwIfEmpty(() => piper.error(500, { message: 'Error deleting Reservation with id.' })),
+  throwIfEmpty(() => hukx.error(500, { message: 'Error deleting Reservation with id.' })),
   map(() => {
     return { message: 'Success, Reservation deleted!' }
   })
