@@ -4,6 +4,29 @@ const verify = require('../auth/verify')
 const User = require('../model/User')
 
 /**
+ * Users get current endpoint.
+ *
+ * Get user details of authenticated user.
+ *
+ * @role User
+ * @response User of the authenicated user
+ */
+router.get('/current', [verify.decodeToken], function (req, res) {
+  User.findById(req.uid).exec((err, user) => {
+    if (err) {
+      return res.status(500).send({
+        message: 'Error retrieving User with id: ' + req.uid
+      })
+    }
+    
+    // Remove password attribute from the user
+    user.password = undefined
+    
+    res.status(200).send(user)
+  })
+})
+
+/**
  * Users get endpoint.
  *
  * Get all users in the system.
@@ -18,10 +41,10 @@ router.get('/', [verify.decodeToken, verify.checkAdmin], function (_, res) {
         message: 'Error retrieving Users'
       })
     }
-
+    
     // Remove password attribute from the user
     users.map(user => { user.password = undefined })
-
+    
     res.status(200).send(users)
   })
 })
@@ -40,29 +63,6 @@ router.get('/:id', [verify.decodeToken, verify.checkAdmin], function (req, res) 
     if (err || user == null) {
       return res.status(500).send({
         message: 'Error retrieving User with id:' + req.params['id']
-      })
-    }
-
-    // Remove password attribute from the user
-    user.password = undefined
-
-    res.status(200).send(user)
-  })
-})
-
-/**
- * Users get current endpoint.
- *
- * Get user details of authenticated user.
- *
- * @role User
- * @response User of the authenicated user
- */
-router.get('/current', [verify.decodeToken], function (req, res) {
-  User.findById(req.uid).exec((err, user) => {
-    if (err) {
-      return res.status(500).send({
-        message: 'Error retrieving User with id: ' + req.uid
       })
     }
 

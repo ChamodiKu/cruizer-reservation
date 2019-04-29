@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { LoginComponent } from './pages/login/login.component';
+import { httpInterceptorProviders } from './auth/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,9 @@ import { LoginComponent } from './pages/login/login.component';
     NgbModule,
     AuthModule
   ],
-  providers: [],
+  providers: [
+    httpInterceptorProviders
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
