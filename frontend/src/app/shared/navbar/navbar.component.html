@@ -12,21 +12,19 @@
               
             </a>
           </div>
-          <div class="col-6 collapse-close">
-            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-default" aria-controls="navbar-default" aria-expanded="false" aria-label="Toggle navigation">
-              <span></span>
-              <span></span>
-            </button>
-          </div>
         </div>
       </div>
       <ul class="navbar-nav ml-lg-auto">
         <li class="nav-item">
-          <a class="nav-link nav-link-icon" href="#">
-            <i class="ni ni-notification-70"></i>
-            <span class="nav-link-inner--text">Login</span>
+          <a class="nav-link nav-link-icon">
+            <button type="button" class="btn btn-secondary" *ngIf="_authService.signOut">Login</button>
           </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link nav-link-icon">
+              <button type="button" class="btn btn-secondary" *ngIf="!authService.signOut">Logout</button>
+            </a>
+          </li>
       </ul>
     </div>
   </div>

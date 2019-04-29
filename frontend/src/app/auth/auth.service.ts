@@ -5,6 +5,8 @@ import { tap, shareReplay, flatMap, map } from 'rxjs/operators'
 import * as moment from 'moment'
 import { SignInResponse, SignInRequest, SignUpRequest, SignUpResponse } from './auth.dto';
 import { UserService } from '../services/user.service';
+import { Router } from '@angular/router'
+
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +19,8 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    private userService: UserService
+    private userService: UserService,
+    private _router: Router
   ) { }
 
   isAuthorized() {

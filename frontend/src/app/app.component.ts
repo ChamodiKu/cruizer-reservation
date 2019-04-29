@@ -1,5 +1,6 @@
+import { AuthService } from 'src/app/auth/auth.service';
 import { Component } from '@angular/core';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-root',
@@ -8,4 +9,5 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 })
 export class AppComponent {
 
+  constructor(private _authService : AuthService){}
 }
