@@ -1,6 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
+const cors = require('cors')
 const logger = require('morgan')
 const mongoose = require('mongoose')
 require('dotenv').config()
@@ -17,6 +18,7 @@ const reservationsRouter = require('./api/reservations')
 var app = express()
 
 // Setup logger and data parsers
+app.use(cors())
 app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
