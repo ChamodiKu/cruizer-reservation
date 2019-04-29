@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/auth/auth.service';
 import { FormControl, FormGroup } from '@angular/forms';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit {
   public authorized: boolean
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private userService: UserService
   ) { }
 
   ngOnInit() {
@@ -25,7 +27,6 @@ export class LoginComponent implements OnInit {
   }
 
   onSignIn() {
-    console.log("onSignIn")
     const request = {
       username: this.signInForm.controls['username'].value,
       password: this.signInForm.controls['password'].value
@@ -34,10 +35,17 @@ export class LoginComponent implements OnInit {
       this.updateAuthorized()
     })
   }
-
+  
   onSignOut() {
     this.authService.signOut()
     this.updateAuthorized()
+  }
+  
+  getUser() {
+    console.log("getUser")
+    this.userService.current().subscribe(res => {
+      console.log(res)
+    })
   }
 
   private updateAuthorized() {

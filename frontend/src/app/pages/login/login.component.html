@@ -9,4 +9,5 @@
   </label>
   <input type="submit" value="Sign In">
 </form>
+<button *ngIf="authorized" (click)="getUser()">Get User</button>
 <button *ngIf="authorized" (click)="onSignOut()">Sign Out</button>
