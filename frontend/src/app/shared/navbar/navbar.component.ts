@@ -11,7 +11,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class NavbarComponent implements OnInit {
 
-  currentUser: User
+  currentUser: User;
 
   constructor(
     private router: Router,
@@ -20,12 +20,12 @@ export class NavbarComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.currentUser = this.userService.current()
+    this.currentUser = this.userService.current();
   }
 
   logout() {
-    this.authService.signOut()
-    this.currentUser = null
-    this.router.navigate(['/'])
+    this.authService.signOut();
+    this.currentUser = null;
+    this.router.navigate(['/']);
   }
 }
