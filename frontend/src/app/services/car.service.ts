@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { AppConfig } from '../app-config';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Car, CarUpdate } from './cars.dto';
+import { Car, CarUpdate } from './car.dto';
 import { first, map } from 'rxjs/operators';
 import { ApiResponse } from '../api/api.dto';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CarsService {
+export class CarService {
 
   // API Endpoints
   private carsUrl = AppConfig.apiUrl + '/cars';
