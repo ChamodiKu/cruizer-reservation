@@ -14,6 +14,7 @@ export class NavbarComponent implements OnInit {
   currentUser: User
 
   constructor(
+    private router: Router,
     private authService: AuthService,
     private userService: UserService
   ) { }
@@ -25,5 +26,6 @@ export class NavbarComponent implements OnInit {
   logout() {
     this.authService.signOut()
     this.currentUser = null
+    this.router.navigate(['/'])
   }
 }
