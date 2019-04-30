@@ -10,7 +10,8 @@
           <h5 class="card-title">{{ car.number }}</h5>
           <h6 class="card-subtitle mb-2 text-muted">{{ car.vendor }} {{ car.model }}</h6>
           <p class="card-text">{{ car.milage }} km</p>
-          <a href="#" routerLink="/portal/car/edit/{{car._id}}" class="btn btn-outline-primary">Edit</a>
+          <a href="#" routerLink="/portal/car/edit/{{car._id}}" class="btn btn-outline-primary card-link">Edit</a>
+          <button class="btn btn-outline-danger card-link" (click)="onDelete(car._id)">Delete</button>
         </div>
       </div>
     </div>
