@@ -13,7 +13,7 @@ export class LoginComponent {
   public signInForm = new FormGroup({
     username: new FormControl(''),
     password: new FormControl('')
-  })
+  });
 
   constructor(
     private router: Router,
@@ -24,10 +24,10 @@ export class LoginComponent {
     const request = {
       username: this.signInForm.controls['username'].value,
       password: this.signInForm.controls['password'].value
-    }
+    };
     this.authService.signIn(request).subscribe(() => {
-      this.router.navigateByUrl('/portal')
-    })
+      this.router.navigateByUrl('/portal');
+    });
   }
 
 }

@@ -16,9 +16,9 @@ export class SignupComponent {
     username: new FormControl(''),
     password: new FormControl(''),
     email: new FormControl('')
-  })
+  });
 
-  error: string
+  error: string;
 
   constructor(
     private router: Router,
@@ -33,10 +33,10 @@ export class SignupComponent {
       password: this.signUpForm.controls['password'].value,
       email: this.signUpForm.controls['email'].value,
     }).subscribe(() => {
-      this.router.navigate(['/login'])
+      this.router.navigate(['/login']);
     }, err => {
-      this.error = err.toString()
-    })
+      this.error = err.toString();
+    });
   }
 
 }

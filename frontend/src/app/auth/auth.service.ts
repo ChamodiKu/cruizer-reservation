@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core'
-import { HttpClient } from '@angular/common/http'
-import { AppConfig } from '../app-config'
-import { tap, shareReplay, flatMap, map } from 'rxjs/operators'
-import * as moment from 'moment'
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { AppConfig } from '../app-config';
+import { tap, shareReplay, flatMap, map } from 'rxjs/operators';
+import * as moment from 'moment';
 import { SignInResponse, SignInRequest, SignUpRequest, SignUpResponse } from './auth.dto';
 import { UserService } from '../services/user.service';
-import { Router } from '@angular/router'
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -14,8 +14,8 @@ import { Router } from '@angular/router'
 export class AuthService {
 
   // API Endpoints
-  private signInUrl = AppConfig.apiUrl + "/auth/signin"
-  private signUpUrl = AppConfig.apiUrl + "/auth/signup"
+  private signInUrl = AppConfig.apiUrl + '/auth/signin';
+  private signUpUrl = AppConfig.apiUrl + '/auth/signup';
 
   constructor(
     private http: HttpClient,
@@ -24,13 +24,13 @@ export class AuthService {
   ) { }
 
   isAuthorized() {
-    return moment().isBefore(this.getExpiration())
+    return moment().isBefore(this.getExpiration());
   }
 
   signUp(request: SignUpRequest) {
     return this.http.post(this.signUpUrl, request).pipe(
       map(res => res as SignUpResponse)
-    )
+    );
   }
 
   signIn(request: SignInRequest) {
@@ -38,24 +38,24 @@ export class AuthService {
       tap(res => this.setSession(res as SignInResponse)),
       shareReplay(),
       flatMap(() => this.userService.collectCurrent())
-    )
+    );
   }
 
   signOut() {
-    localStorage.removeItem("id_token")
-    localStorage.removeItem("expires_at")
-    this.userService.removeCurrent()
+    localStorage.removeItem('id_token');
+    localStorage.removeItem('expires_at');
+    this.userService.removeCurrent();
   }
 
   private setSession(response: SignInResponse) {
-    const expiresAt = moment().add(response.expiresIn, 'second')
+    const expiresAt = moment().add(response.expiresIn, 'second');
 
-    localStorage.setItem('jwt_token', response.accessToken)
-    localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()))
+    localStorage.setItem('jwt_token', response.accessToken);
+    localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
   }
 
   private getExpiration() {
-    const expiration = localStorage.getItem("expires_at")
+    const expiration = localStorage.getItem('expires_at');
     const expiresAt = JSON.parse(expiration);
     return moment(expiresAt);
   }

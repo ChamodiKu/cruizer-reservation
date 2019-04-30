@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent, canActivate: [LoginGuard] },
   { path: 'portal', component: PortalComponent, canActivate: [AuthGuard] },
   { path: '', pathMatch: 'full', component: HomeComponent, canActivate: [HomeGuard] }
-]
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

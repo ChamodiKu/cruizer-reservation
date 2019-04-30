@@ -11,14 +11,14 @@ import { map, first, tap } from 'rxjs/operators';
 export class UserService {
 
   // API Endpoints
-  private currentUrl = AppConfig.apiUrl + "/users/current"
+  private currentUrl = AppConfig.apiUrl + '/users/current';
 
   constructor(
     private http: HttpClient
   ) { }
 
   current(): User {
-    return JSON.parse(localStorage.getItem("current_user")) as User
+    return JSON.parse(localStorage.getItem('current_user')) as User;
   }
 
   collectCurrent(): Observable<User> {
@@ -26,19 +26,19 @@ export class UserService {
       first(),
       map(res => res as User),
       tap(user => this.setUser(user))
-    )
+    );
   }
 
   removeCurrent() {
-    this.removeUser()
+    this.removeUser();
   }
 
   private setUser(response: User) {
-    localStorage.setItem("current_user", JSON.stringify(response))
+    localStorage.setItem('current_user', JSON.stringify(response));
   }
 
   private removeUser() {
-    localStorage.removeItem("current_user")
+    localStorage.removeItem('current_user');
   }
 
 }
