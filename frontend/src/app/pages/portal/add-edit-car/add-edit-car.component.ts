@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CarService } from 'src/app/services/car.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Car } from 'src/app/services/car.dto';
-import { Router } from '@angular/router';
+import { Router, ActivatedRouteSnapshot, ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { tap, flatMap, first, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-add-edit-car',
@@ -18,15 +20,34 @@ export class AddEditCarComponent implements OnInit {
     milage: new FormControl('')
   });
 
+  editId: string
+
   error: string
   loading: boolean
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private carService: CarService
   ) { }
 
   ngOnInit() {
+    this.route.paramMap.pipe(
+      first(),
+      map(param => param.get('id')),
+      tap(id => this.editId = id),
+      flatMap(id => {
+        console.log(id)
+        return this.carService.getById(id)
+      })
+    ).subscribe(car => {
+      this.carForm.setValue({
+        vendor: car.vendor,
+        model: car.model,
+        number: car.number,
+        milage: car.milage
+      })
+    })
   }
 
   onSubmit() {
@@ -37,7 +58,13 @@ export class AddEditCarComponent implements OnInit {
       number: this.carForm.controls['number'].value,
       milage: this.carForm.controls['milage'].value
     }
-    this.carService.create(car).subscribe(res => {
+    let action: Observable<any>
+    if (this.editId) {
+      action = this.carService.update(this.editId, car)
+    } else {
+      action = this.carService.create(car)
+    }
+    action.subscribe(res => {
       console.log(res)
       this.router.navigate(['/portal'])
     }, err => {

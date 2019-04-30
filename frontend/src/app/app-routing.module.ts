@@ -16,7 +16,8 @@ const routes: Routes = [
   {
     path: 'portal', component: PortalComponent, canActivate: [AuthGuard], children: [
       { path: '', component: PortalViewComponent },
-      { path: 'car/create', component: AddEditCarComponent }
+      { path: 'car/create', component: AddEditCarComponent },
+      { path: 'car/edit/:id', component: AddEditCarComponent }
     ]
   },
   { path: '', pathMatch: 'full', component: HomeComponent, canActivate: [HomeGuard] }
