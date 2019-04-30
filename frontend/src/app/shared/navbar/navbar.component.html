@@ -21,10 +21,14 @@
             <button type="button" class="btn btn-secondary" routerLink="/login">Login</button>
           </a>
         </li>
-        <li *ngIf="currentUser" class="nav-item">
-          <a class="nav-link nav-link-icon">
-            <button type="button" class="btn btn-secondary" (click)="logout()">Logout</button>
+        <li *ngIf="currentUser" class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            {{ currentUser.firstname}} {{ currentUser.lastname }}
           </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#" (click)="logout()">Logout</a>
+          </div>
         </li>
       </ul>
     </div>

@@ -19,6 +19,7 @@ export class SignupComponent {
   });
 
   error: string
+  loading: boolean
 
   constructor(
     private router: Router,
@@ -26,6 +27,7 @@ export class SignupComponent {
   ) { }
 
   onSignUp() {
+    this.loading = true
     this.authService.signUp({
       firstname: this.signUpForm.controls['firstname'].value,
       lastname: this.signUpForm.controls['lastname'].value,
@@ -35,6 +37,7 @@ export class SignupComponent {
     }).subscribe(() => {
       this.router.navigate(['/login']);
     }, err => {
+      this.loading = false
       console.log(err)
       if (err.error.message)
         this.error = err.error.message
