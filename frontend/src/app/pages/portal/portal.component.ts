@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { CarService } from 'src/app/services/car.service';
+import { Car } from 'src/app/services/car.dto';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-portal',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PortalComponent implements OnInit {
 
-  constructor() { }
+  cars: Observable<Car[]>
+
+  constructor(
+    private carService: CarService
+  ) { }
 
   ngOnInit() {
+    this.cars = this.carService.get()
   }
 
 }
