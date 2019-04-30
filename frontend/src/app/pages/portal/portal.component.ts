@@ -10,14 +10,8 @@ import { Observable } from 'rxjs';
 })
 export class PortalComponent implements OnInit {
 
-  cars: Observable<Car[]>
+  constructor() { }
 
-  constructor(
-    private carService: CarService
-  ) { }
-
-  ngOnInit() {
-    this.cars = this.carService.get()
-  }
+  ngOnInit() { }
 
 }
