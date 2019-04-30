@@ -63,14 +63,14 @@ router.post('/signin', function (req, res) {
   if (!!req.body.username && !!req.body.password) {
     User.findOne({ username: req.body.username })
       .exec((err, user) => {
-        if (err) {
-          if (err.kind !== 'ObjectId') {
+        if (!!err || user == null) {
+          if (err && err.kind !== 'ObjectId') {
             return res.status(500).send({
               message: 'Error retrieving User with Username = ' + req.body.username
             })
           }
           return res.status(500).send({
-            message: 'Error retrieving User with Username = ' + req.body.username
+            message: 'Username not found'
           })
         }
 
@@ -82,7 +82,7 @@ router.post('/signin', function (req, res) {
 
             return res.status(200).send({ auth: true, accessToken: token, expiresIn: 86400 })
           } else {
-            return res.status(401).send({ auth: false, accessToken: null, reason: 'Invalid Password!' })
+            return res.status(401).send({ auth: false, accessToken: null, message: 'Invalid password' })
           }
         })
       })
