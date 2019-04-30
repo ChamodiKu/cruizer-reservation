@@ -14,6 +14,7 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { LoginComponent } from './pages/login/login.component';
 import { httpInterceptorProviders } from './auth/auth.interceptor';
 import { PortalComponent } from './pages/portal/portal.component';
+import { HomeComponent } from './pages/home/home.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { PortalComponent } from './pages/portal/portal.component';
     NavbarComponent,
     SidebarComponent,
     LoginComponent,
-    PortalComponent
+    PortalComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

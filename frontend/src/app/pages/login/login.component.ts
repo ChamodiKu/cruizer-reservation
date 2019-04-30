@@ -26,7 +26,7 @@ export class LoginComponent {
       password: this.signInForm.controls['password'].value
     }
     this.authService.signIn(request).subscribe(() => {
-      this.router.navigateByUrl('/')
+      this.router.navigateByUrl('/portal')
     })
   }
 

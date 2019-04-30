@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth.guard';
 import { LoginGuard } from './login.guard';
+import { HomeGuard } from './home.guard';
 
 @NgModule({
   declarations: [],
@@ -12,7 +13,8 @@ import { LoginGuard } from './login.guard';
   providers: [
     AuthService,
     AuthGuard,
-    LoginGuard
+    LoginGuard,
+    HomeGuard
   ]
 })
 export class AuthModule { }
