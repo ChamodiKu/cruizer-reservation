@@ -41,8 +41,8 @@ router.get('/:id', [verify.decodeToken], function (req, res) {
       })
     }
 
-    if (car.ownerId !== req.uid) {
-      res.status(400).send({
+    if (car.ownerId.toString() !== req.uid.toString()) {
+      return res.status(400).send({
         message: 'Unauthorized for the resource'
       })
     }
@@ -95,8 +95,8 @@ router.put('/:id', [verify.decodeToken], function (req, res) {
       })
     }
 
-    if (car.ownerId !== req.uid) {
-      res.status(400).send({
+    if (car.ownerId.toString() !== req.uid.toString()) {
+      return res.status(400).send({
         message: 'Unauthorized for the resource'
       })
     }
@@ -140,8 +140,8 @@ router.delete('/:id', [verify.decodeToken], function (req, res) {
       })
     }
 
-    if (car.ownerId !== req.uid) {
-      res.status(400).send({
+    if (car.ownerId.toString() !== req.uid.toString()) {
+      return res.status(400).send({
         message: 'Unauthorized for the resource'
       })
     }
