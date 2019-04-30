@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/auth/auth.service';
 import { FormControl, FormGroup } from '@angular/forms';
-import { UserService } from 'src/app/services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,6 +16,7 @@ export class LoginComponent {
   })
 
   constructor(
+    private router: Router,
     private authService: AuthService
   ) { }
 
@@ -25,7 +26,7 @@ export class LoginComponent {
       password: this.signInForm.controls['password'].value
     }
     this.authService.signIn(request).subscribe(() => {
-      // TODO - Navigate to redirect
+      this.router.navigateByUrl('/')
     })
   }
 
