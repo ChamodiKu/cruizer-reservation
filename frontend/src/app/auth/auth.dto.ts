@@ -1,3 +1,5 @@
+import { ApiResponse } from '../api/api.dto';
+
 export interface SignInRequest {
   username: string;
   password: string;
@@ -15,8 +17,4 @@ export interface SignUpRequest {
   username: string;
   password: string;
   email: string;
-}
-
-export interface SignUpResponse {
-  message: string;
 }
