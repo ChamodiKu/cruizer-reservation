@@ -18,7 +18,7 @@ export class SignupComponent {
     email: new FormControl('')
   });
 
-  error: string;
+  error: string
 
   constructor(
     private router: Router,
@@ -35,7 +35,9 @@ export class SignupComponent {
     }).subscribe(() => {
       this.router.navigate(['/login']);
     }, err => {
-      this.error = err.toString();
+      console.log(err)
+      if (err.error.message)
+        this.error = err.error.message
     });
   }
 
