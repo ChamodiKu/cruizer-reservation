@@ -15,6 +15,8 @@ export class LoginComponent {
     password: new FormControl('')
   });
 
+  error: String
+
   constructor(
     private router: Router,
     private authService: AuthService
@@ -27,6 +29,10 @@ export class LoginComponent {
     };
     this.authService.signIn(request).subscribe(() => {
       this.router.navigateByUrl('/portal');
+    }, err => {
+      console.log(err)
+      if (err.error.message)
+        this.error = err.error.message
     });
   }
 
