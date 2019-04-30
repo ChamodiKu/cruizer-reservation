@@ -1,23 +1,42 @@
-<form [formGroup]="signUpForm" (ngSubmit)="onSignUp()">
-  <label>
-    Firstname:
-    <input type="text" formControlName="firstname">
-  </label>
-  <label>
-    Lastname:
-    <input type="text" formControlName="lastname">
-  </label>
-  <label>
-    Username:
-    <input type="text" formControlName="username">
-  </label>
-  <label>
-    Email:
-    <input type="text" formControlName="email">
-  </label>
-  <label>
-    Password:
-    <input type="password" formControlName="password">
-  </label>
-  <input type="submit" value="Sign Up">
-</form>
+<div class="row mt-5">
+  <div class="col col-sm-12 col-md-6 col-lg-4 offset-md-3 offset-lg-4 text-center">
+    <div class="card signup-card">
+      <div class="card-body">
+        <h5 class="card-title">Sign up</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Enter your details</h6>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="signUpForm" (ngSubmit)="onSignUp()">
+          <div class="form-group">
+            <label for="loginFirstname">Firstname</label>
+            <input type="text" class="form-control" id="loginFirstname" placeholder="Enter firstname"
+              formControlName="firstname">
+          </div>
+          <div class="form-group">
+            <label for="loginLastname">Lastname</label>
+            <input type="text" class="form-control" id="loginLastname" placeholder="Enter lastname"
+              formControlName="lastname">
+          </div>
+          <div class="form-group">
+            <label for="loginUsername">Username</label>
+            <input type="text" class="form-control" id="loginUsername" placeholder="Enter username"
+              formControlName="username">
+          </div>
+          <div class="form-group">
+            <label for="loginEmail">Email</label>
+            <input type="email" class="form-control" id="loginEmail" placeholder="Enter email" formControlName="email">
+          </div>
+          <div class="form-group">
+            <label for="loginPassword">Password</label>
+            <input type="password" class="form-control" id="loginPassword" placeholder="Enter password"
+              formControlName="password">
+          </div>
+          <div class="mt-2 mb-2">
+            <small class="error"> {{error}} </small>
+          </div>
+          <button type="submit" class="btn btn-primary">Sign Up</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
