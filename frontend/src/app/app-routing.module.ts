@@ -6,9 +6,11 @@ import { AuthGuard } from './auth/auth.guard';
 import { LoginGuard } from './auth/login.guard';
 import { HomeComponent } from './pages/home/home.component';
 import { HomeGuard } from './auth/home.guard';
+import { SignupComponent } from './pages/signup/signup.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
+  { path: 'signup', component: SignupComponent, canActivate: [LoginGuard] },
   { path: 'portal', component: PortalComponent, canActivate: [AuthGuard] },
   { path: '', pathMatch: 'full', component: HomeComponent, canActivate: [HomeGuard] }
 ]
