@@ -15,6 +15,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { httpInterceptorProviders } from './auth/auth.interceptor';
 import { PortalComponent } from './pages/portal/portal.component';
 import { HomeComponent } from './pages/home/home.component';
+import { SignupComponent } from './pages/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { HomeComponent } from './pages/home/home.component';
     SidebarComponent,
     LoginComponent,
     PortalComponent,
-    HomeComponent
+    HomeComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
