@@ -13,13 +13,15 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { LoginComponent } from './pages/login/login.component';
 import { httpInterceptorProviders } from './auth/auth.interceptor';
+import { PortalComponent } from './pages/portal/portal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     SidebarComponent,
-    LoginComponent
+    LoginComponent,
+    PortalComponent
   ],
   imports: [
     BrowserModule,
