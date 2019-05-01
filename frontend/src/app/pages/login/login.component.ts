@@ -16,8 +16,8 @@ export class LoginComponent {
     password: new FormControl('')
   });
 
-  error: String
-  loading: boolean
+  error: String;
+  loading: boolean;
 
   constructor(
     private router: Router,
@@ -25,7 +25,7 @@ export class LoginComponent {
   ) { }
 
   onSignIn() {
-    this.loading = true
+    this.loading = true;
     const request = {
       username: this.signInForm.controls['username'].value,
       password: this.signInForm.controls['password'].value
@@ -33,10 +33,11 @@ export class LoginComponent {
     this.authService.signIn(request).subscribe(() => {
       this.router.navigateByUrl('/portal');
     }, err => {
-      this.loading = false
-      console.log(err)
-      if (err.error.message)
-        this.error = err.error.message
+      this.loading = false;
+      console.log(err);
+      if (err.error.message) {
+        this.error = err.error.message;
+      }
     });
   }
 
