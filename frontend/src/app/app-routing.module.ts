@@ -1,4 +1,3 @@
-import { User } from './services/user.dto';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
@@ -20,7 +19,7 @@ import { AddEditServiceComponent } from './pages/dashboard/add-edit-service/add-
 const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
   { path: 'signup', component: SignupComponent, canActivate: [LoginGuard] },
-  { path: 'user', component: UserComponent, canActivate: [LoginGuard] },
+  { path: 'user', component: UserComponent, canActivate: [AuthGuard] },
   {
     path: 'portal', component: PortalComponent, canActivate: [AuthGuard, PortalGuard], children: [
       { path: '', component: PortalViewComponent },
