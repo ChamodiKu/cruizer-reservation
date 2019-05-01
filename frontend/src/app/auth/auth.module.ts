@@ -4,6 +4,8 @@ import { AuthService } from './auth.service';
 import { AuthGuard } from './auth.guard';
 import { LoginGuard } from './login.guard';
 import { HomeGuard } from './home.guard';
+import { PortalGuard } from './portal.guard';
+import { DashboardGuard } from './dashboard.guard';
 
 @NgModule({
   declarations: [],
@@ -14,7 +16,9 @@ import { HomeGuard } from './home.guard';
     AuthService,
     AuthGuard,
     LoginGuard,
-    HomeGuard
+    HomeGuard,
+    PortalGuard,
+    DashboardGuard
   ]
 })
 export class AuthModule { }

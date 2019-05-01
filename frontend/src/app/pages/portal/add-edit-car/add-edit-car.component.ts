@@ -37,8 +37,12 @@ export class AddEditCarComponent implements OnInit {
       map(param => param.get('id')),
       tap(id => this.editId = id),
       flatMap(id => {
-        console.log(id)
-        return this.carService.getById(id)
+        if (id) {
+          console.log(id)
+          return this.carService.getById(id)
+        } else {
+          throw { message: "No id available"}
+        }
       })
     ).subscribe(car => {
       this.carForm.setValue({
