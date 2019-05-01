@@ -7,11 +7,19 @@ import { LoginGuard } from './auth/login.guard';
 import { HomeComponent } from './pages/home/home.component';
 import { HomeGuard } from './auth/home.guard';
 import { SignupComponent } from './pages/signup/signup.component';
+import { AddEditCarComponent } from './pages/portal/add-edit-car/add-edit-car.component';
+import { PortalViewComponent } from './pages/portal/portal-view/portal-view.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
   { path: 'signup', component: SignupComponent, canActivate: [LoginGuard] },
-  { path: 'portal', component: PortalComponent, canActivate: [AuthGuard] },
+  {
+    path: 'portal', component: PortalComponent, canActivate: [AuthGuard], children: [
+      { path: '', component: PortalViewComponent },
+      { path: 'car/create', component: AddEditCarComponent },
+      { path: 'car/edit/:id', component: AddEditCarComponent }
+    ]
+  },
   { path: '', pathMatch: 'full', component: HomeComponent, canActivate: [HomeGuard] }
 ];
 

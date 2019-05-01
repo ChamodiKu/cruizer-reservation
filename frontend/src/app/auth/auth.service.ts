@@ -3,9 +3,10 @@ import { HttpClient } from '@angular/common/http';
 import { AppConfig } from '../app-config';
 import { tap, shareReplay, flatMap, map } from 'rxjs/operators';
 import * as moment from 'moment';
-import { SignInResponse, SignInRequest, SignUpRequest, SignUpResponse } from './auth.dto';
+import { SignInResponse, SignInRequest, SignUpRequest } from './auth.dto';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
+import { ApiResponse } from '../api/api.dto';
 
 
 @Injectable({
@@ -29,7 +30,7 @@ export class AuthService {
 
   signUp(request: SignUpRequest) {
     return this.http.post(this.signUpUrl, request).pipe(
-      map(res => res as SignUpResponse)
+      map(res => res as ApiResponse)
     );
   }
 
