@@ -36,8 +36,12 @@ export class AddEditServiceComponent implements OnInit {
       map(param => param.get('id')),
       tap(id => this.editId = id),
       flatMap(id => {
-        console.log(id)
-        return this.serviceService.getById(id)
+        if (id) {
+          console.log(id)
+          return this.serviceService.getById(id)
+        } else {
+          throw { message: "No id available" }
+        }
       })
     ).subscribe(service => {
       this.serviceForm.setValue({
