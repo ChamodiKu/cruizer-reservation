@@ -18,6 +18,9 @@ import { HomeComponent } from './pages/home/home.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { AddEditCarComponent } from './pages/portal/add-edit-car/add-edit-car.component';
 import { PortalViewComponent } from './pages/portal/portal-view/portal-view.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { DashboardViewComponent } from './pages/dashboard/dashboard-view/dashboard-view.component';
+import { AddEditServiceComponent } from './pages/dashboard/add-edit-service/add-edit-service.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,10 @@ import { PortalViewComponent } from './pages/portal/portal-view/portal-view.comp
     HomeComponent,
     SignupComponent,
     AddEditCarComponent,
-    PortalViewComponent
+    PortalViewComponent,
+    DashboardComponent,
+    DashboardViewComponent,
+    AddEditServiceComponent
   ],
   imports: [
     BrowserModule,

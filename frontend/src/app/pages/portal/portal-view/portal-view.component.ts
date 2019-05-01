@@ -11,7 +11,7 @@ import { updateLocale } from 'moment';
 })
 export class PortalViewComponent implements OnInit {
 
-  cars: Observable<Car[]>
+  cars: Car[] = []
 
   constructor(
     private carService: CarService
@@ -29,7 +29,9 @@ export class PortalViewComponent implements OnInit {
   }
 
   private updateCars() {
-    this.cars = this.carService.get()
+    this.carService.get().subscribe(cars => {
+      this.cars = cars
+    })
   }
 
 }
