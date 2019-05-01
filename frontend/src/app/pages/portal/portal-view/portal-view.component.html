@@ -4,7 +4,7 @@
     <a href="#" class="btn btn-outline-primary section-action" routerLink="/portal/car/create">Add Car</a>
   </div>
   <div class="row">
-    <div *ngFor="let car of cars | async" class="col col-sm-12 col-md-6 col-lg-4">
+    <div *ngFor="let car of cars" class="col col-sm-12 col-md-6 col-lg-4">
       <div class="card car-card">
         <div class="card-body">
           <h5 class="card-title">{{ car.number }}</h5>
