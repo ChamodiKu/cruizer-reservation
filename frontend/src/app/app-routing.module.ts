@@ -1,3 +1,4 @@
+import { User } from './services/user.dto';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
@@ -7,12 +8,14 @@ import { LoginGuard } from './auth/login.guard';
 import { HomeComponent } from './pages/home/home.component';
 import { HomeGuard } from './auth/home.guard';
 import { SignupComponent } from './pages/signup/signup.component';
+import { UserComponent } from './pages/user/user.component';
 import { AddEditCarComponent } from './pages/portal/add-edit-car/add-edit-car.component';
 import { PortalViewComponent } from './pages/portal/portal-view/portal-view.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
   { path: 'signup', component: SignupComponent, canActivate: [LoginGuard] },
+  { path: 'user', component: UserComponent, canActivate: [LoginGuard] },
   {
     path: 'portal', component: PortalComponent, canActivate: [AuthGuard], children: [
       { path: '', component: PortalViewComponent },
