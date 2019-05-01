@@ -9,27 +9,27 @@ import { ServiceService } from 'src/app/services/service.service';
 })
 export class DashboardViewComponent implements OnInit {
 
-  services: Service[] = []
+  services: Service[] = [];
 
   constructor(
     private serviceService: ServiceService
   ) { }
 
   ngOnInit() {
-    this.updateServices()
+    this.updateServices();
   }
 
   onDelete(id: string) {
     this.serviceService.delete(id).subscribe(res => {
-      console.log(res)
-      this.updateServices()
-    })
+      console.log(res);
+      this.updateServices();
+    });
   }
 
   private updateServices() {
     this.serviceService.get().subscribe(cars => {
-      this.services = cars
-    })
+      this.services = cars;
+    });
   }
 
 }

@@ -11,27 +11,27 @@ import { updateLocale } from 'moment';
 })
 export class PortalViewComponent implements OnInit {
 
-  cars: Car[] = []
+  cars: Car[] = [];
 
   constructor(
     private carService: CarService
   ) { }
 
   ngOnInit() {
-    this.updateCars()
+    this.updateCars();
   }
 
   onDelete(id: string) {
     this.carService.delete(id).subscribe(res => {
-      console.log(res)
-      this.updateCars()
-    })
+      console.log(res);
+      this.updateCars();
+    });
   }
 
   private updateCars() {
     this.carService.get().subscribe(cars => {
-      this.cars = cars
-    })
+      this.cars = cars;
+    });
   }
 
 }
