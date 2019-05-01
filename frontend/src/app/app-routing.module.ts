@@ -13,6 +13,7 @@ import { PortalGuard } from './auth/portal.guard';
 import { DashboardGuard } from './auth/dashboard.guard';
 import { DashboardViewComponent } from './pages/dashboard/dashboard-view/dashboard-view.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { AddEditServiceComponent } from './pages/dashboard/add-edit-service/add-edit-service.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
@@ -26,7 +27,9 @@ const routes: Routes = [
   },
   {
     path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard, DashboardGuard], children: [
-      { path: '', component: DashboardViewComponent }
+      { path: '', component: DashboardViewComponent },
+      { path: 'service/create', component: AddEditServiceComponent },
+      { path: 'service/edit/:id', component: AddEditServiceComponent }
     ]
   },
   { path: '', pathMatch: 'full', component: HomeComponent, canActivate: [HomeGuard] }
