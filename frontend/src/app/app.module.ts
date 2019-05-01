@@ -21,6 +21,8 @@ import { PortalViewComponent } from './pages/portal/portal-view/portal-view.comp
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { DashboardViewComponent } from './pages/dashboard/dashboard-view/dashboard-view.component';
 import { AddEditServiceComponent } from './pages/dashboard/add-edit-service/add-edit-service.component';
+import { FooterComponent } from './shared/footer/footer.component';
+import { UserComponent } from './pages/user/user.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { AddEditServiceComponent } from './pages/dashboard/add-edit-service/add-
     PortalViewComponent,
     DashboardComponent,
     DashboardViewComponent,
-    AddEditServiceComponent
+    AddEditServiceComponent,
+    FooterComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
