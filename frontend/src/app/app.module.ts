@@ -20,6 +20,7 @@ import { AddEditCarComponent } from './pages/portal/add-edit-car/add-edit-car.co
 import { PortalViewComponent } from './pages/portal/portal-view/portal-view.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { DashboardViewComponent } from './pages/dashboard/dashboard-view/dashboard-view.component';
+import { AddEditServiceComponent } from './pages/dashboard/add-edit-service/add-edit-service.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { DashboardViewComponent } from './pages/dashboard/dashboard-view/dashboa
     AddEditCarComponent,
     PortalViewComponent,
     DashboardComponent,
-    DashboardViewComponent
+    DashboardViewComponent,
+    AddEditServiceComponent
   ],
   imports: [
     BrowserModule,
