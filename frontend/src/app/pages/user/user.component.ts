@@ -12,4 +12,10 @@ export class UserComponent implements OnInit {
   ngOnInit() {
   }
 
+  time = {hour: 13, minute: 30};
+  meridian = true;
+
+  toggleMeridian() {
+      this.meridian = !this.meridian;
+  }
 }

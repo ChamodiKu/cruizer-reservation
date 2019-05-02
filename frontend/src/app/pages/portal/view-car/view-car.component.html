@@ -1,0 +1,42 @@
+<div class="container mt-5">
+  <a class="btn btn-outline-primary" href="#" routerLink="/portal">Back</a>
+  <div class="mt-5">
+    <h1 class="display-2">
+      {{ car?.number }}
+    </h1>
+  </div>
+  <div class="row mt-4">
+    <div class="col col-sm-12 col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title mb-4">Information</h5>
+          <div class="mt-4">
+            <h6 class="card-subtitle mb-2 text-muted">Model</h6>
+            <p class="card-text ">{{ car?.model }}</p>
+          </div>
+          <div class="mt-4">
+            <h6 class="card-subtitle mb-2 text-muted">Vendor</h6>
+            <p class="card-text">{{ car?.vendor }}</p>
+          </div>
+          <div class="mt-4 mb-4">
+            <h6 class="card-subtitle mb-2 text-muted">Milage</h6>
+            <p class="card-text">{{ car?.milage }} km</p>
+          </div>
+          <a href="#" class="card-link" routerLink="/portal/car/edit/{{car._id}}">Edit</a>
+        </div>
+      </div>
+    </div>
+    <div class="col col-sm-12 col-md-6">
+      <div class="card border-danger">
+        <div class="card-body text-danger">
+          <h5 class="card-title">Danger zone</h5>
+          <p class="card-text">
+            Deleting the card may remove past reservations and reports. 
+            Be careful when procceding the aciton below.
+          </p>
+          <button class="btn btn-danger" (click)="onDelete()">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

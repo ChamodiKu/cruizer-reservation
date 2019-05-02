@@ -23,6 +23,7 @@ import { DashboardViewComponent } from './pages/dashboard/dashboard-view/dashboa
 import { AddEditServiceComponent } from './pages/dashboard/add-edit-service/add-edit-service.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { UserComponent } from './pages/user/user.component';
+import { ViewCarComponent } from './pages/portal/view-car/view-car.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { UserComponent } from './pages/user/user.component';
     DashboardViewComponent,
     AddEditServiceComponent,
     FooterComponent,
-    UserComponent
+    UserComponent,
+    ViewCarComponent
   ],
   imports: [
     BrowserModule,
