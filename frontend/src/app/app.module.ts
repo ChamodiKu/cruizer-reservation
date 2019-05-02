@@ -25,6 +25,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { UserComponent } from './pages/user/user.component';
 import { ViewCarComponent } from './pages/portal/view-car/view-car.component';
 import { AddEditReservationComponent } from './pages/reservation/add-edit-reservation/add-edit-reservation.component';
+import { ReservationComponent } from './pages/reservation/reservation.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { AddEditReservationComponent } from './pages/reservation/add-edit-reserv
     FooterComponent,
     UserComponent,
     ViewCarComponent,
-    AddEditReservationComponent
+    AddEditReservationComponent,
+    ReservationComponent
   ],
   imports: [
     BrowserModule,
