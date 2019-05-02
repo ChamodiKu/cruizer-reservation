@@ -13,7 +13,7 @@ export class DashboardGuard implements CanActivate {
     if (!!currentUser && currentUser.isAdmin) {
       return true;
     } else {
-      this.router.navigate(['/']);
+      this.router.navigate(['/portal']);
     }
   }
 }

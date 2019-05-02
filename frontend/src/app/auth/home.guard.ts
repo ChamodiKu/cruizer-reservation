@@ -18,7 +18,7 @@ export class HomeGuard implements CanActivate {
       return true;
     } else {
       const currentUser = this.userService.current();
-      if (!!currentUser || currentUser.isAdmin) {
+      if (!!currentUser && currentUser.isAdmin) {
         this.router.navigate(['/dashboard']);
       } else {
         this.router.navigate(['/portal']);

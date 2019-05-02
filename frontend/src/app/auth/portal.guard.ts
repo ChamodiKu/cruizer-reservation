@@ -9,13 +9,11 @@ export class PortalGuard implements CanActivate {
   constructor(public userService: UserService, public router: Router) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    console.log('PortalGuard');
     const currentUser = this.userService.current();
-    console.log(currentUser);
     if (!!currentUser && !currentUser.isAdmin) {
       return true;
     } else {
-      this.router.navigate(['/']);
+      this.router.navigate(['/dashboard']);
     }
   }
 }
