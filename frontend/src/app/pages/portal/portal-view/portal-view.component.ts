@@ -21,13 +21,6 @@ export class PortalViewComponent implements OnInit {
     this.updateCars();
   }
 
-  onDelete(id: string) {
-    this.carService.delete(id).subscribe(res => {
-      console.log(res);
-      this.updateCars();
-    });
-  }
-
   private updateCars() {
     this.carService.get().subscribe(cars => {
       this.cars = cars;

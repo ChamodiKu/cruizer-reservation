@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CarService } from 'src/app/services/car.service';
 import { Car } from 'src/app/services/car.dto';
 import { Observable } from 'rxjs';
@@ -16,18 +16,26 @@ export class ViewCarComponent implements OnInit {
   public car: Car;
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
-    private carSerivice: CarService
+    private carService: CarService
   ) { }
 
   ngOnInit() {
     this.route.paramMap.pipe(
       map(param => param.get('id')),
       tap(id => this.carId = id),
-      flatMap(id => this.carSerivice.getById(id.toString()))
+      flatMap(id => this.carService.getById(id.toString()))
     ).subscribe(car => {
       this.car = car;
     })
+  }
+
+  onDelete() {
+    this.carService.delete(this.carId.toString()).subscribe(res => {
+      console.log(res);
+      this.router.navigate(['/portal']);
+    });
   }
 
 }
