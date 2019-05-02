@@ -8,10 +8,10 @@ const Service = require('../model/Service')
  *
  * Get all the services in the system.
  *
- * @role Admin
+ * @role User
  * @response List of services
  */
-router.get('/', [verify.decodeToken, verify.checkAdmin], function (_, res) {
+router.get('/', [verify.decodeToken], function (_, res) {
   Service.find().exec((err, services) => {
     if (err || services == null) {
       return res.status(500).send({
@@ -29,10 +29,10 @@ router.get('/', [verify.decodeToken, verify.checkAdmin], function (_, res) {
  * Get the service for the given service id.
  *
  * @params id
- * @role Admin
+ * @role User
  * @response Service of the given id.
  */
-router.get('/:id', [verify.decodeToken, verify.checkAdmin], function (req, res) {
+router.get('/:id', [verify.decodeToken], function (req, res) {
   Service.findById(req.params['id']).exec((err, service) => {
     if (err || service == null) {
       return res.status(500).send({

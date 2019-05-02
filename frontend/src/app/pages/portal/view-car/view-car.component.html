@@ -1,40 +1,54 @@
 <div class="container mt-5">
-  <a class="btn btn-outline-primary" href="#" routerLink="/portal">Back</a>
+  <a class="btn btn-link" href="#" routerLink="/portal">Back</a>
   <div class="mt-5">
     <h1 class="display-2">
       {{ car?.number }}
     </h1>
   </div>
-  <div class="row mt-4">
-    <div class="col col-sm-12 col-md-6">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title mb-4">Information</h5>
-          <div class="mt-4">
-            <h6 class="card-subtitle mb-2 text-muted">Model</h6>
-            <p class="card-text ">{{ car?.model }}</p>
-          </div>
-          <div class="mt-4">
-            <h6 class="card-subtitle mb-2 text-muted">Vendor</h6>
-            <p class="card-text">{{ car?.vendor }}</p>
-          </div>
-          <div class="mt-4 mb-4">
-            <h6 class="card-subtitle mb-2 text-muted">Milage</h6>
-            <p class="card-text">{{ car?.milage }} km</p>
-          </div>
-          <a href="#" class="card-link" routerLink="/portal/car/edit/{{car._id}}">Edit</a>
-        </div>
-      </div>
+  <div class="row ml-1 mr-1 mt-5">
+    <div class="col col-sm-3">
+      <h6 class="card-subtitle mb-2 text-muted">Model</h6>
+      <p class="card-text ">{{ car?.model }}</p>
     </div>
-    <div class="col col-sm-12 col-md-6">
-      <div class="card border-danger">
-        <div class="card-body text-danger">
-          <h5 class="card-title">Danger zone</h5>
-          <p class="card-text">
-            Deleting the card may remove past reservations and reports. 
-            Be careful when procceding the aciton below.
-          </p>
-          <button class="btn btn-danger" (click)="onDelete()">Delete</button>
+    <div class="col col-sm-3">
+      <h6 class="card-subtitle mb-2 text-muted">Vendor</h6>
+      <p class="card-text">{{ car?.vendor }}</p>
+    </div>
+    <div class="col col-sm-3">
+      <h6 class="card-subtitle mb-2 text-muted">Milage</h6>
+      <p class="card-text">{{ car?.milage }} km</p>
+    </div>
+    <div class="col col-sm-3 text-right">
+      <a href="#" class="card-link" routerLink="/portal/car/edit/{{car._id}}">Edit</a>
+    </div>
+  </div>
+  <ul class="nav nav-tabs mt-5" id="car_tabs" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="reservations-tab" data-toggle="tab" href="#reservations" role="tab"
+        aria-controls="reservations" aria-selected="true">Reservations</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="options-tab" data-toggle="tab" href="#options" role="tab" aria-controls="options"
+        aria-selected="false">Options</a>
+    </li>
+  </ul>
+  <div class="tab-content" id="car_tab_content">
+    <div class="tab-pane fade show active" id="reservations" role="tabpanel" aria-labelledby="reservations-tab">
+
+    </div>
+    <div class="tab-pane fade" id="options" role="tabpanel" aria-labelledby="options-tab">
+      <div class="row mt-4">
+        <div class="col col-sm-12">
+          <div class="card border-danger">
+            <div class="card-body text-danger">
+              <h5 class="card-title">Danger zone</h5>
+              <p class="card-text">
+                Deleting the card may remove past reservations and reports.
+                Be careful when procceding the aciton below.
+              </p>
+              <button class="btn btn-danger" (click)="onDelete()">Delete</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
