@@ -46,7 +46,6 @@ export class LoginComponent {
     console.log(this.signInForm);
     this.loading = true;
 
-
     const request = {
       username: this.signInForm.controls['username'].value,
       password: this.signInForm.controls['password'].value

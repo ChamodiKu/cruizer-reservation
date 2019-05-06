@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Router } from '@angular/router';
 
@@ -10,24 +10,42 @@ import { Router } from '@angular/router';
 })
 export class SignupComponent {
 
-  public signUpForm = new FormGroup({
+  signUpForm: FormGroup;
+
+  /*public signUpForm = new FormGroup({
     firstname: new FormControl(''),
     lastname: new FormControl(''),
     username: new FormControl(''),
     password: new FormControl(''),
     email: new FormControl('')
-  });
+  });*/
 
   error: string
   loading: boolean
 
   constructor(
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private formBuilder: FormBuilder
   ) { }
 
+  ngOnInit(): void {
+    this.signUpForm = this.formBuilder.group({
+      //[value,validator]
+      firstname : [null,Validators.required],
+      lastname : [null,Validators.required],
+      username : [null,[Validators.required]],
+      email : [null,[Validators.required,Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]],
+      password : [null,[Validators.required,Validators.minLength(5)]]
+      /*address : this.formBuilder.group({}) */
+    });
+    
+  }
+
+
   onSignUp() {
-    this.loading = true
+
+       this.loading = true
     this.authService.signUp({
       firstname: this.signUpForm.controls['firstname'].value,
       lastname: this.signUpForm.controls['lastname'].value,
