@@ -9,11 +9,11 @@ export class DashboardGuard implements CanActivate {
   constructor(public userService: UserService, public router: Router) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    const currentUser = this.userService.current()
+    const currentUser = this.userService.current();
     if (!!currentUser && currentUser.isAdmin) {
       return true;
     } else {
-      this.router.navigate(['/']);
+      this.router.navigate(['/portal']);
     }
   }
 }

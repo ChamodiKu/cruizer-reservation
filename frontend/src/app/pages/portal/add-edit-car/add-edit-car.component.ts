@@ -20,10 +20,10 @@ export class AddEditCarComponent implements OnInit {
     milage: new FormControl('')
   });
 
-  editId: string
+  editId: string;
 
-  error: string
-  loading: boolean
+  error: string;
+  loading: boolean;
 
   constructor(
     private router: Router,
@@ -38,10 +38,10 @@ export class AddEditCarComponent implements OnInit {
       tap(id => this.editId = id),
       flatMap(id => {
         if (id) {
-          console.log(id)
-          return this.carService.getById(id)
+          console.log(id);
+          return this.carService.getById(id);
         } else {
-          throw { message: "No id available"}
+          throw { message: 'No id available'};
         }
       })
     ).subscribe(car => {
@@ -50,32 +50,33 @@ export class AddEditCarComponent implements OnInit {
         model: car.model,
         number: car.number,
         milage: car.milage
-      })
-    })
+      });
+    });
   }
 
   onSubmit() {
-    this.loading = true
+    this.loading = true;
     const car: Car = {
       vendor: this.carForm.controls['vendor'].value,
       model: this.carForm.controls['model'].value,
       number: this.carForm.controls['number'].value,
       milage: this.carForm.controls['milage'].value
-    }
-    let action: Observable<any>
+    };
+    let action: Observable<any>;
     if (this.editId) {
-      action = this.carService.update(this.editId, car)
+      action = this.carService.update(this.editId, car);
     } else {
-      action = this.carService.create(car)
+      action = this.carService.create(car);
     }
     action.subscribe(res => {
-      console.log(res)
-      this.router.navigate(['/portal'])
+      console.log(res);
+      this.router.navigate(['/portal']);
     }, err => {
-      this.loading = false
-      if (err.error.message)
-        this.error = err.error.message
-    })
+      this.loading = false;
+      if (err.error.message) {
+        this.error = err.error.message;
+      }
+    });
   }
 
 }
