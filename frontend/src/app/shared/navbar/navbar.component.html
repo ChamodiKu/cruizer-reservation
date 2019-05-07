@@ -26,6 +26,7 @@
             {{ currentUser.firstname}} {{ currentUser.lastname }}
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#" routerLink="/user">Profile</a>
             <a class="dropdown-item" href="#" (click)="logout()">Logout</a>
           </div>
         </li>

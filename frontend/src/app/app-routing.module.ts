@@ -1,4 +1,3 @@
-import { User } from './services/user.dto';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
@@ -16,16 +15,18 @@ import { DashboardGuard } from './auth/dashboard.guard';
 import { DashboardViewComponent } from './pages/dashboard/dashboard-view/dashboard-view.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AddEditServiceComponent } from './pages/dashboard/add-edit-service/add-edit-service.component';
+import { ViewCarComponent } from './pages/portal/view-car/view-car.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
   { path: 'signup', component: SignupComponent, canActivate: [LoginGuard] },
-  { path: 'user', component: UserComponent, canActivate: [LoginGuard] },
+  { path: 'user', component: UserComponent, canActivate: [AuthGuard] },
   {
     path: 'portal', component: PortalComponent, canActivate: [AuthGuard, PortalGuard], children: [
-      { path: '', component: PortalViewComponent },
+      { path: 'car/view/:id', component: ViewCarComponent },
       { path: 'car/create', component: AddEditCarComponent },
-      { path: 'car/edit/:id', component: AddEditCarComponent }
+      { path: 'car/edit/:id', component: AddEditCarComponent },
+      { path: '**', component: PortalViewComponent }
     ]
   },
   {

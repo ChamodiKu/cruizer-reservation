@@ -19,10 +19,10 @@ export class AddEditServiceComponent implements OnInit {
     price: new FormControl('')
   });
 
-  editId: string
+  editId: string;
 
-  error: string
-  loading: boolean
+  error: string;
+  loading: boolean;
 
   constructor(
     private router: Router,
@@ -37,10 +37,10 @@ export class AddEditServiceComponent implements OnInit {
       tap(id => this.editId = id),
       flatMap(id => {
         if (id) {
-          console.log(id)
-          return this.serviceService.getById(id)
+          console.log(id);
+          return this.serviceService.getById(id);
         } else {
-          throw { message: "No id available" }
+          throw { message: 'No id available' };
         }
       })
     ).subscribe(service => {
@@ -48,30 +48,31 @@ export class AddEditServiceComponent implements OnInit {
         name: service.name,
         description: service.description,
         price: service.price
-      })
-    })
+      });
+    });
   }
 
   onSubmit() {
-    this.loading = true
+    this.loading = true;
     const service: Service = {
       name: this.serviceForm.controls['name'].value,
       description: this.serviceForm.controls['description'].value,
       price: this.serviceForm.controls['price'].value
-    }
-    let action: Observable<any>
+    };
+    let action: Observable<any>;
     if (this.editId) {
-      action = this.serviceService.update(this.editId, service)
+      action = this.serviceService.update(this.editId, service);
     } else {
-      action = this.serviceService.create(service)
+      action = this.serviceService.create(service);
     }
     action.subscribe(res => {
-      console.log(res)
-      this.router.navigate(['/dashboard'])
+      console.log(res);
+      this.router.navigate(['/dashboard']);
     }, err => {
-      this.loading = false
-      if (err.error.message)
-        this.error = err.error.message
-    })
+      this.loading = false;
+      if (err.error.message) {
+        this.error = err.error.message;
+      }
+    });
   }
 }
