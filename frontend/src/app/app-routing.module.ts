@@ -1,3 +1,4 @@
+import { AdminComponent } from './pages/admin/admin.component';
 import { User } from './services/user.dto';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
   { path: 'signup', component: SignupComponent, canActivate: [LoginGuard] },
   { path: 'user', component: UserComponent, canActivate: [LoginGuard] },
+  { path: 'admin', component: AdminComponent, canActivate: [LoginGuard] },
   {
     path: 'portal', component: PortalComponent, canActivate: [AuthGuard, PortalGuard], children: [
       { path: '', component: PortalViewComponent },
