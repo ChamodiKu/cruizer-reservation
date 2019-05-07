@@ -2,13 +2,13 @@ import { Chart } from 'chart.js';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-user',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.scss']
+  selector: 'app-admin',
+  templateUrl: './admin.component.html',
+  styleUrls: ['./admin.component.scss']
 })
-export class UserComponent implements OnInit {
+export class AdminComponent implements OnInit {
 
-  LineChart = [0];
+ LineChart = [0];
   constructor() { }
 
   ngOnInit() {
@@ -57,4 +57,5 @@ var LineChart = new Chart(ctx, {
   toggleMeridian() {
       this.meridian = !this.meridian;
   }
+
 }
