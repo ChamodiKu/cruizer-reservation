@@ -23,6 +23,7 @@ import { DashboardViewComponent } from './pages/dashboard/dashboard-view/dashboa
 import { AddEditServiceComponent } from './pages/dashboard/add-edit-service/add-edit-service.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { UserComponent } from './pages/user/user.component';
+import { AdminComponent } from './pages/admin/admin.component';
 import { ViewCarComponent } from './pages/portal/view-car/view-car.component';
 import { AddEditReservationComponent } from './pages/reservation/add-edit-reservation/add-edit-reservation.component';
 import { ReservationComponent } from './pages/reservation/reservation.component';
@@ -43,6 +44,7 @@ import { ReservationComponent } from './pages/reservation/reservation.component'
     AddEditServiceComponent,
     FooterComponent,
     UserComponent,
+    AdminComponent,
     ViewCarComponent,
     AddEditReservationComponent,
     ReservationComponent

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Chart } from 'chart.js';
+import { Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -9,5 +10,7 @@ export class AppComponent {
 
   constructor(
   ) { }
-
+    
 }
+
+
