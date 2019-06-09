@@ -16,11 +16,16 @@ import { DashboardViewComponent } from './pages/dashboard/dashboard-view/dashboa
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AddEditServiceComponent } from './pages/dashboard/add-edit-service/add-edit-service.component';
 import { ViewCarComponent } from './pages/portal/view-car/view-car.component';
+import { EditUserdetailsComponent } from './pages/edit-userdetails/edit-userdetails.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
   { path: 'signup', component: SignupComponent, canActivate: [LoginGuard] },
-  { path: 'user', component: UserComponent, canActivate: [AuthGuard] },
+  { 
+    path: 'user', component: UserComponent, canActivate: [], children: [
+    { path: 'edit/:id', component: EditUserdetailsComponent },
+  ] 
+ },
   {
     path: 'portal', component: PortalComponent, canActivate: [AuthGuard, PortalGuard], children: [
       { path: 'car/view/:id', component: ViewCarComponent },

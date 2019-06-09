@@ -27,6 +27,9 @@ import { AdminComponent } from './pages/admin/admin.component';
 import { ViewCarComponent } from './pages/portal/view-car/view-car.component';
 import { AddEditReservationComponent } from './pages/reservation/add-edit-reservation/add-edit-reservation.component';
 import { ReservationComponent } from './pages/reservation/reservation.component';
+import { UserprofileComponent } from './pages/userprofile/userprofile.component';
+import { EditProfileComponent } from './admin/edit-profile/edit-profile.component';
+import { EditUserdetailsComponent } from './pages/edit-userdetails/edit-userdetails.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +50,11 @@ import { ReservationComponent } from './pages/reservation/reservation.component'
     AdminComponent,
     ViewCarComponent,
     AddEditReservationComponent,
-    ReservationComponent
+    ReservationComponent,
+    UserprofileComponent,
+    EditProfileComponent,
+    EditUserdetailsComponent
+    
   ],
   imports: [
     BrowserModule,
