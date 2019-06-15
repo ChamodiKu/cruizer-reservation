@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-reservation-details',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core'
   styleUrls: ['./reservation-details.component.scss']
 })
 export class ReservationDetailsComponent implements OnInit {
-  dataSource: Object
+  dataSource: Object;
   constructor() {
     this.dataSource = {
       chart: {
@@ -47,7 +47,7 @@ export class ReservationDetailsComponent implements OnInit {
           value: '23'
         }
       ]
-    }
+    };
   }
 
   ngOnInit() {}
