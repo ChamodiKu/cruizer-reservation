@@ -35,6 +35,7 @@ import { FusionChartsModule } from 'angular-fusioncharts';
 import * as FusionCharts from 'fusioncharts';
 import * as Charts from 'fusioncharts/fusioncharts.charts';
 import * as FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
+import { ReservationsComponent } from './pages/dashboard/reservations/reservations.component';
 
 FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme);
 
@@ -61,7 +62,8 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme);
     UserprofileComponent,
     EditProfileComponent,
     EditUserdetailsComponent,
-    ReservationDetailsComponent
+    ReservationDetailsComponent,
+    ReservationsComponent
   ],
   imports: [
     BrowserModule,

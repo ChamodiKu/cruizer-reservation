@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="mt-5 mb-4">
+    <h2 class="section-heading">Reservations</h2>
+  </div>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Vehicle</th>
+        <th scope="col">Owner</th>
+        <th scope="col">Date</th>
+        <th scope="col">Time</th>
+        <th scope="col">Accept</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+        <td><button type="button" class="btn btn-primary btn-sm" data-toggle="button" aria-pressed="false"
+            autocomplete="off" (click)="destroy()">
+            Accept<a *ngIf="show">ed</a>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

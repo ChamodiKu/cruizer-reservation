@@ -12,7 +12,6 @@ import { Observable } from 'rxjs';
   styleUrls: ['./add-edit-service.component.scss']
 })
 export class AddEditServiceComponent implements OnInit {
-
   public serviceForm = new FormGroup({
     name: new FormControl(''),
     description: new FormControl(''),
@@ -28,28 +27,30 @@ export class AddEditServiceComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private serviceService: ServiceService
-  ) { }
+  ) {}
 
   ngOnInit() {
-    this.route.paramMap.pipe(
-      first(),
-      map(param => param.get('id')),
-      tap(id => this.editId = id),
-      flatMap(id => {
-        if (id) {
-          console.log(id);
-          return this.serviceService.getById(id);
-        } else {
-          throw { message: 'No id available' };
-        }
-      })
-    ).subscribe(service => {
-      this.serviceForm.setValue({
-        name: service.name,
-        description: service.description,
-        price: service.price
+    this.route.paramMap
+      .pipe(
+        first(),
+        map(param => param.get('id')),
+        tap(id => (this.editId = id)),
+        flatMap(id => {
+          if (id) {
+            console.log(id);
+            return this.serviceService.getById(id);
+          } else {
+            throw { message: 'No id available' };
+          }
+        })
+      )
+      .subscribe(service => {
+        this.serviceForm.setValue({
+          name: service.name,
+          description: service.description,
+          price: service.price
+        });
       });
-    });
   }
 
   onSubmit() {
@@ -65,14 +66,17 @@ export class AddEditServiceComponent implements OnInit {
     } else {
       action = this.serviceService.create(service);
     }
-    action.subscribe(res => {
-      console.log(res);
-      this.router.navigate(['/dashboard']);
-    }, err => {
-      this.loading = false;
-      if (err.error.message) {
-        this.error = err.error.message;
+    action.subscribe(
+      res => {
+        console.log(res);
+        this.router.navigate(['/dashboard']);
+      },
+      err => {
+        this.loading = false;
+        if (err.error.message) {
+          this.error = err.error.message;
+        }
       }
-    });
+    );
   }
 }
