@@ -1,3 +1,5 @@
+import { ReservationService } from './../../../services/reservation.service';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,13 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReservationsComponent implements OnInit {
   show: boolean = false;
+  reservations: any;
+  constructor(private reservationService: ReservationService) {}
 
-  constructor() {}
+  ngOnInit() {
+    this.getReservation();
+  }
 
-  ngOnInit() {}
-
+  private getReservation() {
+    this.reservationService.get().subscribe(cars => {
+      this.reservations = cars;
+    });
+  }
+  // accepting button in the reservation table
   destroy() {
-    console.log('OK');
     this.show = true;
   }
 }

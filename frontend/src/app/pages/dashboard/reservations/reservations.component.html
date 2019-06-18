@@ -13,11 +13,11 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
+      <tr *ngFor="let reservation of reservations">
+        <th scope="row">{{ reservation.services }}</th>
+        <td>{{ reservation.createdBy }}</td>
+        <td>{{ reservation.requested.substr(0,10) }}</td>
+        <td>{{ reservation.created.substr(11,8) }}</td>
         <td><button type="button" class="btn btn-primary btn-sm" data-toggle="button" aria-pressed="false"
             autocomplete="off" (click)="destroy()">
             Accept<a *ngIf="show">ed</a>
@@ -26,4 +26,5 @@
       </tr>
     </tbody>
   </table>
+
 </div>

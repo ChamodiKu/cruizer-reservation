@@ -8,12 +8,9 @@ import { ServiceService } from 'src/app/services/service.service';
   styleUrls: ['./dashboard-view.component.scss']
 })
 export class DashboardViewComponent implements OnInit {
-
   services: Service[] = [];
 
-  constructor(
-    private serviceService: ServiceService
-  ) { }
+  constructor(private serviceService: ServiceService) {}
 
   ngOnInit() {
     this.updateServices();
@@ -31,5 +28,4 @@ export class DashboardViewComponent implements OnInit {
       this.services = cars;
     });
   }
-
 }
