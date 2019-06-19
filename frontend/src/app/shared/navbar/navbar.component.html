@@ -16,9 +16,15 @@
       </div>
       <ul class="navbar-nav ml-lg-auto">
 
-          <li *ngIf="!currentUser" class="nav-item">
+          <li class="nav-item">
               <a class="nav-link nav-link-icon ">
-                <button type="button" class="btn btn-secondary" routerLink="/login">View Service Reports</button>
+                <button type="button" class="btn btn-secondary" routerLink="/business">View Service Reports</button>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link nav-link-icon ">
+                <button type="button" class="btn btn-secondary" routerLink="/business/create">Create a Service Reports</button>
               </a>
             </li>
 

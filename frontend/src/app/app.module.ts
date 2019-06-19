@@ -28,6 +28,11 @@ import { ViewCarComponent } from './pages/portal/view-car/view-car.component';
 import { AddEditReservationComponent } from './pages/reservation/add-edit-reservation/add-edit-reservation.component';
 import { ReservationComponent } from './pages/reservation/reservation.component';
 
+import { GstAddComponent } from './pages/gst-add/gst-add.component';
+import { GstGetComponent } from './pages/gst-get/gst-get.component';
+import { GstEditComponent } from './pages/gst-edit/gst-edit.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +52,10 @@ import { ReservationComponent } from './pages/reservation/reservation.component'
     AdminComponent,
     ViewCarComponent,
     AddEditReservationComponent,
-    ReservationComponent
+    ReservationComponent,
+    GstAddComponent,
+    GstGetComponent,
+    GstEditComponent
   ],
   imports: [
     BrowserModule,

@@ -4,7 +4,7 @@ const businessRoutes = express.Router();
 //var objectId = require('mongoose').Types.ObjectId;    //Added to be used for line 23 (get id thing)
 
 // Require Business model in our routes module
-let Business = require('../models/Business');
+let Business = require('../model/Business');
 
 // Defined store route
 businessRoutes.route('/add').post(function (req, res) {

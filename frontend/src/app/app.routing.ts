@@ -7,6 +7,10 @@ import { CommonModule, } from '@angular/common';
 import { BrowserModule  } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
+import { GstAddComponent } from './pages/gst-add/gst-add.component';
+import { GstEditComponent } from './pages/gst-edit/gst-edit.component';
+import { GstGetComponent } from './pages/gst-get/gst-get.component';
+
 
 const routes: Routes =[
   {
@@ -38,6 +42,18 @@ const routes: Routes =[
     // { path: 'notifications',  component: NotificationsComponent },
     // { path: 'upgrade',        component: UpgradeComponent },
     // { path: '',               redirectTo: 'dashboard', pathMatch: 'full' }
+    {
+      path: 'business/create',
+      component: GstAddComponent
+    },
+    {
+      path: 'business/edit/:id',
+      component: GstEditComponent
+    },
+    {
+      path: 'business',
+      component: GstGetComponent
+    }
 ];
 
 @NgModule({

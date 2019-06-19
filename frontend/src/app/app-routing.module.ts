@@ -17,6 +17,11 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AddEditServiceComponent } from './pages/dashboard/add-edit-service/add-edit-service.component';
 import { ViewCarComponent } from './pages/portal/view-car/view-car.component';
 
+import { GstAddComponent } from './pages/gst-add/gst-add.component';
+import { GstEditComponent } from './pages/gst-edit/gst-edit.component';
+import { GstGetComponent } from './pages/gst-get/gst-get.component';
+
+
 const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
   { path: 'signup', component: SignupComponent, canActivate: [LoginGuard] },
@@ -36,7 +41,19 @@ const routes: Routes = [
       { path: 'service/edit/:id', component: AddEditServiceComponent }
     ]
   },
-  { path: '', pathMatch: 'full', component: HomeComponent, canActivate: [HomeGuard] }
+  { path: '', pathMatch: 'full', component: HomeComponent, canActivate: [HomeGuard] },
+  {
+    path: 'business/create',
+    component: GstAddComponent
+  },
+  {
+    path: 'business/edit/:id',
+    component: GstEditComponent
+  },
+  {
+    path: 'business',
+    component: GstGetComponent
+  }
 ];
 
 @NgModule({
