@@ -1,12 +1,34 @@
 <app-navbar></app-navbar>
 <div class="container pt-5">
-<table class="table table-hover">
+<table class="table table-responsive-md table-hover">
     <thead>
     <tr>
         <td>Job ID</td>
         <td>Technician ID</td>
         <td>Date Serviced</td>
+        <td>Vehicle No</td>
+        <td>Make</td>
+        <td>Model</td>
+        <td>Owner Name</td>
+        <td>Mileage</td>
+        <td>Lights and Indicators</td>
+        <td>Horn</td>
+        <td>Wipers</td>
+        <td>Side Mirrors</td>
+        <td>Power Windows</td>
+        <td>Brake Fluid</td>
+        <td>Engine Coolant</td>
+        <td>Drive Belt</td>
+        <td>AC Filter</td>
+        <td>Air Filter</td>
+        <td>Front Brakes</td>
+        <td>Rear Brakes</td>
+        <td>Engine Oil</td>
+        <td>Oil Filter</td>
+        <td>Shocks</td>
+        <td>Tyre Pressure</td>
         <td>Body Wash</td>
+        
         <td colspan="2">Actions</td>
     </tr>
     </thead>
@@ -16,7 +38,34 @@
             <td>{{ business.job_id }}</td>
             <td>{{ business.technician_id }}</td>
             <td>{{ business.date_serviced | date }}</td>
+            <td>{{ business.vehicle_no }}</td>
+            <td>{{ business.make }}</td>
+            <td>{{ business.model }}</td>
+            <td>{{ business.owner_name }}</td>
+            <td>{{ business.mileage }}</td>
+            <td>{{ business.lights_indicators }}</td>
+            <td>{{ business.horn }}</td>
+            <td>{{ business.wipers }}</td>
+            <td>{{ business.side_mirror }}</td>
+            <td>{{ business.power_windows }}</td>
+            <td>{{ business.brake_fluid }}</td>
+            <td>{{ business.engine_coolant }}</td>
+            <td>{{ business.drive_belt }}</td>
+            <td>{{ business.ac_filter }}</td>
+            <td>{{ business.air_filter }}</td>
+            <td>{{ business.front_brakes }}</td>
+            <td>{{ business.rear_brakes }}</td>
+            <td>{{ business.engine_oil }}</td>
+            <td>{{ business.oil_filter }}</td>
+            <td>{{ business.shocks }}</td>
+            <td>{{ business.tyre_pressure }}</td>
+            <td>{{ business.vehicle_no }}</td>
+            <td>{{ business.vehicle_no }}</td>
+            <td>{{ business.vehicle_no }}</td>
+            <td>{{ business.vehicle_no }}</td>
+            <td>{{ business.vehicle_no }}</td>
             <td>{{ business.body_wash }}</td>
+
             <td><a [routerLink]="['/business/edit', business._id]" class="btn btn-primary">Edit</a></td>
             <td><a (click) = "deleteBusiness(business._id)" class="btn btn-danger">Delete</a></td>        </tr>
     </tbody>

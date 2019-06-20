@@ -35,18 +35,307 @@
         <label class="col-md-4">Body Wash </label>
         <input type="number" class="form-control" formControlName="body_wash" #body_wash />
       </div> -->
-      
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" value="1" formControlName="body_wash" #body_wash>
-        <label class="form-check-label">1</label>
+
+      <div class="form-group">
+        <label class="col-md-4">Vehicle No </label>
+        <input type="text" class="form-control" formControlName="vehicle_no" #vehicle_no />
       </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" value="2" formControlName="body_wash" #body_wash>
-        <label class="form-check-label">2</label>
+      
+      <div class="form-group">
+        <label class="col-md-4">Make </label>
+        <input type="text" class="form-control" formControlName="make" #make />
       </div>
 
       <div class="form-group">
-        <button (click)="addBusiness(job_id.value, technician_id.value, date_serviced.value, body_wash.value)"
+        <label class="col-md-4">Model </label>
+        <input type="text" class="form-control" formControlName="model" #model />
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4">Owner Name </label>
+        <input type="text" class="form-control" formControlName="owner_name" #owner_name />
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4">Mileage </label>
+        <input type="text" class="form-control" formControlName="mileage" #mileage />
+      </div>
+
+      <!-- checked Serviced replaced -->
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Checked</th>
+            <th scope="col">Serviced</th>
+            <th scope="col">Replaced</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">lights_indicators</th>
+            <td><div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="Checked" formControlName="lights_indicators" #lights_indicators>
+              <label class="form-check-label">1</label>
+            </div></td>
+            <td><div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="Serviced" formControlName="lights_indicators" #lights_indicators>
+              <label class="form-check-label">2</label>
+            </div></td>
+            <td><div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="Replaced" formControlName="lights_indicators" #lights_indicators>
+              <label class="form-check-label">3</label>
+            </div></td>
+          </tr>
+          <tr>
+            <th scope="row">horn</th>
+            <td><div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="Checked" formControlName="horn" #horn>
+              <label class="form-check-label">1</label>
+            </div></td>
+            <td><div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="Serviced" formControlName="horn" #horn>
+              <label class="form-check-label">2</label>
+            </div></td>
+            <td><div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="Replaced" formControlName="horn" #horn>
+              <label class="form-check-label">3</label>
+            </div></td>
+          </tr>
+          <tr>
+            <th scope="row">wipers</th>
+            <td><div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" value="Checked" formControlName="wipers" #wipers>
+        <label class="form-check-label">1</label>
+      </div></td>
+            <td><div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="Serviced" formControlName="wipers" #wipers>
+              <label class="form-check-label">2</label>
+            </div></td>
+            <td> <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="Replaced" formControlName="wipers" #wipers>
+              <label class="form-check-label">3</label>
+            </div></td>
+          </tr>
+          <tr>
+            <th scope="row">side_mirror</th>
+            <td><div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="Checked" formControlName="side_mirror" #side_mirror>
+              <label class="form-check-label">1</label>
+            </div></td>
+            <td> <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="Serviced" formControlName="side_mirror" #side_mirror>
+              <label class="form-check-label">2</label>
+            </div></td>
+            <td> <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="Replaced" formControlName="side_mirror" #side_mirror>
+              <label class="form-check-label">3</label>
+            </div></td>
+          </tr>
+          <tr>
+            <th scope="row">power_windows</th>
+            <td><div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="Checked" formControlName="power_windows" #power_windows>
+              <label class="form-check-label">1</label>
+            </div></td>
+            <td><div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="Serviced" formControlName="power_windows" #power_windows>
+              <label class="form-check-label">2</label>
+            </div></td>
+            <td><div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="Replaced" formControlName="power_windows" #power_windows>
+              <label class="form-check-label">Checked</label>
+            </div></td>
+          </tr>
+          <tr>
+            <th scope="row">brake_fluid</th>
+            <td><div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="Checked" formControlName="brake_fluid" #brake_fluid>
+              <label class="form-check-label">1</label>
+            </div></td>
+            <td><div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="Serviced" formControlName="brake_fluid" #brake_fluid>
+              <label class="form-check-label">1</label>
+            </div></td>
+            <td><div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="Replaced" formControlName="brake_fluid" #brake_fluid>
+              <label class="form-check-label">1</label>
+            </div></td>
+          </tr>
+          <tr>
+            <th scope="row">engine_coolant</th>
+            <td><div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="Checked" formControlName="engine_coolant" #engine_coolant>
+              <label class="form-check-label">1</label>
+            </div></td>
+            <td><div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="Serviced" formControlName="engine_coolant" #engine_coolant>
+              <label class="form-check-label">1</label>
+            </div></td>
+            <td><div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="Replaced" formControlName="engine_coolant" #engine_coolant>
+              <label class="form-check-label">1</label>
+            </div></td>
+          </tr>
+          <tr>
+            <th scope="row">drive_belt</th>
+            <td><div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="Checked" formControlName="drive_belt" #drive_belt>
+              <label class="form-check-label">1</label>
+            </div></td>
+            <td><div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="Serviced" formControlName="drive_belt" #drive_belt>
+              <label class="form-check-label">1</label>
+            </div></td>
+            <td><div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="Replaced" formControlName="drive_belt" #drive_belt>
+              <label class="form-check-label">1</label>
+            </div></td>
+          </tr>
+          <tr>
+            <th scope="row">ac_filter</th>
+            <td><div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="Checked" formControlName="ac_filter" #ac_filter>
+              <label class="form-check-label">1</label>
+            </div></td>
+            <td><div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="Serviced" formControlName="ac_filter" #ac_filter>
+              <label class="form-check-label">1</label>
+            </div></td>
+            <td><div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="Replaced" formControlName="ac_filter" #ac_filter>
+              <label class="form-check-label">1</label>
+            </div></td>
+          </tr>
+          <tr>
+            <th scope="row">air_filter</th>
+            <td><div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="Checked" formControlName="air_filter" #air_filter>
+              <label class="form-check-label">1</label>
+            </div></td>
+            <td><div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="Serviced" formControlName="air_filter" #air_filter>
+              <label class="form-check-label">1</label>
+            </div></td>
+            <td><div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="Replaced" formControlName="air_filter" #air_filter>
+              <label class="form-check-label">1</label>
+            </div></td>
+          </tr>
+          <tr>
+            <th scope="row">front_brakes</th>
+            <td><div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="Checked" formControlName="front_brakes" #front_brakes>
+              <label class="form-check-label">1</label>
+            </div></td>
+            <td><div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="Serviced" formControlName="front_brakes" #front_brakes>
+              <label class="form-check-label">2</label>
+            </div></td>
+            <td>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" value="Replaced" formControlName="front_brakes" #front_brakes>
+                <label class="form-check-label">3</label>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">rear_brakes</th>
+            <td><div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="Checked" formControlName="rear_brakes" #rear_brakes>
+              <label class="form-check-label">1</label>
+            </div></td>
+            <td><div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="Serviced" formControlName="rear_brakes" #rear_brakes>
+              <label class="form-check-label">1</label>
+            </div></td>
+            <td><div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="Replaced" formControlName="rear_brakes" #rear_brakes>
+              <label class="form-check-label">1</label>
+            </div></td>
+          </tr>
+          <tr>
+            <th scope="row">engine_oil</th>
+            <td><div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="Checked" formControlName="engine_oil" #engine_oil>
+              <label class="form-check-label">1</label>
+            </div></td>
+            <td><div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="Serviced" formControlName="engine_oil" #engine_oil>
+              <label class="form-check-label">1</label>
+            </div></td>
+            <td><div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="Replaced" formControlName="engine_oil" #engine_oil>
+              <label class="form-check-label">1</label>
+            </div></td>
+          </tr>
+          <tr>
+            <th scope="row">oil_filter</th>
+            <td><div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="Checked" formControlName="oil_filter" #oil_filter>
+              <label class="form-check-label">1</label>
+            </div></td>
+            <td><div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="Serviced" formControlName="oil_filter" #oil_filter>
+              <label class="form-check-label">1</label>
+            </div></td>
+            <td><div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="Replaced" formControlName="oil_filter" #oil_filter>
+              <label class="form-check-label">1</label>
+            </div></td>
+          </tr>
+          <tr>
+            <th scope="row">shocks</th>
+            <td><div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="Checked" formControlName="shocks" #shocks>
+              <label class="form-check-label">1</label>
+            </div></td>
+            <td><div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="Serviced" formControlName="shocks" #shocks>
+              <label class="form-check-label">1</label>
+            </div></td>
+            <td><div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="Replaced" formControlName="shocks" #shocks>
+              <label class="form-check-label">1</label>
+            </div></td>
+          </tr>
+          <tr>
+            <th scope="row">tyre_pressure</th>
+            <td><div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="Checked" formControlName="tyre_pressure" #tyre_pressure>
+              <label class="form-check-label">1</label>
+            </div></td>
+            <td><div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="Serviced" formControlName="tyre_pressure" #tyre_pressure>
+              <label class="form-check-label">1</label>
+            </div></td>
+            <td><div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="Replaced" formControlName="tyre_pressure" #tyre_pressure>
+              <label class="form-check-label">1</label>
+            </div></td>
+          </tr>
+          <tr>
+            <th scope="row">body_wash</th>
+            <td><div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="Checked" formControlName="body_wash" #body_wash>
+              <label class="form-check-label">1</label>
+            </div></td>
+            <td><div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="Serviced" formControlName="body_wash" #body_wash>
+              <label class="form-check-label">1</label>
+            </div></td>
+            <td><div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" value="Replaced" formControlName="body_wash" #body_wash>
+              <label class="form-check-label">1</label>
+            </div></td>
+          </tr>
+          
+        </tbody>
+      </table>
+
+      <div class="form-group">
+        <button (click)="addBusiness(job_id.value, technician_id.value, date_serviced.value, vehicle_no.value, make.value, model.value, owner_name.value, mileage.value, lights_indicators.value, horn.value, wipers.value, side_mirror.value, power_windows.value, brake_fluid.value, engine_coolant.value, drive_belt.value, ac_filter.value, air_filter.value, front_brakes.value, rear_brakes.value,engine_oil.value, oil_filter.value, shocks.value, tyre_pressure.value, body_wash.value)"
             [disabled]="angForm.pristine || angForm.invalid" 
             class="btn btn-primary">
             Add Business

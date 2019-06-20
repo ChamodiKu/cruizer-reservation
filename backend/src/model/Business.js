@@ -12,71 +12,71 @@ let Business = new Schema({
   date_serviced: {
     type: Date
   },
-  // vehicle_no: {
-  //   type: String
-  // },
-  // make: {
-  //   type: String
-  // },
-  // model: {
-  //   type: String
-  // },
-  // owner_name: {
-  //   type: String
-  // },
-  // mileage: {
-  //   type: Number
-  // },
-  // lights_indicators: {
-  //   type: Number
-  // },
-  // horn: {
-  //   type: Number
-  // },
-  // wipers: {
-  //   type: Number
-  // },
-  // side_mirror: {
-  //   type: Number
-  // },
-  // power_windows: {
-  //   type: Number
-  // },
-  // brake_fluid: {
-  //   type: Number
-  // },
-  // engine_coolant: {
-  //   type: Number
-  // },
-  // drive_belt: {
-  //   type: Number
-  // },
-  // ac_filter: {
-  //   type: Number
-  // },
-  // air_filter: {
-  //   type: Number
-  // },
-  // front_brakes: {
-  //   type: Number
-  // },
-  // rear_brakes: {
-  //   type: Number
-  // },
-  // engine_oil: {
-  //   type: Number
-  // },
-  // oil_filter: {
-  //   type: Number
-  // },
-  // shocks: {
-  //   type: Number
-  // },
-  // tyre_pressure: {
-  //   type: Number
-  // },
-  body_wash: {
+  vehicle_no: {
+    type: String
+  },
+  make: {
+    type: String
+  },
+  model: {
+    type: String
+  },
+  owner_name: {
+    type: String
+  },
+  mileage: {
     type: Number
+  },
+  lights_indicators: {
+    type: String
+  },
+  horn: {
+    type: String
+  },
+  wipers: {
+    type: String
+  },
+  side_mirror: {
+    type: String
+  },
+  power_windows: {
+    type: String
+  },
+  brake_fluid: {
+    type: String
+  },
+  engine_coolant: {
+    type: String
+  },
+  drive_belt: {
+    type: String
+  },
+  ac_filter: {
+    type: String
+  },
+  air_filter: {
+    type: String
+  },
+  front_brakes: {
+    type: String
+  },
+  rear_brakes: {
+    type: String
+  },
+  engine_oil: {
+    type: String
+  },
+  oil_filter: {
+    type: String
+  },
+  shocks: {
+    type: String
+  },
+  tyre_pressure: {
+    type: String
+  },
+  body_wash: {
+    type: String
   }
 },{
     collection: 'reports'      //change here to change the name of the collection. but u may need to consider other places as well.
