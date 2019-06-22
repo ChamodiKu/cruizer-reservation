@@ -1,4 +1,4 @@
-<div class="mt-4">
+<!-- <div class="mt-4">
   <div class="card offset-1" style="width: 30rem;">
     <div class="card-body">
       <div class="text-center">
@@ -17,7 +17,7 @@
             </tr>
             <tr>
               <td scope="row">Name</td>
-              <th class="cap">{{user.firstname}} {{user.lastname}} </th>
+              <th class="capitalize">{{user.firstname}} {{user.lastname}} </th>
             </tr>
             <tr>
               <td scope="row">Email</td>
@@ -44,5 +44,37 @@
         <button type="button" routerLink="edit/{{user._id}}" class="btn btn-primary">Edit</button>
       </div>
     </div>
+  </div>
+</div> -->
+
+<div class="container mt-5">
+  <div class="mt-5">
+    <h1 class="display-2">
+      <h3 class="card-subtitle mb-2 text-muted">User Details</h3>
+      <div class="capitalize">{{user.firstname}} {{user.lastname}}</div>
+    </h1>
+  </div>
+  <div class="row ml-1 mr-1 mt-5">
+    <div class="col col-sm-3">
+      <h6 class="card-subtitle mb-2 text-muted">Username</h6>
+      <h5 class="card-text ">{{user.username}}</h5>
+    </div>
+    <div class="col col-sm-3">
+      <h6 class="card-subtitle mb-2 text-muted">Email</h6>
+      <h5 class="card-text">{{user.email}}</h5>
+    </div>
+    <div class="col col-sm-3">
+      <h6 class="card-subtitle mb-2 text-muted">Telephone</h6>
+      <h5 class="card-text"> {{user.tel}}</h5>
+      <p *ngIf="!user.address" class="font-weight-light text-left">Edit telephone</p>
+    </div>
+    <div class="col col-sm-3">
+      <h6 class="card-subtitle mb-2 text-muted">Address</h6>
+      <h5 class="card-text"> {{user.address}}</h5>
+      <p *ngIf="!user.address" class="font-weight-light text-left">Edit address</p>
+    </div>
+  </div>
+  <div *ngIf="!editId" class="modal-footer">
+    <button type="button" routerLink="edit/{{user._id}}" class="btn btn-primary">Edit</button>
   </div>
 </div>
