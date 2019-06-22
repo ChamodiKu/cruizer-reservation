@@ -14,12 +14,12 @@
     </thead>
     <tbody>
       <tr *ngFor="let reservation of reservations">
-        <th scope="row">{{ reservation.services }}</th>
-        <td>{{ reservation.createdBy }}</td>
+        <th scope="row">{{ reservation.createdBy }}</th>
+        <td>{{ reservation.services }}</td>
         <td>{{ reservation.requested.substr(0,10) }}</td>
         <td>{{ reservation.created.substr(11,8) }}</td>
         <td><button type="button" class="btn btn-primary btn-sm" data-toggle="button" aria-pressed="false"
-            autocomplete="off" (click)="destroy()">
+            autocomplete="off">
             Accept<a *ngIf="show">ed</a>
           </button>
         </td>

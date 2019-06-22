@@ -1,7 +1,6 @@
 <div class="mt-5">
   <div class="container">
-    <!-- <h2 *ngIf="!editId" class="mt-5 mb-4">Create Service</h2>
-    <h2 *ngIf="editId" class="mt-5 mb-4">Edit Service</h2> -->
+
     <form [formGroup]="userdetailsForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label for="">Username</label>
@@ -18,8 +17,7 @@
       </div>
       <div class="form-group">
         <label for="">Telephone</label>
-        <input type="text" class="form-control" id="telephone" placeholder="Enter Telephone"
-          formControlName="telephone">
+        <input type="text" class="form-control" id="telephone" placeholder="Enter Telephone" formControlName="tel">
       </div>
       <div class="form-group">
         <label for="">Address</label>
@@ -28,8 +26,11 @@
       <div class="mt-2 mb-2">
         <small class="error"> {{error}} </small>
       </div>
-      <a href="#" routerLink="/user" class="btn btn-primary card-link">Back</a>
-      <button type="submit" class="btn btn-primary" [ngClass]="{ disabled: loading }">Save</button>
+      <div class="text-right">
+        <a href="#" routerLink="/user" class="btn btn-primary card-link">Back</a>
+        <a class="btn btn-primary card-link">Save</a>
+        <a (click)="resetForm()" class="btn btn-primary card-link">Reset</a>
+      </div>
     </form>
   </div>
 </div>

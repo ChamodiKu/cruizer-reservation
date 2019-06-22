@@ -28,7 +28,6 @@ import { AddEditReservationComponent } from './pages/reservation/add-edit-reserv
 import { ReservationComponent } from './pages/reservation/reservation.component';
 import { UserprofileComponent } from './pages/userprofile/userprofile.component';
 import { EditProfileComponent } from './admin/edit-profile/edit-profile.component';
-import { EditUserdetailsComponent } from './pages/edit-userdetails/edit-userdetails.component';
 import { ReservationDetailsComponent } from './pages/dashboard/reservation-details/reservation-details.component';
 import { FusionChartsModule } from 'angular-fusioncharts';
 
@@ -36,6 +35,8 @@ import * as FusionCharts from 'fusioncharts';
 import * as Charts from 'fusioncharts/fusioncharts.charts';
 import * as FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 import { ReservationsComponent } from './pages/dashboard/reservations/reservations.component';
+import { AddEditUserdetailsComponent } from './pages/user/add-edit-userdetails/add-edit-userdetails.component';
+import { UserviewComponent } from './pages/user/userview/userview.component';
 
 FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme);
 
@@ -61,9 +62,10 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme);
     ReservationComponent,
     UserprofileComponent,
     EditProfileComponent,
-    EditUserdetailsComponent,
     ReservationDetailsComponent,
-    ReservationsComponent
+    ReservationsComponent,
+    AddEditUserdetailsComponent,
+    UserviewComponent
   ],
   imports: [
     BrowserModule,

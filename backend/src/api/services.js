@@ -60,12 +60,18 @@ router.post('/', [verify.decodeToken, verify.checkAdmin], function (req, res) {
       price: req.body.price
     })
     service.save().then(() => {
-      res.status(200).send({ message: 'Success, Service created!' })
+      res.status(200).send({
+        message: 'Success, Service created!'
+      })
     }).catch(() => {
-      res.status(500).send({ message: 'Service creation error.' })
+      res.status(500).send({
+        message: 'Service creation error.'
+      })
     })
   } else {
-    res.status(400).send({ message: 'Missing fields' })
+    res.status(400).send({
+      message: 'Missing fields'
+    })
   }
 })
 
@@ -99,9 +105,13 @@ router.put('/:id', [verify.decodeToken, verify.checkAdmin], function (req, res) 
     }
 
     service.save().then(() => {
-      res.status(200).send({ message: 'Success, Service updated!' })
+      res.status(200).send({
+        message: 'Success, Service updated!'
+      })
     }).catch(() => {
-      res.status(500).send({ message: 'Service update error.' })
+      res.status(500).send({
+        message: 'Service update error.'
+      })
     })
   })
 })
@@ -123,9 +133,13 @@ router.delete('/:id', [verify.decodeToken, verify.checkAdmin], function (req, re
     }
 
     service.delete().then(() => {
-      res.status(200).send({ message: 'Success, Service deleted!' })
+      res.status(200).send({
+        message: 'Success, Service deleted!'
+      })
     }).catch(() => {
-      res.status(500).send({ message: 'Service delete error.' })
+      res.status(500).send({
+        message: 'Service delete error.'
+      })
     })
   })
 })

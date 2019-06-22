@@ -15,10 +15,10 @@ export class ReservationsComponent implements OnInit {
   ngOnInit() {
     this.getReservation();
   }
-
+  //
   private getReservation() {
-    this.reservationService.get().subscribe(cars => {
-      this.reservations = cars;
+    this.reservationService.get().subscribe(reserv => {
+      this.reservations = reserv;
     });
   }
   // accepting button in the reservation table
