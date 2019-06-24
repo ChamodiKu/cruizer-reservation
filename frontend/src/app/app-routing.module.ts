@@ -18,6 +18,7 @@ import { DashboardViewComponent } from './pages/dashboard/dashboard-view/dashboa
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AddEditServiceComponent } from './pages/dashboard/add-edit-service/add-edit-service.component';
 import { ViewCarComponent } from './pages/portal/view-car/view-car.component';
+import { RatingsCommentsComponent } from './pages/portal/ratings-comments/ratings-comments.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
@@ -36,6 +37,7 @@ const routes: Routes = [
     component: PortalComponent,
     canActivate: [AuthGuard, PortalGuard],
     children: [
+      { path: 'ratings-comments', component: RatingsCommentsComponent },
       { path: 'car/view/:id', component: ViewCarComponent },
       { path: 'car/create', component: AddEditCarComponent },
       { path: 'car/edit/:id', component: AddEditCarComponent },

@@ -2,6 +2,11 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/services/user.dto';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ServiceService } from 'src/app/services/service.service';
+import { first, map, tap, flatMap } from 'rxjs/operators';
+import { Service } from 'src/app/services/service.dto';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-add-edit-userdetails',
@@ -16,15 +21,46 @@ export class AddEditUserdetailsComponent implements OnInit {
     tel: new FormControl(''),
     address: new FormControl('')
   });
-  userService: any;
 
-  constructor(private userservice: UserService) {}
+  constructor(
+    private userservice: UserService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
-  users: User;
+  user: User;
+  editId: string;
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.user = this.userservice.current();
+  }
 
-  onSubmit() {}
+  onSubmit() {
+    this.route.paramMap
+      .pipe(
+        first(),
+        map(param => param.get('id')),
+        tap(id => (this.editId = id)),
+        flatMap(id => {
+          if (id) {
+            console.log(id);
+            return this.userservice.getById(id);
+          } else {
+            throw { message: 'No id available' };
+          }
+        })
+      )
+      .subscribe(user => {
+        console.log(user);
+        this.userdetailsForm.setValue({
+          username: user.username,
+          firstname: user.firstname,
+          lastname: user.lastname,
+          tel: user.tel,
+          address: user.address
+        });
+      });
+  }
 
   //Reset the form
   resetForm() {

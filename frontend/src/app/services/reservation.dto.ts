@@ -5,4 +5,5 @@ export interface Reservation {
   status: string;
   created: string;
   createdBy: string;
+  accept?: boolean;
 }

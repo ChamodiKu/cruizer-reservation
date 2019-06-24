@@ -8,7 +8,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./reservations.component.scss']
 })
 export class ReservationsComponent implements OnInit {
-  show: boolean = false;
   reservations: any;
   constructor(private reservationService: ReservationService) {}
 
@@ -21,8 +20,11 @@ export class ReservationsComponent implements OnInit {
       this.reservations = reserv;
     });
   }
+
   // accepting button in the reservation table
-  destroy() {
-    this.show = true;
+  accepted(id, accept) {
+    if (id && accept) {
+      accept = true;
+    }
   }
 }

@@ -53,4 +53,20 @@ export class UserService {
       map(res => res as ApiResponse)
     );
   }
+
+  getById(userId: string): Observable<User> {
+    return this.http.get(this.currentUrl + '/' + userId).pipe(
+      first(),
+      map(res => res as User)
+    );
+  }
+
+  //Test class to get current user
+  getUser(user: User) {
+    return this.http.get(this.currentUrl);
+  }
+
+  test() {
+    console.log('GOT');
+  }
 }

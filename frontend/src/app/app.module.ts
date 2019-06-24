@@ -37,6 +37,8 @@ import * as FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 import { ReservationsComponent } from './pages/dashboard/reservations/reservations.component';
 import { AddEditUserdetailsComponent } from './pages/user/add-edit-userdetails/add-edit-userdetails.component';
 import { UserviewComponent } from './pages/user/userview/userview.component';
+import { RatingsComponent } from './pages/portal/ratings/ratings.component';
+import { RatingsCommentsComponent } from './pages/portal/ratings-comments/ratings-comments.component';
 
 FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme);
 
@@ -65,7 +67,9 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme);
     ReservationDetailsComponent,
     ReservationsComponent,
     AddEditUserdetailsComponent,
-    UserviewComponent
+    UserviewComponent,
+    RatingsComponent,
+    RatingsCommentsComponent
   ],
   imports: [
     BrowserModule,
