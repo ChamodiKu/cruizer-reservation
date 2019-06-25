@@ -1,7 +1,17 @@
 <div class="container">
   <div class="mt-5 mb-4">
     <h2 class="section-heading">Reservation Details</h2>
-    <fusioncharts width="700" height="400" type="Column2d" [dataSource]="dataSource">
-    </fusioncharts>
+    <div class="row">
+      <fusioncharts [width]="width" [height]="height" [type]="type" [dataFormat]="dataFormat" [dataSource]="source">
+      </fusioncharts>
+      <&nbsp>
+        <fusioncharts [width]="width1" [height]="height1" [type]="type1" [dataFormat]="dataFormat1"
+          [dataSource]="source1">
+        </fusioncharts>
+        <fusioncharts [width]="width2" [height]="height2" [type]="type2" [dataFormat]="dataFormat2"
+          [dataSource]="source2">
+        </fusioncharts>
+    </div>
+
   </div>
 </div>
