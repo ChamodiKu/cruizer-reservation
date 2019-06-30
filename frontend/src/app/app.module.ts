@@ -47,7 +47,7 @@ import { ReservationComponent } from './pages/reservation/reservation.component'
     AdminComponent,
     ViewCarComponent,
     AddEditReservationComponent,
-    ReservationComponent
+    ReservationComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,7 +56,8 @@ import { ReservationComponent } from './pages/reservation/reservation.component'
     ReactiveFormsModule,
     FormsModule,
     NgbModule,
-    AuthModule
+    AuthModule,
+    
   ],
   providers: [
     httpInterceptorProviders

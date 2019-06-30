@@ -13,3 +13,7 @@ body, html {
     background-repeat: no-repeat;
     background-size: cover;
   }
+  .card-img-top{
+    height: 200px;
+    object-fit: cover;
+  }
