@@ -11,7 +11,7 @@ const verify = require('../auth/verify')
  * 
  * 
  */
-route.post('/', [verify.decodeToken, verify.checkAdmin], function (req, res) {
+router.post('/', [verify.decodeToken, verify.checkAdmin], function (req, res) {
     if (req.body.rate) {
         const rating = new Rate({
             rate: req.body.rate,
@@ -28,7 +28,7 @@ route.post('/', [verify.decodeToken, verify.checkAdmin], function (req, res) {
         })
     } else {
         res.status(400).send({
-            message: 'Messing Fields'
+            message: 'Missing Fields'
         })
     }
 })

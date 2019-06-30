@@ -12,10 +12,10 @@ const ratingSchema = mongoose.Schema({
     },
     rate: Number,
     Comment: String,
-    createdBy: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
-    }
+    // createdBy: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: 'User'
+    // }
 })
 
 module.exports = mongoose.model('Rating', ratingSchema)
