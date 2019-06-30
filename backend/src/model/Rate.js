@@ -11,7 +11,7 @@ const ratingSchema = mongoose.Schema({
         auto: true
     },
     rate: Number,
-    Comment: String,
+    comment: String,
     // createdBy: {
     //     type: mongoose.Schema.Types.ObjectId,
     //     ref: 'User'

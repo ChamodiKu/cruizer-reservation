@@ -36,6 +36,8 @@ export class RatingsCommentsComponent implements OnInit {
       comment: this.ratecommentForm.controls['comment'].value
     };
 
+    console.log(rating);
+
     let action: Observable<any>;
     action = this.rateService.create(rating);
 
