@@ -18,10 +18,10 @@ router.get('/current', [verify.decodeToken], function (req, res) {
         message: 'Error retrieving User with id: ' + req.uid
       })
     }
-    
+
     // Remove password attribute from the user
     user.password = undefined
-    
+
     res.status(200).send(user)
   })
 })
@@ -41,10 +41,12 @@ router.get('/', [verify.decodeToken, verify.checkAdmin], function (_, res) {
         message: 'Error retrieving Users'
       })
     }
-    
+
     // Remove password attribute from the user
-    users.map(user => { user.password = undefined })
-    
+    users.map(user => {
+      user.password = undefined
+    })
+
     res.status(200).send(users)
   })
 })
@@ -92,26 +94,38 @@ router.put('/current', [verify.decodeToken], function (req, res) {
     }
 
     if (req.body.username) {
-      const existingUser = await User.findOne({ username: req.body.username })
+      const existingUser = await User.findOne({
+        username: req.body.username
+      })
       if (existingUser) {
-        return res.status(400).send({ message: 'Username is already in taken!' })
+        return res.status(400).send({
+          message: 'Username is already in taken!'
+        })
       }
       user.username = req.body.username
     }
 
     if (req.body.email) {
-      const existingUser = await User.findOne({ email: req.body.email })
+      const existingUser = await User.findOne({
+        email: req.body.email
+      })
       if (existingUser) {
-        return res.status(400).send({ message: 'Email is already in taken!' })
+        return res.status(400).send({
+          message: 'Email is already in taken!'
+        })
       }
       user.email = req.body.email
     }
 
     return user.save().then(() => {
-      res.status(200).send({ message: 'Success, User updated!' })
+      res.status(200).send({
+        message: 'Success, User updated!'
+      })
     })
   }).catch(() => {
-    res.status(500).send({ message: 'User update error.' })
+    res.status(500).send({
+      message: 'User update error.'
+    })
   })
 })
 
@@ -130,9 +144,13 @@ router.post('/changePrivilege', [verify.decodeToken, verify.checkAdmin], functio
         user.isAdmin = !!req.body.isAdmin
 
         return user.save().then(() => {
-          res.status(200).send({ message: 'Success, User privilege updated!' })
+          res.status(200).send({
+            message: 'Success, User privilege updated!'
+          })
         }).catch(() => {
-          res.status(500).send({ message: 'User privilege update error.' })
+          res.status(500).send({
+            message: 'User privilege update error.'
+          })
         })
       } else {
         return res.status(500).send({
@@ -140,10 +158,14 @@ router.post('/changePrivilege', [verify.decodeToken, verify.checkAdmin], functio
         })
       }
     }).catch(() => {
-      res.status(500).send({ message: 'User privilege update error.' })
+      res.status(500).send({
+        message: 'User privilege update error.'
+      })
     })
   } else {
-    res.status(400).send({ message: 'Missing fields' })
+    res.status(400).send({
+      message: 'Missing fields'
+    })
   }
 })
 

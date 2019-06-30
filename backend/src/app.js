@@ -13,6 +13,7 @@ const usersRouter = require('./api/users')
 const carsRouter = require('./api/cars')
 const servicesRouter = require('./api/services')
 const reservationsRouter = require('./api/reservations')
+const ratingRouter = require('./api/rating')
 
 // Initialize the express app
 var app = express()
@@ -21,12 +22,16 @@ var app = express()
 app.use(cors())
 app.use(logger('dev'))
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({
+  extended: false
+}))
 app.use(cookieParser())
 
 // Initialize mongoose and connect to the MongoDB database
 mongoose.Promise = global.Promise
-mongoose.connect(config.DB, { useNewUrlParser: true })
+mongoose.connect(config.DB, {
+    useNewUrlParser: true
+  })
   .then(() => {
     console.log('Successfully connected to MongoDB.')
   }).catch(err => {
@@ -42,6 +47,7 @@ app.use('/users', usersRouter)
 app.use('/cars', carsRouter)
 app.use('/services', servicesRouter)
 app.use('/reservations', reservationsRouter)
+app.use('/rating', ratingRouter)
 
 // Set the port to 3000
 app.set('port', process.env.PORT || 3000)

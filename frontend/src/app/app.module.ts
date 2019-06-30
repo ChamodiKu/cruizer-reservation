@@ -4,7 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-
 import { AppRoutingModule } from './app-routing.module';
 import { AuthModule } from './auth/auth.module';
 
@@ -27,6 +26,21 @@ import { AdminComponent } from './pages/admin/admin.component';
 import { ViewCarComponent } from './pages/portal/view-car/view-car.component';
 import { AddEditReservationComponent } from './pages/reservation/add-edit-reservation/add-edit-reservation.component';
 import { ReservationComponent } from './pages/reservation/reservation.component';
+import { UserprofileComponent } from './pages/userprofile/userprofile.component';
+import { EditProfileComponent } from './admin/edit-profile/edit-profile.component';
+import { ReservationDetailsComponent } from './pages/dashboard/reservation-details/reservation-details.component';
+import { FusionChartsModule } from 'angular-fusioncharts';
+
+import * as FusionCharts from 'fusioncharts';
+import * as Charts from 'fusioncharts/fusioncharts.charts';
+import * as FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
+import { ReservationsComponent } from './pages/dashboard/reservations/reservations.component';
+import { AddEditUserdetailsComponent } from './pages/user/add-edit-userdetails/add-edit-userdetails.component';
+import { UserviewComponent } from './pages/user/userview/userview.component';
+import { RatingsComponent } from './pages/portal/ratings/ratings.component';
+import { RatingsCommentsComponent } from './pages/portal/ratings-comments/ratings-comments.component';
+
+FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme);
 
 @NgModule({
   declarations: [
@@ -47,7 +61,15 @@ import { ReservationComponent } from './pages/reservation/reservation.component'
     AdminComponent,
     ViewCarComponent,
     AddEditReservationComponent,
-    ReservationComponent
+    ReservationComponent,
+    UserprofileComponent,
+    EditProfileComponent,
+    ReservationDetailsComponent,
+    ReservationsComponent,
+    AddEditUserdetailsComponent,
+    UserviewComponent,
+    RatingsComponent,
+    RatingsCommentsComponent
   ],
   imports: [
     BrowserModule,
@@ -56,11 +78,10 @@ import { ReservationComponent } from './pages/reservation/reservation.component'
     ReactiveFormsModule,
     FormsModule,
     NgbModule,
-    AuthModule
+    AuthModule,
+    FusionChartsModule
   ],
-  providers: [
-    httpInterceptorProviders
-  ],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

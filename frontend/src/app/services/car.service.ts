@@ -10,13 +10,10 @@ import { ApiResponse } from '../api/api.dto';
   providedIn: 'root'
 })
 export class CarService {
-
   // API Endpoints
   private carsUrl = AppConfig.apiUrl + '/cars';
 
-  constructor(
-    private http: HttpClient
-  ) { }
+  constructor(private http: HttpClient) {}
 
   get(): Observable<Car[]> {
     return this.http.get(this.carsUrl).pipe(
