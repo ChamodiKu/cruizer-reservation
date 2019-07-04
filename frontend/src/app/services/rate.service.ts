@@ -20,4 +20,11 @@ export class RateService {
       map(res => res as ApiResponse)
     );
   }
+
+  get(): Observable<Rate[]> {
+    return this.http.get(this.rateUrl + '/all').pipe(
+      first(),
+      map((res: any[]) => res.map(it => it as Rate))
+    );
+  }
 }

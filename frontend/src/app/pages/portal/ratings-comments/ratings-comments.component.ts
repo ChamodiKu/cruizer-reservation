@@ -3,6 +3,8 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Rate } from 'src/app/services/rate.dto';
 import { Observable } from 'rxjs';
+import { map, tap, flatMap } from 'rxjs/operators';
+
 import {
   Router,
   ActivatedRouteSnapshot,
@@ -21,6 +23,7 @@ export class RatingsCommentsComponent implements OnInit {
   });
   error: string;
   editId: string;
+  rateId: any;
 
   constructor(
     private router: Router,
@@ -28,7 +31,18 @@ export class RatingsCommentsComponent implements OnInit {
     private rateService: RateService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.route.paramMap
+      .pipe(
+        map(param => param.get('id')),
+        tap(id => (this.rateId = id)),
+        flatMap(id => this.rateService.get())
+      )
+      .subscribe(rate => {
+        this.rateId = rate;
+        console.log(rate);
+      });
+  }
 
   onSubmit() {
     const rating: Rate = {
