@@ -28,7 +28,7 @@ const piper = piperOf(router)
  * @response List of reservations
  */
 piper.get('/all', [verify.decodeToken, verify.checkAdmin], hukx.pipe(
-  flatMap(() => from(Reservation.find().populate("vehicle")))
+  flatMap(() => from(Reservation.find().populate("vehicle createdBy")))
 ))
 
 /**

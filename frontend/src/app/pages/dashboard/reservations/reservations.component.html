@@ -16,8 +16,8 @@
     <tbody>
       <tr *ngFor="let reservation of reservations">
         <td>{{ reservation._id }}</td>
-        <td>{{ reservation.createdBy }}</td>
-        <td>{{ reservation.services }}</td>
+        <td>{{ reservation.vehicle?.number }}</td>
+        <td>{{ reservation.createdBy.firstname }}</td>
         <td>{{ reservation.requested.substr(0,10) }}</td>
         <td>{{ reservation.created.substr(11,8) }}</td>
         <td><button type="button" class="btn btn-primary btn-sm" data-toggle="button" aria-pressed="false"

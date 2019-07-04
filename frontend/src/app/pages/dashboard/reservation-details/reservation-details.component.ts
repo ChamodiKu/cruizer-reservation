@@ -1,4 +1,9 @@
+import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { RateService } from 'src/app/services/rate.service';
+import { Rate } from 'src/app/services/rate.dto';
+import { Observable } from 'rxjs';
+import { map, tap, flatMap } from 'rxjs/operators';
 
 const data = {
   chart: {
@@ -169,7 +174,13 @@ export class ReservationDetailsComponent implements OnInit {
   dataFormat2 = 'json';
   source2 = data2;
 
-  constructor() {}
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private rateService: RateService
+  ) {}
+
+  rateId: any;
 
   ngOnInit() {}
 }

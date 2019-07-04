@@ -27,7 +27,6 @@ import { ViewCarComponent } from './pages/portal/view-car/view-car.component';
 import { AddEditReservationComponent } from './pages/reservation/add-edit-reservation/add-edit-reservation.component';
 import { ReservationComponent } from './pages/reservation/reservation.component';
 import { UserprofileComponent } from './pages/userprofile/userprofile.component';
-import { EditProfileComponent } from './admin/edit-profile/edit-profile.component';
 import { ReservationDetailsComponent } from './pages/dashboard/reservation-details/reservation-details.component';
 import { FusionChartsModule } from 'angular-fusioncharts';
 
@@ -63,7 +62,6 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme);
     AddEditReservationComponent,
     ReservationComponent,
     UserprofileComponent,
-    EditProfileComponent,
     ReservationDetailsComponent,
     ReservationsComponent,
     AddEditUserdetailsComponent,
