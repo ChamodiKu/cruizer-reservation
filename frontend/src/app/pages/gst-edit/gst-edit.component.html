@@ -1,45 +1,456 @@
 <app-navbar></app-navbar>
-<div class="container">
-<div class="card">
-  <div class="card-body">
-    <form [formGroup]="angForm" novalidate>
-      <div class="form-group">
-        <label class="col-md-4">Job ID</label>
-        <input type="text" class="form-control" formControlName="job_id" #job_id [(ngModel)] = "business.job_id" />
-      </div>
-      <!-- <div *ngIf="angForm.controls['person_name'].invalid && (angForm.controls['person_name'].dirty || angForm.controls['person_name'].touched)" class="alert alert-danger">
-        <div *ngIf="angForm.controls['person_name'].errors.required">
-          Person Name is required.
+<div class="container mt-3">
+  <div class="card">
+    <h1 class="mx-auto mt-3">Edit a Report</h1>
+    <div class="card-body">
+      <form [formGroup]="angForm" novalidate>
+        <div class="form-group">
+          <label class="col-md-4">Job ID</label>
+          <input type="text" class="form-control" formControlName="job_id" #job_id [(ngModel)]="business.job_id" />
         </div>
-      </div> -->
-      <div class="form-group">
-        <label class="col-md-4">Technichian ID </label>
-        <input type="text" class="form-control" formControlName="technician_id" #technician_id [(ngModel)] = "business.technician_id" />
-      </div>
-      <!-- <div *ngIf="angForm.controls['business_name'].invalid && (angForm.controls['business_name'].dirty || angForm.controls['business_name'].touched)" class="alert alert-danger">
-        <div *ngIf="angForm.controls['business_name'].errors.required">
-          Person Business is required.
+
+        <div class="form-group">
+          <label class="col-md-4">Technichian ID </label>
+          <input type="text" class="form-control" formControlName="technician_id" #technician_id
+            [(ngModel)]="business.technician_id" />
         </div>
-      </div> -->
-      <div class="form-group">
-        <label class="col-md-4">Date Serviced </label>
-        <input type="date" class="form-control" formControlName="date_serviced" #date_serviced />
-      </div>
-      <!-- <div *ngIf="angForm.controls['business_gst_number'].invalid && (angForm.controls['business_gst_number'].dirty || angForm.controls['business_gst_number'].touched)" class="alert alert-danger">
-        <div *ngIf="angForm.controls['business_gst_number'].errors.required">
-          Business GST Number is required.
+
+        <div class="form-group">
+          <label class="col-md-4">Date Serviced </label>
+          <input type="date" class="form-control" formControlName="date_serviced" #date_serviced />
         </div>
-      </div> -->
-      <div class="form-group">
-        <label class="col-md-4">Body Wash </label>
-        <input type="number" class="form-control" formControlName="body_wash" #body_wash [(ngModel)] = "business.body_wash" />
-      </div>
-      <div class="form-group">
-        <button (click)="updateBusiness(job_id.value, technician_id.value, date_serviced.value, body_wash.value)"
-        [disabled]="angForm.invalid" 
-        class="btn btn-primary">Update Business</button>
-      </div>
-    </form>
+
+        <div class="form-group">
+          <label class="col-md-4">Vehicle No </label>
+          <input type="text" class="form-control" formControlName="vehicle_no" #vehicle_no
+            [(ngModel)]="business.vehicle_no" />
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-4">Make </label>
+          <input type="text" class="form-control" formControlName="make" #make [(ngModel)]="business.make" />
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-4">Model </label>
+          <input type="text" class="form-control" formControlName="model" #model [(ngModel)]="business.model" />
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-4">Owner Name </label>
+          <input type="text" class="form-control" formControlName="owner_name" #owner_name
+            [(ngModel)]="business.owner_name" />
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-4">Mileage </label>
+          <input type="text" class="form-control" formControlName="mileage" #mileage [(ngModel)]="business.mileage" />
+        </div>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Checked</th>
+              <th scope="col">Serviced</th>
+              <th scope="col">Replaced</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Lights & Indicators</th>
+              <td>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="Checked" formControlName="lights_indicators"
+                    #lights_indicators [(ngModel)]="business.lights_indicators" />
+                </div>
+              </td>
+              <td>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="Serviced" formControlName="lights_indicators"
+                    #lights_indicators [(ngModel)]="business.lights_indicators" />
+                </div>
+              </td>
+              <td>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="Replaced" formControlName="lights_indicators"
+                    #lights_indicators [(ngModel)]="business.lights_indicators" />
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Horn</th>
+              <td>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="Checked" formControlName="horn" #horn
+                    [(ngModel)]="business.horn" />
+                </div>
+              </td>
+              <td>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="Serviced" formControlName="horn" #horn
+                    [(ngModel)]="business.horn" />
+                </div>
+              </td>
+              <td>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="Replaced" formControlName="horn" #horn
+                    [(ngModel)]="business.horn" />
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Wipers</th>
+              <td>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="Checked" formControlName="wipers" #wipers
+                    [(ngModel)]="business.wipers" />
+                </div>
+              </td>
+              <td>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="Serviced" formControlName="wipers" #wipers
+                    [(ngModel)]="business.wipers" />
+                </div>
+              </td>
+              <td>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="Replaced" formControlName="wipers" #wipers
+                    [(ngModel)]="business.wipers" />
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Side Mirrors</th>
+              <td>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="Checked" formControlName="side_mirror"
+                    #side_mirror [(ngModel)]="business.side_mirror" />
+                </div>
+              </td>
+              <td>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="Serviced" formControlName="side_mirror"
+                    #side_mirror [(ngModel)]="business.side_mirror" />
+                </div>
+              </td>
+              <td>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="Replaced" formControlName="side_mirror"
+                    #side_mirror [(ngModel)]="business.side_mirror" />
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Power Windows</th>
+              <td>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="Checked" formControlName="power_windows"
+                    #power_windows [(ngModel)]="business.power_windows" />
+                </div>
+              </td>
+              <td>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="Serviced" formControlName="power_windows"
+                    #power_windows [(ngModel)]="business.power_windows" />
+                </div>
+              </td>
+              <td>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="Replaced" formControlName="power_windows"
+                    #power_windows [(ngModel)]="business.power_windows" />
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Brake Fluid</th>
+              <td>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="Checked" formControlName="brake_fluid"
+                    #brake_fluid [(ngModel)]="business.brake_fluid" />
+                </div>
+              </td>
+              <td>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="Serviced" formControlName="brake_fluid"
+                    #brake_fluid [(ngModel)]="business.brake_fluid" />
+                </div>
+              </td>
+              <td>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="Replaced" formControlName="brake_fluid"
+                    #brake_fluid [(ngModel)]="business.brake_fluid" />
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Engine Coolant</th>
+              <td>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="Checked" formControlName="engine_coolant"
+                    #engine_coolant [(ngModel)]="business.engine_coolant" />
+                </div>
+              </td>
+              <td>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="Serviced" formControlName="engine_coolant"
+                    #engine_coolant [(ngModel)]="business.engine_coolant" />
+                </div>
+              </td>
+              <td>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="Replaced" formControlName="engine_coolant"
+                    #engine_coolant [(ngModel)]="business.engine_coolant" />
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Drive Belt</th>
+              <td>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="Checked" formControlName="drive_belt" #drive_belt
+                    [(ngModel)]="business.drive_belt" />
+                </div>
+              </td>
+              <td>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="Serviced" formControlName="drive_belt" #drive_belt
+                    [(ngModel)]="business.drive_belt" />
+                </div>
+              </td>
+              <td>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="Replaced" formControlName="drive_belt" #drive_belt
+                    [(ngModel)]="business.drive_belt" />
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">AC Filter</th>
+              <td>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="Checked" formControlName="ac_filter" #ac_filter
+                    [(ngModel)]="business.ac_filter" />
+                </div>
+              </td>
+              <td>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="Serviced" formControlName="ac_filter" #ac_filter
+                    [(ngModel)]="business.ac_filter" />
+                </div>
+              </td>
+              <td>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="Replaced" formControlName="ac_filter" #ac_filter
+                    [(ngModel)]="business.ac_filter" />
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Air Filter</th>
+              <td>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="Checked" formControlName="air_filter" #air_filter
+                    [(ngModel)]="business.air_filter" />
+                </div>
+              </td>
+              <td>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="Serviced" formControlName="air_filter" #air_filter
+                    [(ngModel)]="business.air_filter" />
+                </div>
+              </td>
+              <td>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="Replaced" formControlName="air_filter" #air_filter
+                    [(ngModel)]="business.air_filter" />
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Front Brakes</th>
+              <td>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="Checked" formControlName="front_brakes"
+                    #front_brakes [(ngModel)]="business.front_brakes" />
+                </div>
+              </td>
+              <td>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="Serviced" formControlName="front_brakes"
+                    #front_brakes [(ngModel)]="business.front_brakes" />
+                </div>
+              </td>
+              <td>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="Replaced" formControlName="front_brakes"
+                    #front_brakes [(ngModel)]="business.front_brakes" />
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Rear Brakes</th>
+              <td>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="Checked" formControlName="rear_brakes"
+                    #rear_brakes [(ngModel)]="business.rear_brakes" />
+                </div>
+              </td>
+              <td>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="Serviced" formControlName="rear_brakes"
+                    #rear_brakes [(ngModel)]="business.rear_brakes" />
+                </div>
+              </td>
+              <td>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="Replaced" formControlName="rear_brakes"
+                    #rear_brakes [(ngModel)]="business.rear_brakes" />
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Engine Oil</th>
+              <td>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="Checked" formControlName="engine_oil" #engine_oil
+                    [(ngModel)]="business.engine_oil" />
+                </div>
+              </td>
+              <td>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="Serviced" formControlName="engine_oil" #engine_oil
+                    [(ngModel)]="business.engine_oil" />
+                </div>
+              </td>
+              <td>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="Replaced" formControlName="engine_oil" #engine_oil
+                    [(ngModel)]="business.engine_oil" />
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Oil Filter</th>
+              <td>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="Checked" formControlName="oil_filter" #oil_filter
+                    [(ngModel)]="business.oil_filter" />
+                </div>
+              </td>
+              <td>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="Serviced" formControlName="oil_filter" #oil_filter
+                    [(ngModel)]="business.oil_filter" />
+                </div>
+              </td>
+              <td>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="Replaced" formControlName="oil_filter" #oil_filter
+                    [(ngModel)]="business.oil_filter" />
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Shocks</th>
+              <td>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="Checked" formControlName="shocks" #shocks
+                    [(ngModel)]="business.shocks" />
+                </div>
+              </td>
+              <td>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="Serviced" formControlName="shocks" #shocks
+                    [(ngModel)]="business.shocks" />
+                </div>
+              </td>
+              <td>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="Replaced" formControlName="shocks" #shocks
+                    [(ngModel)]="business.shocks" />
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Tyre Pressure</th>
+              <td>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="Checked" formControlName="tyre_pressure"
+                    #tyre_pressure [(ngModel)]="business.tyre_pressure" />
+                </div>
+              </td>
+              <td>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="Serviced" formControlName="tyre_pressure"
+                    #tyre_pressure [(ngModel)]="business.tyre_pressure" />
+                </div>
+              </td>
+              <td>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="Replaced" formControlName="tyre_pressure"
+                    #tyre_pressure [(ngModel)]="business.tyre_pressure" />
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Body Wash</th>
+              <td>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="Checked" formControlName="body_wash" #body_wash
+                    [(ngModel)]="business.body_wash" />
+                </div>
+              </td>
+              <td>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="Serviced" formControlName="body_wash" #body_wash
+                    [(ngModel)]="business.body_wash" />
+                </div>
+              </td>
+              <td>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" value="Replaced" formControlName="body_wash" #body_wash
+                    [(ngModel)]="business.body_wash" />
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="form-group">
+          <button (click)="
+              updateBusiness(
+                job_id.value,
+                technician_id.value,
+                date_serviced.value,
+                vehicle_no.value,
+                make.value,
+                model.value,
+                owner_name.value,
+                mileage.value,
+                lights_indicators.value,
+                horn.value,
+                wipers.value,
+                side_mirror.value,
+                power_windows.value,
+                brake_fluid.value,
+                engine_coolant.value,
+                drive_belt.value,
+                ac_filter.value,
+                air_filter.value,
+                front_brakes.value,
+                rear_brakes.value,
+                engine_oil.value,
+                oil_filter.value,
+                shocks.value,
+                tyre_pressure.value,
+                body_wash.value
+              )
+            " [disabled]="angForm.invalid" class="btn btn-primary">
+            Update Business
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
-</div>
 </div>

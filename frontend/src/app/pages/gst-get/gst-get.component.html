@@ -1,39 +1,47 @@
 <app-navbar></app-navbar>
-<div class="container pt-5">
-<table class="table table-responsive-md table-hover">
+<!-- <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.."> -->
+<div>
+</div>
+<div class="container pt-5" style="overflow-x:auto">
+        <button type="button" class="btn btn-primary float-right mx-auto" routerLink="/business/create">Create a Service Reports</button>
+</div>
+<div class="container pt-3" style="overflow-x:auto;">
+    <!-- <input type = "text" id = "myInput" onkeyup="myFunction()" placeholder = "Seach here,..">
+         <br> -->
+<table class="table table-responsive-xl table-hover" id="myTable" style="width: 70%">
     <thead>
     <tr>
-        <td>Job ID</td>
-        <td>Technician ID</td>
-        <td>Date Serviced</td>
-        <td>Vehicle No</td>
-        <td>Make</td>
-        <td>Model</td>
-        <td>Owner Name</td>
-        <td>Mileage</td>
-        <td>Lights and Indicators</td>
-        <td>Horn</td>
-        <td>Wipers</td>
-        <td>Side Mirrors</td>
-        <td>Power Windows</td>
-        <td>Brake Fluid</td>
-        <td>Engine Coolant</td>
-        <td>Drive Belt</td>
-        <td>AC Filter</td>
-        <td>Air Filter</td>
-        <td>Front Brakes</td>
-        <td>Rear Brakes</td>
-        <td>Engine Oil</td>
-        <td>Oil Filter</td>
-        <td>Shocks</td>
-        <td>Tyre Pressure</td>
-        <td>Body Wash</td>
+        <th>Job ID</th>
+        <th>Technician ID</th>
+        <th>Date Serviced</th>
+        <th>Vehicle No</th>
+        <th>Make</th>
+        <th>Model</th>
+        <th>Owner Name</th>
+        <th>Mileage</th>
+        <th>Lights and Indicators</th>
+        <th>Horn</th>
+        <th>Wipers</th>
+        <th>Side Mirrors</th>
+        <th>Power Windows</th>
+        <th>Brake Fluid</th>
+        <th>Engine Coolant</th>
+        <th>Drive Belt</th>
+        <th>AC Filter</th>
+        <th>Air Filter</th>
+        <th>Front Brakes</th>
+        <th>Rear Brakes</th>
+        <th>Engine Oil</th>
+        <th>Oil Filter</th>
+        <th>Shocks</th>
+        <th>Tyre Pressure</th>
+        <th>Body Wash</th>
         
-        <td colspan="2">Actions</td>
+        <th colspan="2">Actions</th>
     </tr>
     </thead>
   
-    <tbody>
+    <tbody id="test">
         <tr *ngFor="let business of businesses">
             <td>{{ business.job_id }}</td>
             <td>{{ business.technician_id }}</td>
@@ -59,15 +67,44 @@
             <td>{{ business.oil_filter }}</td>
             <td>{{ business.shocks }}</td>
             <td>{{ business.tyre_pressure }}</td>
-            <td>{{ business.vehicle_no }}</td>
-            <td>{{ business.vehicle_no }}</td>
-            <td>{{ business.vehicle_no }}</td>
-            <td>{{ business.vehicle_no }}</td>
-            <td>{{ business.vehicle_no }}</td>
             <td>{{ business.body_wash }}</td>
-
+        
             <td><a [routerLink]="['/business/edit', business._id]" class="btn btn-primary">Edit</a></td>
             <td><a (click) = "deleteBusiness(business._id)" class="btn btn-danger">Delete</a></td>        </tr>
-    </tbody>
+    
+        </tbody>
   </table>
   </div>
+  <!-- <script>
+    $(document).ready(function(){
+       $("#demo").on("keyup", function() {
+          var value = $(this).val().toLowerCase();
+          $("#test tr").filter(function() {
+             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+          });
+       });
+    });
+ </script> -->
+ <!-- <script>
+    function myFunction() {
+      // Declare variables 
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("myTable");
+      tr = table.getElementsByTagName("tr");
+    
+      // Loop through all table rows, and hide those who don't match the search query
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        } 
+      }
+    }
+    </script> -->
