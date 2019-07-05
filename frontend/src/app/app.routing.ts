@@ -1,6 +1,5 @@
 import { AdminComponent } from './pages/admin/admin.component';
 import { UserComponent } from './pages/user/user.component';
-import { DashboardComponent } from './../../../template/template/src/app/pages/dashboard/dashboard.component';
 import { HomeComponent } from './pages/home/home.component';
 import { NgModule } from '@angular/core';
 import { CommonModule, } from '@angular/common';

@@ -20,4 +20,11 @@ export class ReservationService {
       map((res: any[]) => res.map(it => it as Reservation))
     );
   }
+
+  getPersonal(): Observable<Reservation[]> {
+    return this.http.get(this.reservationUrl + '/').pipe(
+      first(),
+      map((res: any[]) => res.map(it => it as Reservation))
+    );
+  }
 }

@@ -55,7 +55,7 @@ piper.get('/all/:id', [verify.decodeToken, verify.checkAdmin], hukx.pipe(
 piper.get('/', [verify.decodeToken], hukx.pipe(
   flatMap(req => from(Reservation.find({
     createdBy: req.uid
-  }).populate("vehicle"))),
+  }).populate("vehicle createdBy"))),
   throwIfEmpty(() => hukx.error(500, {
     message: 'Error retrieving reservations'
   }))
