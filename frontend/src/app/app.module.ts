@@ -38,6 +38,7 @@ import { AddEditUserdetailsComponent } from './pages/user/add-edit-userdetails/a
 import { UserviewComponent } from './pages/user/userview/userview.component';
 import { RatingsComponent } from './pages/portal/ratings/ratings.component';
 import { RatingsCommentsComponent } from './pages/portal/ratings-comments/ratings-comments.component';
+import { OverallRatingComponent } from './pages/dashboard/overall-rating/overall-rating.component';
 
 FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme);
 
@@ -77,7 +78,8 @@ import { GridFilterPipe } from './util/grid-filter.pipe';
     AddEditUserdetailsComponent,
     UserviewComponent,
     RatingsComponent,
-    RatingsCommentsComponent
+    RatingsCommentsComponent,
+    OverallRatingComponent
   ],
   imports: [
     BrowserModule,
