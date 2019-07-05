@@ -7,107 +7,75 @@ import { map, tap, flatMap } from 'rxjs/operators';
 
 const data = {
   chart: {
-    caption: 'Average Fastball Velocity',
-    yaxisname: 'Velocity (in mph)',
-    subcaption: '[2005-2016]',
-    numbersuffix: ' mph',
+    caption: 'Reservations',
+    yaxisname: 'Number of Reservations',
+    subcaption: '[2010-2018]',
+    numbersuffix: ' ',
     rotatelabels: '1',
     setadaptiveymin: '1',
     theme: 'fusion'
   },
   data: [
     {
-      label: '2005',
-      value: '89.45'
-    },
-    {
-      label: '2006',
-      value: '89.87'
-    },
-    {
-      label: '2007',
-      value: '89.64'
-    },
-    {
-      label: '2008',
-      value: '90.13'
-    },
-    {
-      label: '2009',
-      value: '90.67'
-    },
-    {
       label: '2010',
-      value: '90.54'
+      value: '256'
     },
     {
       label: '2011',
-      value: '90.75'
+      value: '289'
     },
     {
       label: '2012',
-      value: '90.8'
+      value: '320'
     },
     {
       label: '2013',
-      value: '91.16'
+      value: '412'
     },
     {
       label: '2014',
-      value: '91.37'
+      value: '480'
     },
     {
       label: '2015',
-      value: '91.66'
+      value: '512'
     },
     {
       label: '2016',
-      value: '91.8'
+      value: '552'
     }
   ]
 };
 
 const data1 = {
   chart: {
-    caption: 'Countries With Most Oil Reserves [2017-18]',
-    subcaption: 'In MMbbl = One Million barrels',
-    xaxisname: 'Country',
+    caption: 'Ratings for the Week',
+    subcaption: '',
+    xaxisname: 'Week',
     yaxisname: 'Reserves (MMbbl)',
     numbersuffix: 'K',
     theme: 'fusion'
   },
   data: [
     {
-      label: 'Venezuela',
-      value: '290'
+      label: 'Mon',
+      value: '3.4'
     },
     {
-      label: 'Saudi',
-      value: '260'
+      label: 'Tue',
+      value: '3.5'
     },
     {
-      label: 'Canada',
-      value: '180'
+      label: 'Wed',
+      value: '3.5'
     },
     {
-      label: 'Iran',
-      value: '140'
+      label: 'Thu',
+      value: '3.6'
     },
     {
-      label: 'Russia',
-      value: '115'
-    },
-    {
-      label: 'UAE',
-      value: '100'
-    },
-    {
-      label: 'US',
-      value: '30'
-    },
-    {
-      label: 'China',
-      value: '30'
+      label: 'Fri',
+      value: '4'
     }
   ]
 };
