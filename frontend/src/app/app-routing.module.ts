@@ -20,6 +20,11 @@ import { AddEditServiceComponent } from './pages/dashboard/add-edit-service/add-
 import { ViewCarComponent } from './pages/portal/view-car/view-car.component';
 import { RatingsCommentsComponent } from './pages/portal/ratings-comments/ratings-comments.component';
 
+import { GstAddComponent } from './pages/gst-add/gst-add.component';
+import { GstEditComponent } from './pages/gst-edit/gst-edit.component';
+import { GstGetComponent } from './pages/gst-get/gst-get.component';
+
+
 const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
   { path: 'signup', component: SignupComponent, canActivate: [LoginGuard] },
@@ -53,6 +58,18 @@ const routes: Routes = [
       { path: 'service/create', component: AddEditServiceComponent },
       { path: 'service/edit/:id', component: AddEditServiceComponent }
     ]
+  },
+  {
+    path: 'business/create',
+    component: GstAddComponent
+  },
+  {
+    path: 'business/edit/:id',
+    component: GstEditComponent
+  },
+  {
+    path: 'business',
+    component: GstGetComponent
   },
   {
     path: '',

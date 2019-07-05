@@ -41,8 +41,15 @@ import { RatingsCommentsComponent } from './pages/portal/ratings-comments/rating
 
 FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme);
 
+import { GstAddComponent } from './pages/gst-add/gst-add.component';
+import { GstGetComponent } from './pages/gst-get/gst-get.component';
+import { GstEditComponent } from './pages/gst-edit/gst-edit.component';
+import { GridFilterPipe } from './util/grid-filter.pipe';
+
+
 @NgModule({
   declarations: [
+    GridFilterPipe,
     AppComponent,
     NavbarComponent,
     SidebarComponent,
@@ -61,6 +68,9 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme);
     ViewCarComponent,
     AddEditReservationComponent,
     ReservationComponent,
+    GstAddComponent,
+    GstGetComponent,
+    GstEditComponent,
     UserprofileComponent,
     ReservationDetailsComponent,
     ReservationsComponent,

@@ -1,0 +1,110 @@
+<app-navbar></app-navbar>
+<!-- <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.."> -->
+<div>
+</div>
+<div class="container pt-5" style="overflow-x:auto">
+        <button *ngIf="isAdmin" type="button" class="btn btn-primary float-right mx-auto" routerLink="/business/create">Create a Service Reports</button>
+</div>
+<div class="container pt-3" style="overflow-x:auto;">
+    <input type = "text" id = "myInput" [(ngModel)]="search" placeholder = "Seach here,..">
+         <br>
+<table class="table table-responsive-xl table-hover" id="myTable" style="width: 70%">
+    <thead>
+    <tr>
+        <th>Job ID</th>
+        <th>Technician ID</th>
+        <th>Date Serviced</th>
+        <th>Vehicle No</th>
+        <th>Make</th>
+        <th>Model</th>
+        <th>Owner Name</th>
+        <th>Mileage</th>
+        <th>Lights and Indicators</th>
+        <th>Horn</th>
+        <th>Wipers</th>
+        <th>Side Mirrors</th>
+        <th>Power Windows</th>
+        <th>Brake Fluid</th>
+        <th>Engine Coolant</th>
+        <th>Drive Belt</th>
+        <th>AC Filter</th>
+        <th>Air Filter</th>
+        <th>Front Brakes</th>
+        <th>Rear Brakes</th>
+        <th>Engine Oil</th>
+        <th>Oil Filter</th>
+        <th>Shocks</th>
+        <th>Tyre Pressure</th>
+        <th>Body Wash</th>
+        
+        <th colspan="2">Actions</th>
+    </tr>
+    </thead>
+  
+    <tbody id="test">
+        <tr *ngFor="let business of businesses | grdFilter: {vehicle_no: search}">
+            <td>{{ business.job_id }}</td>
+            <td>{{ business.technician_id }}</td>
+            <td>{{ business.date_serviced | date }}</td>
+            <td>{{ business.vehicle_no }}</td>
+            <td>{{ business.make }}</td>
+            <td>{{ business.model }}</td>
+            <td>{{ business.owner_name }}</td>
+            <td>{{ business.mileage }}</td>
+            <td>{{ business.lights_indicators }}</td>
+            <td>{{ business.horn }}</td>
+            <td>{{ business.wipers }}</td>
+            <td>{{ business.side_mirror }}</td>
+            <td>{{ business.power_windows }}</td>
+            <td>{{ business.brake_fluid }}</td>
+            <td>{{ business.engine_coolant }}</td>
+            <td>{{ business.drive_belt }}</td>
+            <td>{{ business.ac_filter }}</td>
+            <td>{{ business.air_filter }}</td>
+            <td>{{ business.front_brakes }}</td>
+            <td>{{ business.rear_brakes }}</td>
+            <td>{{ business.engine_oil }}</td>
+            <td>{{ business.oil_filter }}</td>
+            <td>{{ business.shocks }}</td>
+            <td>{{ business.tyre_pressure }}</td>
+            <td>{{ business.body_wash }}</td>
+        
+            <td><a [routerLink]="['/business/edit', business._id]" *ngIf="isAdmin" class="btn btn-primary">Edit</a></td>
+            <td><a (click) = "deleteBusiness(business._id)" *ngIf="isAdmin" class="btn btn-danger">Delete</a></td>        </tr>
+    
+        </tbody>
+  </table>
+  </div>
+  <!-- <script>
+    $(document).ready(function(){
+       $("#demo").on("keyup", function() {
+          var value = $(this).val().toLowerCase();
+          $("#test tr").filter(function() {
+             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+          });
+       });
+    });
+ </script> -->
+ <!-- <script>
+    function myFunction() {
+      // Declare variables 
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("myTable");
+      tr = table.getElementsByTagName("tr");
+    
+      // Loop through all table rows, and hide those who don't match the search query
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        } 
+      }
+    }
+    </script> -->

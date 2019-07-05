@@ -1,0 +1,53 @@
+export default class Business {    
+  job_id: String;
+  technician_id: String;
+  date_serviced: Date;
+  vehicle_no: String;
+  make: String;
+  model: String;
+  owner_name: String;
+  mileage: Number;
+  lights_indicators: String;
+  horn: String;
+  wipers: String;
+  side_mirror: String;
+  power_windows: String;
+  brake_fluid: String;
+  engine_coolant: String;
+  drive_belt: String;
+  ac_filter: String;
+  air_filter: String;
+  front_brakes: String;
+  rear_brakes: String;
+  engine_oil: String;
+  oil_filter: String;
+  shocks: String;
+  tyre_pressure: String;
+  body_wash: String;
+}
+
+// job_id:
+// technician_id:
+// date_serviced:
+// vehicle_no:
+// make:
+// model:
+// owner_name:
+// mileage:
+// lights_indicators:
+// horn:
+// wipers:
+// side_mirror:
+// power_windows:
+// break_fluid:
+// engine_coolant:
+// drive_belt:
+// ac_filter:
+// air_filter:
+// front_brakes:
+// rear_breaks:
+// engine_oil:
+// oil_filter:
+// shocks:
+// tyre_pressure:
+// body_wash:

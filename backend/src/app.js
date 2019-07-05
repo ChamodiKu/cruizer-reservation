@@ -13,6 +13,7 @@ const usersRouter = require('./api/users')
 const carsRouter = require('./api/cars')
 const servicesRouter = require('./api/services')
 const reservationsRouter = require('./api/reservations')
+const businesRouter = require('./api/business.route')
 const ratingRouter = require('./api/rating')
 
 // Initialize the express app
@@ -47,6 +48,7 @@ app.use('/users', usersRouter)
 app.use('/cars', carsRouter)
 app.use('/services', servicesRouter)
 app.use('/reservations', reservationsRouter)
+app.use('/business', businesRouter);
 app.use('/rating', ratingRouter)
 
 // Set the port to 3000

@@ -116,4 +116,4 @@ router.post('/changePassword', [verify.decodeToken], function (req, res) {
   }
 })
 
-module.exports = router
+module.exports = router;
