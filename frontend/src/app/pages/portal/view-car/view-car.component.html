@@ -53,9 +53,9 @@
             </td>
             <td>{{ reservation.requested.substr(0,10) }}</td>
             <td>
-              <span *ngIf="reservation.status == 0">Pending</span>
-              <span *ngIf="reservation.status == 1">Accepted</span>
-              <span *ngIf="reservation.status == 2">Declined</span>
+              <span class="pending" *ngIf="reservation.status == 0">Pending</span>
+              <span class="accepted" *ngIf="reservation.status == 1">Accepted</span>
+              <span class="declined" *ngIf="reservation.status == 2">Declined</span>
             </td>
             <td>
               <button *ngIf="reservation.status != 1" class="btn btn-danger"

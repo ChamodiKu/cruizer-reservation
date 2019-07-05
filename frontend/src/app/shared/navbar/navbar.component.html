@@ -16,11 +16,11 @@
       </div>
       <ul class="navbar-nav ml-lg-auto">
 
-          <li class="nav-item">
-              <a class="nav-link nav-link-icon ">
-                <button type="button" class="btn btn-secondary" routerLink="/business">View Service Reports</button>
-              </a>
-            </li>            
+        <li *ngIf="currentUser" class="nav-item">
+          <a class="nav-link nav-link-icon" routerLink="/business">
+            Service Reports
+          </a>
+        </li>
 
         <li *ngIf="!currentUser" class="nav-item">
           <a class="nav-link nav-link-icon ">

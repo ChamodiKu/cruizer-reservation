@@ -1,3 +1,19 @@
 #a {
     background-color:#172b4d;
   }
+
+.nav-item a {
+  color: white; 
+}
+
+.nav-item a:hover {
+  color: #ddd; 
+}
+
+.dropdown-menu a {
+  color: #111;
+}
+
+.dropdown-menu a:hover {
+  color: #444;
+}

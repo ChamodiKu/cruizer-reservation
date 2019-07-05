@@ -48,4 +48,18 @@ export class ReservationService {
       map(res => res as ApiResponse)
     );
   }
+
+  accept(id: String): Observable<ApiResponse> {
+    return this.http.post(this.reservationUrl + '/accept/' + id, null).pipe(
+      first(),
+      map(res => res as ApiResponse)
+    );
+  }
+
+  decline(id: String): Observable<ApiResponse> {
+    return this.http.post(this.reservationUrl + '/decline/' + id, null).pipe(
+      first(),
+      map(res => res as ApiResponse)
+    );
+  }
 }

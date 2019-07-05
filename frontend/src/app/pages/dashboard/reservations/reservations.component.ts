@@ -9,23 +9,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReservationsComponent implements OnInit {
   reservations: any;
-  constructor(private reservationService: ReservationService) {}
+
+  constructor(private reservationService: ReservationService) { }
 
   ngOnInit() {
-    this.getReservation();
+    this.fetchReservations();
   }
-  //
-  private getReservation() {
-    this.reservationService.get().subscribe(reserv => {
-      console.log(reserv);
-      this.reservations = reserv;
+
+  private fetchReservations() {
+    this.reservationService.get().subscribe(reservations => {
+      console.log(reservations);
+      this.reservations = reservations;
     });
   }
 
-  // accepting button in the reservation table
-  accepted(id, accept) {
-    if (id && accept) {
-      accept = true;
+  onAccept(id: String, isAccept: Boolean) {
+    if (isAccept) {
+      this.reservationService.accept(id).subscribe(_ => {
+        this.fetchReservations();
+      });
+    } else {
+      this.reservationService.decline(id).subscribe(_ => {
+        this.fetchReservations();
+      });
     }
   }
 }
