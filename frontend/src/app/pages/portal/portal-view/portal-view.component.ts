@@ -26,9 +26,7 @@ export class PortalViewComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.reservationService.get().subscribe(reservations => {
-      this.reservations = reservations;
-    });
+    this.fetchReservations();
     this.carService.get().subscribe(cars => {
       this.cars = cars;
     });
@@ -37,4 +35,15 @@ export class PortalViewComponent implements OnInit {
     });
   }
 
+  onDeleteReservation(id: String) {
+    this.reservationService.delete(id).subscribe(_ => {
+      this.fetchReservations();
+    });
+  }
+
+  fetchReservations() {
+    this.reservationService.getPersonal().subscribe(reservations => {
+      this.reservations = reservations;
+    });
+  }
 }

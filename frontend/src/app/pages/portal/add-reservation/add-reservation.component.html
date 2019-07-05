@@ -1,0 +1,20 @@
+<div class="container mt-5">
+  <a class="btn btn-link" href="#" routerLink="/portal/car/view/{{carId}}">Back</a>
+  <h1 class="mt-5">Add Reservation</h1>
+  <h4 class="mt-4 text-muted">{{ car?.number }}</h4>
+  <h4 class="mt-4">Choose date</h4>
+  <input type="date" [formControl]="requested">
+  <h4 class="mt-4">Choose service</h4>
+  <div class="card-columns">
+    <div *ngFor="let service of services" class="card item-card" [ngClass]="{ 'active': service._id == serviceId }"
+      (click)="selectService(service)">
+      <div class="card-body">
+        <h5 class="card-title">{{ service.name }}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{ service.description }}</h6>
+        <p class="card-text">Rs. {{ service.price }}.00</p>
+      </div>
+    </div>
+  </div>
+  <p *ngIf="error" class="error">{{error}}</p>
+  <button class="btn btn-primary" (click)="onSubmit()">Reserve</button>
+</div>

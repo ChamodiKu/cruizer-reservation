@@ -23,6 +23,7 @@ import { RatingsCommentsComponent } from './pages/portal/ratings-comments/rating
 import { GstAddComponent } from './pages/gst-add/gst-add.component';
 import { GstEditComponent } from './pages/gst-edit/gst-edit.component';
 import { GstGetComponent } from './pages/gst-get/gst-get.component';
+import { AddReservationComponent } from './pages/portal/add-reservation/add-reservation.component';
 
 
 const routes: Routes = [
@@ -43,6 +44,7 @@ const routes: Routes = [
     canActivate: [AuthGuard, PortalGuard],
     children: [
       { path: 'ratings-comments', component: RatingsCommentsComponent },
+      { path: 'car/reserve/:id', component: AddReservationComponent },
       { path: 'car/view/:id', component: ViewCarComponent },
       { path: 'car/create', component: AddEditCarComponent },
       { path: 'car/edit/:id', component: AddEditCarComponent },

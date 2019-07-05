@@ -10,7 +10,7 @@ import { ApiResponse } from '../api/api.dto';
   providedIn: 'root'
 })
 export class ReservationService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   private reservationUrl = AppConfig.apiUrl + '/reservations';
 
@@ -25,6 +25,27 @@ export class ReservationService {
     return this.http.get(this.reservationUrl + '/').pipe(
       first(),
       map((res: any[]) => res.map(it => it as Reservation))
+    );
+  }
+
+  getPersonalByVehicle(id: String): Observable<Reservation[]> {
+    return this.http.get(this.reservationUrl + '/byVehicle/' + id).pipe(
+      first(),
+      map((res: any[]) => res.map(it => it as Reservation))
+    );
+  }
+
+  create(reservation: Reservation): Observable<ApiResponse> {
+    return this.http.post(this.reservationUrl, reservation).pipe(
+      first(),
+      map(res => res as ApiResponse)
+    );
+  }
+
+  delete(id: String): Observable<ApiResponse> {
+    return this.http.delete(this.reservationUrl + '/' + id).pipe(
+      first(),
+      map(res => res as ApiResponse)
     );
   }
 }

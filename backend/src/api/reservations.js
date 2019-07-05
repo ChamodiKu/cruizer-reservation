@@ -28,7 +28,7 @@ const piper = piperOf(router)
  * @response List of reservations
  */
 piper.get('/all', [verify.decodeToken, verify.checkAdmin], hukx.pipe(
-  flatMap(() => from(Reservation.find().populate("vehicle createdBy")))
+  flatMap(() => from(Reservation.find().populate("vehicle createdBy services")))
 ))
 
 /**
@@ -55,7 +55,25 @@ piper.get('/all/:id', [verify.decodeToken, verify.checkAdmin], hukx.pipe(
 piper.get('/', [verify.decodeToken], hukx.pipe(
   flatMap(req => from(Reservation.find({
     createdBy: req.uid
-  }).populate("vehicle createdBy"))),
+  }).populate("vehicle createdBy services"))),
+  throwIfEmpty(() => hukx.error(500, {
+    message: 'Error retrieving reservations'
+  }))
+))
+
+/**
+ * Reservations get endpoint.
+ *
+ * Get all the reservations created by the authenticated user.
+ *
+ * @role User
+ * @response List of reservations
+ */
+piper.get('/byVehicle/:id', [verify.decodeToken], hukx.pipe(
+  flatMap(req => from(Reservation.find({
+    createdBy: req.uid,
+    vehicle: req.params['id']
+  }).populate("vehicle createdBy services"))),
   throwIfEmpty(() => hukx.error(500, {
     message: 'Error retrieving reservations'
   }))
@@ -141,59 +159,28 @@ piper.post('/accept/:id', [verify.decodeToken, verify.checkAdmin], hukx.pipe(
 ))
 
 /**
- * Reservations propose endpoint.
+ * Reservations decline endpoint.
  *
- * Propose an allocated date time for the reservation of the given reservation id.
+ * Decline the reservation of the given id.
  *
  * @params id
- * @body Object with allocated date time
  * @role Admin
  */
-piper.post('/propose/:id', [verify.decodeToken, verify.checkAdmin], hukx.pipe(
-  map(req => {
-    if (!req.body.allocated)
-      throw hukx.error(500, {
-        message: 'Missing fields'
-      })
+piper.post('/decline/:id', [verify.decodeToken, verify.checkAdmin], hukx.pipe(
+  flatMap(req => from(Reservation.findById(req.params['id']))),
+  map(reservation => {
+    reservation.status = ReservationStatus.DECLINED
+    reservation.alloctated = reservation.requested
 
-    return req
+    return reservation
   }),
-  flatMap(req => from(Reservation.updateOne({
-    _id: req.params['id']
-  }, {
-    status: ReservationStatus.PROPOSED,
-    alloctated: req.body.alloctated
-  }))),
+  flatMap(reservation => from(reservation.save())),
   throwIfEmpty(() => hukx.error(500, {
-    message: 'Reservation propose error.'
+    message: 'Reservation accept error.'
   })),
   map(() => {
     return {
-      message: 'Success, New reservation date time proposed!'
-    }
-  }),
-))
-
-/**
- * Reservations accept proposal endpoint.
- *
- * Accept the proposed allocated date time for the reservation of the given reservation id.
- *
- * @params id
- * @role User
- */
-piper.post('/acceptProposal/:id', [verify.decodeToken], hukx.pipe(
-  flatMap(req => from(Reservation.updateOne({
-    _id: req.params['id']
-  }, {
-    status: ReservationStatus.ACCEPTED
-  }))),
-  throwIfEmpty(() => hukx.error(500, {
-    message: 'Reservation propose error.'
-  })),
-  map(() => {
-    return {
-      message: 'Success, Reservation accepted!'
+      message: 'Success, Reservation declined!'
     }
   }),
 ))
