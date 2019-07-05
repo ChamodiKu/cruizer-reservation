@@ -6,7 +6,7 @@
         <button *ngIf="isAdmin" type="button" class="btn btn-primary float-right mx-auto" routerLink="/business/create">Create a Service Reports</button>
 </div>
 <div class="container pt-3" style="overflow-x:auto;">
-    <input type = "text" id = "myInput" [(ngModel)]="search" placeholder = "Seach here,..">
+    <input type = "text" id = "myInput" [(ngModel)]="search" placeholder = "Search here with your vehicle number">
          <br>
 <table class="table table-responsive-xl table-hover" id="myTable" style="width: 70%">
     <thead>
@@ -75,36 +75,3 @@
         </tbody>
   </table>
   </div>
-  <!-- <script>
-    $(document).ready(function(){
-       $("#demo").on("keyup", function() {
-          var value = $(this).val().toLowerCase();
-          $("#test tr").filter(function() {
-             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-          });
-       });
-    });
- </script> -->
- <!-- <script>
-    function myFunction() {
-      // Declare variables 
-      var input, filter, table, tr, td, i, txtValue;
-      input = document.getElementById("myInput");
-      filter = input.value.toUpperCase();
-      table = document.getElementById("myTable");
-      tr = table.getElementsByTagName("tr");
-    
-      // Loop through all table rows, and hide those who don't match the search query
-      for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td")[0];
-        if (td) {
-          txtValue = td.textContent || td.innerText;
-          if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            tr[i].style.display = "";
-          } else {
-            tr[i].style.display = "none";
-          }
-        } 
-      }
-    }
-    </script> -->

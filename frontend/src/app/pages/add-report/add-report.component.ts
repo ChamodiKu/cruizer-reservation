@@ -4,9 +4,9 @@ import { BusinessService } from '../../../business.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-gst-add',
-  templateUrl: './gst-add.component.html',
-  styleUrls: ['./gst-add.component.css']
+  selector: 'app-add-report',
+  templateUrl: './add-report.component.html',
+  styleUrls: ['./add-report.component.css']
 })
 export class GstAddComponent implements OnInit {
 

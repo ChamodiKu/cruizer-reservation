@@ -41,9 +41,9 @@ import { RatingsCommentsComponent } from './pages/portal/ratings-comments/rating
 
 FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme);
 
-import { GstAddComponent } from './pages/gst-add/gst-add.component';
-import { GstGetComponent } from './pages/gst-get/gst-get.component';
-import { GstEditComponent } from './pages/gst-edit/gst-edit.component';
+import { GstAddComponent } from './pages/add-report/add-report.component';
+import { GstGetComponent } from './pages/view-reports/view-reports.component';
+import { GstEditComponent } from './pages/edit-report/edit-report.component';
 import { GridFilterPipe } from './util/grid-filter.pipe';
 
 
