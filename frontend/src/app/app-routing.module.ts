@@ -20,10 +20,10 @@ import { AddEditServiceComponent } from './pages/dashboard/add-edit-service/add-
 import { ViewCarComponent } from './pages/portal/view-car/view-car.component';
 import { RatingsCommentsComponent } from './pages/portal/ratings-comments/ratings-comments.component';
 
-import { GstAddComponent } from './pages/gst-add/gst-add.component';
-import { GstEditComponent } from './pages/gst-edit/gst-edit.component';
-import { GstGetComponent } from './pages/gst-get/gst-get.component';
 import { AddReservationComponent } from './pages/portal/add-reservation/add-reservation.component';
+import { GstAddComponent } from './pages/add-report/add-report.component';
+import { GstEditComponent } from './pages/edit-report/edit-report.component';
+import { GstGetComponent } from './pages/view-reports/view-reports.component';
 
 
 const routes: Routes = [

@@ -6,9 +6,9 @@ import { CommonModule, } from '@angular/common';
 import { BrowserModule  } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
-import { GstAddComponent } from './pages/gst-add/gst-add.component';
-import { GstEditComponent } from './pages/gst-edit/gst-edit.component';
-import { GstGetComponent } from './pages/gst-get/gst-get.component';
+import { GstAddComponent } from './pages/add-report/add-report.component';
+import { GstEditComponent } from './pages/edit-report/edit-report.component';
+import { GstGetComponent } from './pages/view-reports/view-reports.component';
 
 
 const routes: Routes =[

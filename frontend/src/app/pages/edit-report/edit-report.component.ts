@@ -4,9 +4,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { BusinessService } from '../../../business.service';
 
 @Component({
-  selector: 'app-gst-edit',
-  templateUrl: './gst-edit.component.html',
-  styleUrls: ['./gst-edit.component.css']
+  selector: 'app-edit-report',
+  templateUrl: './edit-report.component.html',
+  styleUrls: ['./edit-report.component.css']
 })
 export class GstEditComponent implements OnInit {
 
