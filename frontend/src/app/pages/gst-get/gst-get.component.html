@@ -3,11 +3,11 @@
 <div>
 </div>
 <div class="container pt-5" style="overflow-x:auto">
-        <button type="button" class="btn btn-primary float-right mx-auto" routerLink="/business/create">Create a Service Reports</button>
+        <button *ngIf="isAdmin" type="button" class="btn btn-primary float-right mx-auto" routerLink="/business/create">Create a Service Reports</button>
 </div>
 <div class="container pt-3" style="overflow-x:auto;">
-    <!-- <input type = "text" id = "myInput" onkeyup="myFunction()" placeholder = "Seach here,..">
-         <br> -->
+    <input type = "text" id = "myInput" [(ngModel)]="search" placeholder = "Seach here,..">
+         <br>
 <table class="table table-responsive-xl table-hover" id="myTable" style="width: 70%">
     <thead>
     <tr>
@@ -42,7 +42,7 @@
     </thead>
   
     <tbody id="test">
-        <tr *ngFor="let business of businesses">
+        <tr *ngFor="let business of businesses | grdFilter: {vehicle_no: search}">
             <td>{{ business.job_id }}</td>
             <td>{{ business.technician_id }}</td>
             <td>{{ business.date_serviced | date }}</td>
@@ -69,8 +69,8 @@
             <td>{{ business.tyre_pressure }}</td>
             <td>{{ business.body_wash }}</td>
         
-            <td><a [routerLink]="['/business/edit', business._id]" class="btn btn-primary">Edit</a></td>
-            <td><a (click) = "deleteBusiness(business._id)" class="btn btn-danger">Delete</a></td>        </tr>
+            <td><a [routerLink]="['/business/edit', business._id]" *ngIf="isAdmin" class="btn btn-primary">Edit</a></td>
+            <td><a (click) = "deleteBusiness(business._id)" *ngIf="isAdmin" class="btn btn-danger">Delete</a></td>        </tr>
     
         </tbody>
   </table>

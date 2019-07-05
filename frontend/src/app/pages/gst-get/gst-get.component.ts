@@ -3,6 +3,8 @@ import Business from '../../../Business';
 import { BusinessService } from '../../../business.service';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
+import { FormControl } from '@angular/forms';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-gst-get',
@@ -11,12 +13,20 @@ import { first } from 'rxjs/operators';
 })
 export class GstGetComponent implements OnInit {
 
+  search = '';
+  isAdmin = false;
+
   businesses: Business[];
 
-  constructor(private bs: BusinessService, private router: Router) { }
+  constructor(
+    private bs: BusinessService,
+    private router: Router,
+    private userService: UserService
+  ) { }
 
   ngOnInit() {
-    this.fetchBusiness()
+    this.fetchBusiness();
+    this.isAdmin = this.userService.current().isAdmin;
   }
   deleteBusiness(id) {
     this.bs.deleteBusiness(id).subscribe(res => {
